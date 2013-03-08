@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C241698F525B426D927F446D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FCC8B0DAE24806B36D18EB /* libPods.a */; };
+		C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74316EA9FE9009434D5 /* CoreText.framework */; };
+		C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74416EA9FE9009434D5 /* QuartzCore.framework */; };
 		C39840DE16EA9AD100B2ADB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840DD16EA9AD100B2ADB1 /* UIKit.framework */; };
 		C39840E016EA9AD100B2ADB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840DF16EA9AD100B2ADB1 /* Foundation.framework */; };
 		C39840E216EA9AD100B2ADB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840E116EA9AD100B2ADB1 /* CoreGraphics.framework */; };
@@ -22,6 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46FCC8B0DAE24806B36D18EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		C384C74316EA9FE9009434D5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		C384C74416EA9FE9009434D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		C384C74716EAA024009434D5 /* aGHC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = aGHC.entitlements; sourceTree = "<group>"; };
 		C39840DA16EA9AD100B2ADB1 /* aGHC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aGHC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39840DD16EA9AD100B2ADB1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39840DF16EA9AD100B2ADB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,9 +54,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
+				C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */,
+				C39840E216EA9AD100B2ADB1 /* CoreGraphics.framework in Frameworks */,
 				C39840DE16EA9AD100B2ADB1 /* UIKit.framework in Frameworks */,
 				C39840E016EA9AD100B2ADB1 /* Foundation.framework in Frameworks */,
-				C39840E216EA9AD100B2ADB1 /* CoreGraphics.framework in Frameworks */,
+				C241698F525B426D927F446D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +72,7 @@
 				C39840E316EA9AD100B2ADB1 /* aGHC */,
 				C39840DC16EA9AD100B2ADB1 /* Frameworks */,
 				C39840DB16EA9AD100B2ADB1 /* Products */,
+				48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,9 +87,12 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C384C74316EA9FE9009434D5 /* CoreText.framework */,
+				C384C74416EA9FE9009434D5 /* QuartzCore.framework */,
 				C39840DD16EA9AD100B2ADB1 /* UIKit.framework */,
 				C39840DF16EA9AD100B2ADB1 /* Foundation.framework */,
 				C39840E116EA9AD100B2ADB1 /* CoreGraphics.framework */,
+				46FCC8B0DAE24806B36D18EB /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -85,6 +100,7 @@
 		C39840E316EA9AD100B2ADB1 /* aGHC */ = {
 			isa = PBXGroup;
 			children = (
+				C384C74716EAA024009434D5 /* aGHC.entitlements */,
 				C39840EC16EA9AD100B2ADB1 /* DMAppDelegate.h */,
 				C39840ED16EA9AD100B2ADB1 /* DMAppDelegate.m */,
 				C39840F516EA9AD100B2ADB1 /* MainStoryboard_iPhone.storyboard */,
@@ -120,6 +136,7 @@
 				C39840D616EA9AD100B2ADB1 /* Sources */,
 				C39840D716EA9AD100B2ADB1 /* Frameworks */,
 				C39840D816EA9AD100B2ADB1 /* Resources */,
+				9E0FAD16157F4871976BA754 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,6 +189,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9E0FAD16157F4871976BA754 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C39840D616EA9AD100B2ADB1 /* Sources */ = {
@@ -274,7 +308,9 @@
 		};
 		C398410116EA9AD100B2ADB1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = aGHC/aGHC.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aGHC/aGHC-Prefix.pch";
 				INFOPLIST_FILE = "aGHC/aGHC-Info.plist";
@@ -285,7 +321,9 @@
 		};
 		C398410216EA9AD100B2ADB1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = aGHC/aGHC.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aGHC/aGHC-Prefix.pch";
 				INFOPLIST_FILE = "aGHC/aGHC-Info.plist";
@@ -313,6 +351,7 @@
 				C398410216EA9AD100B2ADB1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
