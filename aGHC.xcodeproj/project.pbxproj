@@ -132,7 +132,6 @@
 		C39840E316EA9AD100B2ADB1 /* aGHC */ = {
 			isa = PBXGroup;
 			children = (
-				C384C74716EAA024009434D5 /* aGHC.entitlements */,
 				C39840EC16EA9AD100B2ADB1 /* DMAppDelegate.h */,
 				C39840ED16EA9AD100B2ADB1 /* DMAppDelegate.m */,
 				C39840F516EA9AD100B2ADB1 /* MainStoryboard_iPhone.storyboard */,
@@ -147,6 +146,7 @@
 		C39840E416EA9AD100B2ADB1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C384C74716EAA024009434D5 /* aGHC.entitlements */,
 				C39840E516EA9AD100B2ADB1 /* aGHC-Info.plist */,
 				C39840E616EA9AD100B2ADB1 /* InfoPlist.strings */,
 				C39840E916EA9AD100B2ADB1 /* main.m */,
