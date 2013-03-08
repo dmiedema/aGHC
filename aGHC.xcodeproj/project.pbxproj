@@ -10,6 +10,10 @@
 		C241698F525B426D927F446D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FCC8B0DAE24806B36D18EB /* libPods.a */; };
 		C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74316EA9FE9009434D5 /* CoreText.framework */; };
 		C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74416EA9FE9009434D5 /* QuartzCore.framework */; };
+		C384C74D16EAA05C009434D5 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74916EAA05C009434D5 /* libTestFlight.a */; };
+		C384C74E16EAA05C009434D5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C384C74A16EAA05C009434D5 /* README.md */; };
+		C384C74F16EAA05C009434D5 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C384C74B16EAA05C009434D5 /* release_notes.md */; };
+		C384C75116EAA12D009434D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C75016EAA12D009434D5 /* libz.dylib */; };
 		C39840DE16EA9AD100B2ADB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840DD16EA9AD100B2ADB1 /* UIKit.framework */; };
 		C39840E016EA9AD100B2ADB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840DF16EA9AD100B2ADB1 /* Foundation.framework */; };
 		C39840E216EA9AD100B2ADB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840E116EA9AD100B2ADB1 /* CoreGraphics.framework */; };
@@ -30,6 +34,11 @@
 		C384C74316EA9FE9009434D5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		C384C74416EA9FE9009434D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C384C74716EAA024009434D5 /* aGHC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = aGHC.entitlements; sourceTree = "<group>"; };
+		C384C74916EAA05C009434D5 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		C384C74A16EAA05C009434D5 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		C384C74B16EAA05C009434D5 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		C384C74C16EAA05C009434D5 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		C384C75016EAA12D009434D5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		C39840DA16EA9AD100B2ADB1 /* aGHC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aGHC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39840DD16EA9AD100B2ADB1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39840DF16EA9AD100B2ADB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -54,18 +63,31 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C384C75116EAA12D009434D5 /* libz.dylib in Frameworks */,
 				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */,
 				C39840E216EA9AD100B2ADB1 /* CoreGraphics.framework in Frameworks */,
 				C39840DE16EA9AD100B2ADB1 /* UIKit.framework in Frameworks */,
 				C39840E016EA9AD100B2ADB1 /* Foundation.framework in Frameworks */,
 				C241698F525B426D927F446D /* libPods.a in Frameworks */,
+				C384C74D16EAA05C009434D5 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C384C74816EAA05C009434D5 /* TestFlightSDK1.2 */ = {
+			isa = PBXGroup;
+			children = (
+				C384C74916EAA05C009434D5 /* libTestFlight.a */,
+				C384C74A16EAA05C009434D5 /* README.md */,
+				C384C74B16EAA05C009434D5 /* release_notes.md */,
+				C384C74C16EAA05C009434D5 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1.2;
+			sourceTree = "<group>";
+		};
 		C39840D116EA9AD100B2ADB1 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +109,8 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C384C75016EAA12D009434D5 /* libz.dylib */,
+				C384C74816EAA05C009434D5 /* TestFlightSDK1.2 */,
 				C384C74316EA9FE9009434D5 /* CoreText.framework */,
 				C384C74416EA9FE9009434D5 /* QuartzCore.framework */,
 				C39840DD16EA9AD100B2ADB1 /* UIKit.framework */,
@@ -185,6 +209,8 @@
 				C39840F416EA9AD100B2ADB1 /* Default-568h@2x.png in Resources */,
 				C39840F716EA9AD100B2ADB1 /* MainStoryboard_iPhone.storyboard in Resources */,
 				C39840FA16EA9AD100B2ADB1 /* MainStoryboard_iPad.storyboard in Resources */,
+				C384C74E16EAA05C009434D5 /* README.md in Resources */,
+				C384C74F16EAA05C009434D5 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +340,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aGHC/aGHC-Prefix.pch";
 				INFOPLIST_FILE = "aGHC/aGHC-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.2\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -327,6 +357,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aGHC/aGHC-Prefix.pch";
 				INFOPLIST_FILE = "aGHC/aGHC-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/TestFlightSDK1.2\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

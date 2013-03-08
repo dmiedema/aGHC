@@ -7,11 +7,26 @@
 //
 
 #import "DMAppDelegate.h"
+#import "TestFlight.h"
+
+#define TESTING 1
 
 @implementation DMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+#ifdef TESTING
+    CFUUIDRef UUID = CFUUIDCreate(kCFAllocatorDefault);
+    CFStringRef UIDstring = CFUUIDCreateString(kCFAllocatorDefault, UUID);
+    CFRelease(UUID);
+    NSString *string = [NSString string];
+    string = (__bridge_transfer NSString *)UIDstring;
+    [TestFlight setDeviceIdentifier:string];
+#endif
+    
+    [TestFlight takeOff:@"e7a2d4c8-b326-403d-9df2-c5c0ad156419"];
+
     // Override point for customization after application launch.
     return YES;
 }
