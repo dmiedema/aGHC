@@ -14,6 +14,8 @@
 		C384C74E16EAA05C009434D5 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C384C74A16EAA05C009434D5 /* README.md */; };
 		C384C74F16EAA05C009434D5 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = C384C74B16EAA05C009434D5 /* release_notes.md */; };
 		C384C75116EAA12D009434D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C75016EAA12D009434D5 /* libz.dylib */; };
+		C384C75316EAA498009434D5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C75216EAA498009434D5 /* SystemConfiguration.framework */; };
+		C384C75516EAA4A9009434D5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C75416EAA4A9009434D5 /* MobileCoreServices.framework */; };
 		C39840DE16EA9AD100B2ADB1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840DD16EA9AD100B2ADB1 /* UIKit.framework */; };
 		C39840E016EA9AD100B2ADB1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840DF16EA9AD100B2ADB1 /* Foundation.framework */; };
 		C39840E216EA9AD100B2ADB1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C39840E116EA9AD100B2ADB1 /* CoreGraphics.framework */; };
@@ -39,6 +41,8 @@
 		C384C74B16EAA05C009434D5 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		C384C74C16EAA05C009434D5 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		C384C75016EAA12D009434D5 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		C384C75216EAA498009434D5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		C384C75416EAA4A9009434D5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		C39840DA16EA9AD100B2ADB1 /* aGHC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aGHC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39840DD16EA9AD100B2ADB1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		C39840DF16EA9AD100B2ADB1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -63,6 +67,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C384C75516EAA4A9009434D5 /* MobileCoreServices.framework in Frameworks */,
+				C384C75316EAA498009434D5 /* SystemConfiguration.framework in Frameworks */,
 				C384C75116EAA12D009434D5 /* libz.dylib in Frameworks */,
 				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */,
@@ -109,6 +115,8 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C384C75416EAA4A9009434D5 /* MobileCoreServices.framework */,
+				C384C75216EAA498009434D5 /* SystemConfiguration.framework */,
 				C384C75016EAA12D009434D5 /* libz.dylib */,
 				C384C74816EAA05C009434D5 /* TestFlightSDK1.2 */,
 				C384C74316EA9FE9009434D5 /* CoreText.framework */,

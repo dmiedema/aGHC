@@ -9,7 +9,7 @@
 #import "DMAppDelegate.h"
 #import "TestFlight.h"
 
-#define TESTING 1
+#define TESTING 0
 
 @implementation DMAppDelegate
 
@@ -24,7 +24,7 @@
     string = (__bridge_transfer NSString *)UIDstring;
     [TestFlight setDeviceIdentifier:string];
 #endif
-    
+    NSLog(@"Generated UUID: %@", string);
     [TestFlight takeOff:@"e7a2d4c8-b326-403d-9df2-c5c0ad156419"];
 
     // Override point for customization after application launch.
