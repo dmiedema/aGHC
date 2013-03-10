@@ -32,6 +32,9 @@
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3DAEC3416EC08FE00C51F73 /* DMSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC3316EC08FE00C51F73 /* DMSettingsTableViewController.m */; };
 		C3DAEC3716EC091300C51F73 /* DMHomeScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC3616EC091300C51F73 /* DMHomeScreenTableViewController.m */; };
+		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
+		C3ED621B16EC702B00311A72 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621A16EC702B00311A72 /* CFNetwork.framework */; };
+		C3ED621D16EC703B00311A72 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621C16EC703B00311A72 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +74,10 @@
 		C3DAEC3316EC08FE00C51F73 /* DMSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSettingsTableViewController.m; sourceTree = "<group>"; };
 		C3DAEC3516EC091300C51F73 /* DMHomeScreenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenTableViewController.h; sourceTree = "<group>"; };
 		C3DAEC3616EC091300C51F73 /* DMHomeScreenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHomeScreenTableViewController.m; sourceTree = "<group>"; };
+		C3ED621716EC6FA700311A72 /* aGHCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aGHCConstants.h; sourceTree = "<group>"; };
+		C3ED621816EC702000311A72 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		C3ED621A16EC702B00311A72 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C3ED621C16EC703B00311A72 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +85,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3ED621D16EC703B00311A72 /* MessageUI.framework in Frameworks */,
+				C3ED621B16EC702B00311A72 /* CFNetwork.framework in Frameworks */,
+				C3ED621916EC702000311A72 /* Security.framework in Frameworks */,
 				C384C75516EAA4A9009434D5 /* MobileCoreServices.framework in Frameworks */,
 				C384C75316EAA498009434D5 /* SystemConfiguration.framework in Frameworks */,
 				C384C75116EAA12D009434D5 /* libz.dylib in Frameworks */,
@@ -126,6 +136,9 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3ED621C16EC703B00311A72 /* MessageUI.framework */,
+				C3ED621A16EC702B00311A72 /* CFNetwork.framework */,
+				C3ED621816EC702000311A72 /* Security.framework */,
 				C384C75416EAA4A9009434D5 /* MobileCoreServices.framework */,
 				C384C75216EAA498009434D5 /* SystemConfiguration.framework */,
 				C384C75016EAA12D009434D5 /* libz.dylib */,
@@ -162,6 +175,7 @@
 		C39840E416EA9AD100B2ADB1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3ED621716EC6FA700311A72 /* aGHCConstants.h */,
 				C384C74716EAA024009434D5 /* aGHC.entitlements */,
 				C39840E516EA9AD100B2ADB1 /* aGHC-Info.plist */,
 				C39840E616EA9AD100B2ADB1 /* InfoPlist.strings */,
