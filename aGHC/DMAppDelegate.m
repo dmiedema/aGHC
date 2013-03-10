@@ -18,7 +18,8 @@
     
     
 #if TESTING
-    /*
+    /* 
+    // pre iOS 6 method
     CFUUIDRef UUID = CFUUIDCreate(kCFAllocatorDefault);
     CFStringRef UIDstring = CFUUIDCreateString(kCFAllocatorDefault, UUID);
     CFRelease(UUID);
@@ -32,7 +33,6 @@
         id = [[NSUUID UUID] UUIDString];
         [defaults setObject:id forKey:@"UUID"];
         [defaults synchronize];
-
     }
     [TestFlight setDeviceIdentifier:id];    
 #endif

@@ -7,6 +7,7 @@
 //
 
 #import "DMViewController.h"
+#import "ECSlidingViewController.h"
 
 @interface DMViewController ()
 

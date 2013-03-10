@@ -28,6 +28,10 @@
 		C39840F716EA9AD100B2ADB1 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39840F516EA9AD100B2ADB1 /* MainStoryboard_iPhone.storyboard */; };
 		C39840FA16EA9AD100B2ADB1 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39840F816EA9AD100B2ADB1 /* MainStoryboard_iPad.storyboard */; };
 		C39840FD16EA9AD100B2ADB1 /* DMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39840FC16EA9AD100B2ADB1 /* DMViewController.m */; };
+		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
+		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
+		C3DAEC3416EC08FE00C51F73 /* DMSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC3316EC08FE00C51F73 /* DMSettingsTableViewController.m */; };
+		C3DAEC3716EC091300C51F73 /* DMHomeScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC3616EC091300C51F73 /* DMHomeScreenTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +64,13 @@
 		C39840F916EA9AD100B2ADB1 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		C39840FB16EA9AD100B2ADB1 /* DMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMViewController.h; sourceTree = "<group>"; };
 		C39840FC16EA9AD100B2ADB1 /* DMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMViewController.m; sourceTree = "<group>"; };
+		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
+		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
+		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
+		C3DAEC3216EC08FE00C51F73 /* DMSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSettingsTableViewController.h; sourceTree = "<group>"; };
+		C3DAEC3316EC08FE00C51F73 /* DMSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSettingsTableViewController.m; sourceTree = "<group>"; };
+		C3DAEC3516EC091300C51F73 /* DMHomeScreenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenTableViewController.h; sourceTree = "<group>"; };
+		C3DAEC3616EC091300C51F73 /* DMHomeScreenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHomeScreenTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +149,11 @@
 				C39840F816EA9AD100B2ADB1 /* MainStoryboard_iPad.storyboard */,
 				C39840FB16EA9AD100B2ADB1 /* DMViewController.h */,
 				C39840FC16EA9AD100B2ADB1 /* DMViewController.m */,
+				C3DAEC3216EC08FE00C51F73 /* DMSettingsTableViewController.h */,
+				C3DAEC3316EC08FE00C51F73 /* DMSettingsTableViewController.m */,
+				C3DAEC3516EC091300C51F73 /* DMHomeScreenTableViewController.h */,
+				C3DAEC3616EC091300C51F73 /* DMHomeScreenTableViewController.m */,
+				C3DAEC3116EC06C100C51F73 /* XIBs & Classes */,
 				C39840E416EA9AD100B2ADB1 /* Supporting Files */,
 			);
 			path = aGHC;
@@ -156,6 +172,16 @@
 				C39840F316EA9AD100B2ADB1 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C3DAEC3116EC06C100C51F73 /* XIBs & Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */,
+				C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */,
+				C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */,
+			);
+			name = "XIBs & Classes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +245,7 @@
 				C39840FA16EA9AD100B2ADB1 /* MainStoryboard_iPad.storyboard in Resources */,
 				C384C74E16EAA05C009434D5 /* README.md in Resources */,
 				C384C74F16EAA05C009434D5 /* release_notes.md in Resources */,
+				C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +276,9 @@
 				C39840EA16EA9AD100B2ADB1 /* main.m in Sources */,
 				C39840EE16EA9AD100B2ADB1 /* DMAppDelegate.m in Sources */,
 				C39840FD16EA9AD100B2ADB1 /* DMViewController.m in Sources */,
+				C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */,
+				C3DAEC3416EC08FE00C51F73 /* DMSettingsTableViewController.m in Sources */,
+				C3DAEC3716EC091300C51F73 /* DMHomeScreenTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
