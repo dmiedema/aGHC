@@ -27,20 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSURL *url = [NSURL URLWithString:@""];
-    AFOAuth2Client *oauthClient = [AFOAuth2Client clientWithBaseURL:url clientID:kClientID secret:kClientSecret];
-    [oauthClient authenticateUsingOAuthWithPath:@"https://github.com/login/oauth/access_token"
-                                       username:@""
-                                       password:@""
-                                          scope:nil
-                                        success:^(AFOAuthCredential *credential) {
-                                            NSLog(@"Creditial Recieved: %@", credential.accessToken);
-                                            [AFOAuthCredential storeCredential:credential withIdentifier:oauthClient.serviceProviderIdentifier];
-    }
-                                        failure:^(NSError *error) {
-                                            NSLog(@"Error %@", error);
-        
-    }];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;

@@ -7,8 +7,8 @@
 //
 
 
-#define kClientID @"8881762e516271c9af67"
-#define kClientSecret @"a850b277689c5cc93e3dbbcbe12e96011f972ecf"
+#define kClientID           @"8881762e516271c9af67"
+#define kClientSecret       @"a850b277689c5cc93e3dbbcbe12e96011f972ecf"
 
 
 

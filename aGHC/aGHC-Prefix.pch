@@ -16,4 +16,5 @@
     #import <MobileCoreServices/MobileCoreServices.h>
     #import <SystemConfiguration/SystemConfiguration.h>
     #import "AFNetworking.h"
+    #import "aGHCConstants.h"
 #endif
