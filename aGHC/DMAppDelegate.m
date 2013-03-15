@@ -28,10 +28,10 @@
      */
     NSString *id = [NSString string];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    id = [defaults objectForKey:@"UUID"];
+    id = [defaults objectForKey:kUUID];
     if (id == nil) {
         id = [[NSUUID UUID] UUIDString];
-        [defaults setObject:id forKey:@"UUID"];
+        [defaults setObject:id forKey:kUUID];
         [defaults synchronize];
     }
     [TestFlight setDeviceIdentifier:id];    

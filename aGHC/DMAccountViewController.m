@@ -33,7 +33,7 @@
     [oauthClient authenticateUsingOAuthWithPath:@"https://github.com/login/oauth/access_token"
                                        username:@""
                                        password:@""
-                                          scope:nil
+                                          scope:kTokenScope
                                         success:^(AFOAuthCredential *credential) {
                                             NSLog(@"Creditial Recieved: %@", credential.accessToken);
                                             [AFOAuthCredential storeCredential:credential withIdentifier:oauthClient.serviceProviderIdentifier];
