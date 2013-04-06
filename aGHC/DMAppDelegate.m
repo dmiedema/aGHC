@@ -8,15 +8,14 @@
 
 #import "DMAppDelegate.h"
 #import "TestFlight.h"
+#import <NXOAuth2Client/NXOAuth2.h>
 
 #define TESTING 1
 
 @implementation DMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    
-    
+{    
 #if TESTING
     /* 
     // pre iOS 6 method
@@ -26,7 +25,7 @@
     NSString *string = [NSString string];
     string = (__bridge_transfer NSString *)UIDstring;
      */
-    NSString *id = [NSString string];
+    NSString *id;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     id = [defaults objectForKey:kUUID];
     if (id == nil) {
@@ -34,12 +33,20 @@
         [defaults setObject:id forKey:kUUID];
         [defaults synchronize];
     }
-    [TestFlight setDeviceIdentifier:id];    
-#endif
+    [TestFlight setDeviceIdentifier:id];
     NSLog(@"Generated UUID: %@", id);
+#endif
+    
     [TestFlight takeOff:@"e7a2d4c8-b326-403d-9df2-c5c0ad156419"];
-
     // Override point for customization after application launch.
+    
+    [[NXOAuth2AccountStore sharedStore] setClientID:kClientID
+                                             secret:kClientSecret
+                                   authorizationURL:[NSURL URLWithString:@"https://github.com/login/oauth/authorize"]
+                                           tokenURL:[NSURL URLWithString:@"https://github.com/login/oauth/access_token"]
+                                        redirectURL:NULL
+                                     forAccountType:@"aGHC"];
+    if ([NXOAuth2AccountStore sharedStore]) NSLog(@"NXOAuth2AccountStore exists");
     return YES;
 }
 							

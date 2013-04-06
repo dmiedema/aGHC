@@ -10,4 +10,6 @@
 
 @interface DMAccountViewController : UIViewController
 
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
+
 @end

@@ -11,7 +11,10 @@
 
 @interface DMSettingsTableViewController ()
 
+@property (strong, nonatomic) NSArray *settingsOptions;
+
 @end
+
 
 @implementation DMSettingsTableViewController
 
@@ -20,14 +23,18 @@
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-    }
+        //_settingsOptions = [NSArray arrayWithObjects:@"About", @"Follow the Developer", @"Follow the Designer", @"Licensing Information", @"Other Settings", @"Done", nil];
+            }
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"DMSettingsTableViewController viewDidLoad");
 
+    _settingsOptions = @[@"About", @"Follow the Developer", @"Follow the Designer", @"Licensing Information", @"Other Settings", @"Done", @"SUPER LONG TEST! SUPER LONG TEST! SUPER LONG TEST! SUPER LONG TEST! SUPER LONG TEST! "];
+    NSLog(@"settingsOptions: %@", _settingsOptions);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -45,26 +52,68 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+//    NSLog(@"count: %i", [_settingsOptions count]);
+    return [_settingsOptions count];
 }
+#define FONT_SIZE 14.0f
+#define CELL_CONTENT_WIDTH 320.0f
+#define CELL_CONTENT_MARGIN 10.0f
+#define FONT_NAME @"AvenirNext-Regular"
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+//    static NSString *CellIdentifier = @"Cell";
+    //    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithFrame:CGRectZero];
     // Configure the cell...
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    [label setLineBreakMode:NSLineBreakByWordWrapping];
+    label.minimumScaleFactor = FONT_SIZE;
+    [label setNumberOfLines:0];
+    [label setFont:[UIFont systemFontOfSize:FONT_SIZE]];
+    [label setTag:1];
     
+    [[cell contentView] addSubview:label];
+    
+    NSString *text = [_settingsOptions objectAtIndex:[indexPath row]];
+//    NSLog(@"Text: %@", text);
+//    NSLog(@"Cell: %@", cell);
+//    NSLog(@"Label:  %@", label);
+    
+    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN * 2), 2000.0f);
+    
+
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+    
+    if(!label) {
+        label = (UILabel *) [cell viewWithTag:1];
+        
+        [label setText:text];
+        [label setFrame:CGRectMake(CELL_CONTENT_MARGIN, CELL_CONTENT_MARGIN, CELL_CONTENT_WIDTH - (CELL_CONTENT_WIDTH * 2), MAX(size.height, 50.0f))];
+    }
+    
+//    [cell setAutoresizesSubviews:YES];
+//    cell.textLabel.text = [[self settingsOptions] objectAtIndex:[indexPath row]];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *text = [_settingsOptions objectAtIndex:[indexPath row]];
+    
+    CGSize constraint = CGSizeMake(CELL_CONTENT_WIDTH - (CELL_CONTENT_MARGIN *2), 2000.0f);
+    
+    CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:FONT_SIZE] constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+
+    CGFloat height = MAX(size.height, 50.0f);
+    
+    return height + (CELL_CONTENT_MARGIN * 2);
 }
 
 /*

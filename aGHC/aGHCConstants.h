@@ -10,8 +10,13 @@
 #define kClientID           @"8881762e516271c9af67"
 #define kClientSecret       @"a850b277689c5cc93e3dbbcbe12e96011f972ecf"
 #define kUUID               @"UUID"
-#define kTokenScope         @"user,user:follow,notifications,public_repo,repo,gist"
+#define kScope              @"user,notifications,repo,gist,delete_repo"
 
+#define kGitHubURL               @"https://api.github.com/"
+#define kGitHubAuthenticationURL @"https://github.com/login/oauth/authorize"
+#define kGitHubOAuthTokenURL     @"https://github.com/login/oauth/access_token"
+
+#define kUserInformationSavedToDefaults @"aGHC-User-Information-Saved-To-Defaults"
 
 /***************
  Stolen from iOctocat
