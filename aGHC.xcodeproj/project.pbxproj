@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C241698F525B426D927F446D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FCC8B0DAE24806B36D18EB /* libPods.a */; };
+		C329908E1712165500176E3A /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C329908D1712165500176E3A /* Avenir.ttc */; };
 		C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74316EA9FE9009434D5 /* CoreText.framework */; };
 		C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74416EA9FE9009434D5 /* QuartzCore.framework */; };
 		C384C74D16EAA05C009434D5 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74916EAA05C009434D5 /* libTestFlight.a */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		46FCC8B0DAE24806B36D18EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		C329908D1712165500176E3A /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		C384C74316EA9FE9009434D5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		C384C74416EA9FE9009434D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C384C74716EAA024009434D5 /* aGHC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = aGHC.entitlements; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 		C39840E416EA9AD100B2ADB1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C329908D1712165500176E3A /* Avenir.ttc */,
 				C3ED621716EC6FA700311A72 /* aGHCConstants.h */,
 				C384C74716EAA024009434D5 /* aGHC.entitlements */,
 				C39840E516EA9AD100B2ADB1 /* aGHC-Info.plist */,
@@ -265,6 +268,7 @@
 				C384C74E16EAA05C009434D5 /* README.md in Resources */,
 				C384C74F16EAA05C009434D5 /* release_notes.md in Resources */,
 				C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */,
+				C329908E1712165500176E3A /* Avenir.ttc in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

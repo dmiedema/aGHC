@@ -18,9 +18,11 @@
 
 #define kUserInformationSavedToDefaults @"aGHC-User-Information-Saved-To-Defaults"
 
-#define kAccess_Token @"access_token"
-#define kToken_Type   @"token_type"
+#define kAccessToken  @"access_token"
+#define kTokenType    @"token_type"
 #define kUsername     @"username"
+
+
 
 /***************
  Stolen from iOctocat

@@ -9,13 +9,10 @@
 //
 
 #import "DMAccountViewController.h"
-#import <AFOAuth2Client/AFOAuth2Client.h>
-#import <NXOAuth2Client/NXOAuth2.h>
 
 
 @interface DMAccountViewController () <UIWebViewDelegate>
 
-@property (nonatomic, strong) NSURLRequest *request;
 @property (nonatomic, strong) NSDictionary *token;
 @property (nonatomic, copy) NSString *username;
 
@@ -88,8 +85,8 @@
     NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:
                                                                            [NSString stringWithFormat:@"%@%@?%@=%@&%@=%@",
                                                                             kGitHubApiURL, @"user",
-                                                                            kAccess_Token, [tokenInfo valueForKey:kAccess_Token],
-                                                                            kToken_Type, [tokenInfo valueForKey:kToken_Type]]]];
+                                                                            kAccessToken, [tokenInfo valueForKey:kAccessToken],
+                                                                            kTokenType, [tokenInfo valueForKey:kTokenType]]]];
     AFJSONRequestOperation *getUserName = [AFJSONRequestOperation JSONRequestOperationWithRequest:newRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSLog(@"JSON: %@", JSON);
         self.username = [JSON objectForKey:@"login"];
