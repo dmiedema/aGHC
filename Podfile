@@ -10,3 +10,5 @@ pod 'HHPanningTableViewCell', :head
 pod 'JSNotifier', :head
 pod 'SVSegmentedControl', :head
 pod 'NXOAuth2Client', '~> 1.2.2'
+pod 'TestFlightLogger'
+pod 'TestFlightSDK'

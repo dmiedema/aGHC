@@ -40,13 +40,15 @@
     [TestFlight takeOff:@"e7a2d4c8-b326-403d-9df2-c5c0ad156419"];
     // Override point for customization after application launch.
     
-    [[NXOAuth2AccountStore sharedStore] setClientID:kClientID
-                                             secret:kClientSecret
-                                   authorizationURL:[NSURL URLWithString:@"https://github.com/login/oauth/authorize"]
-                                           tokenURL:[NSURL URLWithString:@"https://github.com/login/oauth/access_token"]
-                                        redirectURL:NULL
-                                     forAccountType:@"aGHC"];
-    if ([NXOAuth2AccountStore sharedStore]) NSLog(@"NXOAuth2AccountStore exists");
+    NSString *accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken];
+    if (accessToken) {
+        NSLog(@"Account_Token: %@", [[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken]);
+    } else {
+        NSLog(@"No Access Token Found, will need to log in");
+    }
+
+    //
+    
     return YES;
 }
 							
