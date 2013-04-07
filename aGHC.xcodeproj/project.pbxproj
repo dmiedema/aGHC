@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C241698F525B426D927F446D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FCC8B0DAE24806B36D18EB /* libPods.a */; };
+		C30FB3C917121D64002D6C69 /* DMCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30FB3C817121D64002D6C69 /* DMCustomLabel.m */; };
 		C329908E1712165500176E3A /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C329908D1712165500176E3A /* Avenir.ttc */; };
 		C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74316EA9FE9009434D5 /* CoreText.framework */; };
 		C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74416EA9FE9009434D5 /* QuartzCore.framework */; };
@@ -39,6 +40,8 @@
 /* Begin PBXFileReference section */
 		46FCC8B0DAE24806B36D18EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		C30FB3C717121D64002D6C69 /* DMCustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCustomLabel.h; sourceTree = "<group>"; };
+		C30FB3C817121D64002D6C69 /* DMCustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCustomLabel.m; sourceTree = "<group>"; };
 		C329908D1712165500176E3A /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		C384C74316EA9FE9009434D5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		C384C74416EA9FE9009434D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -179,6 +182,8 @@
 		C3DAEC3116EC06C100C51F73 /* XIBs & Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C30FB3C717121D64002D6C69 /* DMCustomLabel.h */,
+				C30FB3C817121D64002D6C69 /* DMCustomLabel.m */,
 				C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */,
 				C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */,
 				C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */,
@@ -281,6 +286,7 @@
 				C3DAEC3416EC08FE00C51F73 /* DMSettingsTableViewController.m in Sources */,
 				C3DAEC3716EC091300C51F73 /* DMHomeScreenTableViewController.m in Sources */,
 				C3ED622016EC765F00311A72 /* DMAccountViewController.m in Sources */,
+				C30FB3C917121D64002D6C69 /* DMCustomLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
