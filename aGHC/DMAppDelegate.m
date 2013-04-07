@@ -36,10 +36,13 @@
     [TestFlight setDeviceIdentifier:id];
     NSLog(@"Generated UUID: %@", id);
 #endif
-    
+    // TestFlight Take Off!
     [TestFlight takeOff:@"e7a2d4c8-b326-403d-9df2-c5c0ad156419"];
-    // Override point for customization after application launch.
     
+    // TestFlight Logger
+    [DDLog addLogger:[TestFlightLogger sharedInstance]];
+    
+    // Override point for customization after application launch.
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken];
     if (accessToken) {
         NSLog(@"Account_Token: %@", [[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken]);
