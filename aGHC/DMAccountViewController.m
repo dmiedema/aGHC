@@ -2,6 +2,8 @@
 //  DMAccountViewController.m
 //  aGHC
 //
+//  Hi.
+//
 //  Created by Daniel Miedema on 3/10/13.
 //  Copyright (c) 2013 Daniel Miedema. All rights reserved.
 //
@@ -10,15 +12,12 @@
 #import <AFOAuth2Client/AFOAuth2Client.h>
 #import <NXOAuth2Client/NXOAuth2.h>
 
-// code = c34d76d8ce2b9f12b624
-// URL https://github.com/login/oauth/authorize?client_id=8881762e516271c9af67&scope=user,repo,gist,notifications
-
 
 @interface DMAccountViewController () <UIWebViewDelegate>
 
 @property (nonatomic, strong) NSURLRequest *request;
 @property (nonatomic, strong) NSDictionary *token;
-@property (nonatomic, strong) NSString *username;
+@property (nonatomic, copy) NSString *username;
 
 - (void) saveTokenInformation:(NSDictionary *) tokenInfo;
 - (void)saveToDefaults:(NSDictionary *)dict;
@@ -39,8 +38,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[self webView] setDelegate:self];
-    [[self webView] loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=%@&scope=%@", kGitHubAuthenticationURL, kClientID, kScope]]]];
+    UIWebView *webView = [[UIWebView alloc] init];
+    [webView setDelegate:self];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=%@&scope=%@", kGitHubAuthenticationURL, kClientID, kScope]]]];
+    [webView setOpaque:YES];
+    self.view = webView;
 
 	// Do any additional setup after loading the view.
 }
@@ -75,17 +77,21 @@
             NSLog(@"JSON: %@", JSON);
         }];
         [operation start];
-        // [webView loadRequest:newRequest];
         return NO;
-        
+        // We'll go back here. somehow.
     }
     return YES;
 }
 
 - (void)saveTokenInformation:(NSDictionary *)tokenInfo {
     [[self token] setValuesForKeysWithDictionary:tokenInfo];
-    NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", kGitHubApiURL, @"user"]]];
+    NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:
+                                                                           [NSString stringWithFormat:@"%@%@?%@=%@&%@=%@",
+                                                                            kGitHubApiURL, @"user",
+                                                                            kAccess_Token, [tokenInfo valueForKey:kAccess_Token],
+                                                                            kToken_Type, [tokenInfo valueForKey:kToken_Type]]]];
     AFJSONRequestOperation *getUserName = [AFJSONRequestOperation JSONRequestOperationWithRequest:newRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"JSON: %@", JSON);
         self.username = [JSON objectForKey:@"login"];
         NSMutableDictionary *allUserInfo = [NSMutableDictionary dictionaryWithDictionary:tokenInfo];
         [allUserInfo addEntriesFromDictionary:[NSDictionary dictionaryWithObject:[JSON objectForKey:@"login"] forKey:@"username"]];
@@ -93,12 +99,14 @@
     }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error : %@", error);
     }];
-    
     [getUserName start];
 }
 
 - (void)saveToDefaults:(NSDictionary *)dict {
+    NSLog(@"saving to defaults");
+    NSLog(@"Dictionary to save: %@", dict);
     [[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:dict];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserInformationSavedToDefaults object:self];
 }
 

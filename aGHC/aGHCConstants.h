@@ -12,11 +12,15 @@
 #define kUUID               @"UUID"
 #define kScope              @"user,notifications,repo,gist,delete_repo"
 
-#define kGitHubURL               @"https://api.github.com/"
+#define kGitHubURL               @"https://api.github.com"
 #define kGitHubAuthenticationURL @"https://github.com/login/oauth/authorize"
 #define kGitHubOAuthTokenURL     @"https://github.com/login/oauth/access_token"
 
 #define kUserInformationSavedToDefaults @"aGHC-User-Information-Saved-To-Defaults"
+
+#define kAccess_Token @"access_token"
+#define kToken_Type   @"token_type"
+#define kUsername     @"username"
 
 /***************
  Stolen from iOctocat
