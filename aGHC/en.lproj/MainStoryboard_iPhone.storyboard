@@ -30,7 +30,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h5w-F4-saV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="961" y="568"/>
+            <point key="canvasLocation" x="1161" y="674"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="D9d-LO-sEU">
@@ -114,14 +114,6 @@
             <point key="canvasLocation" x="12" y="78"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DMAccountViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMAccountViewController.h"/>
-        </class>
-        <class className="DMSettingsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMSettingsTableViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

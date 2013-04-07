@@ -10,8 +10,6 @@
 #import "TestFlight.h"
 #import <NXOAuth2Client/NXOAuth2.h>
 
-#define TESTING 1
-
 @implementation DMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

@@ -37,41 +37,57 @@
     [super viewDidLoad];
     UIWebView *webView = [[UIWebView alloc] init];
     [webView setDelegate:self];
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=%@&scope=%@", kGitHubAuthenticationURL, kClientID, kScope]]]];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=%@&scope=%@", kGitHubAuthenticationURL, kClientID, kScope]] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:120]];
     [webView setOpaque:YES];
     self.view = webView;
 
-	// Do any additional setup after loading the view.
+    // TODO: Add forward/back buttons to WebView in case user navigates so they can get back to authorization page.
+	////
+    // Do any additional setup after loading the view.
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSLog(@"Request Main URL: %@", [request mainDocumentURL]);
-    NSLog(@"Request All HTTP Headers: %@", [request allHTTPHeaderFields]);
-    NSLog(@"Request HTTP Method: %@", [request HTTPMethod]);
-    NSLog(@"Request HTTP Body: %@", [request HTTPBody]);
+    #if TESTING
+        NSLog(@"Request Main URL: %@", [request mainDocumentURL]);
+        NSLog(@"Request All HTTP Headers: %@", [request allHTTPHeaderFields]);
+        NSLog(@"Request HTTP Method: %@", [request HTTPMethod]);
+        NSLog(@"Request HTTP Body: %@", [request HTTPBody]);
+    #endif
     
     NSString *mainURL = [[request mainDocumentURL] absoluteString];
     NSArray *components = [mainURL componentsSeparatedByString:@"?"];
-    NSLog(@"\n----- Components: %@\n", components);
+    
+    #if TESTING
+        NSLog(@"\n----- Components: %@\n", components);
+    #endif
     
     if ([[components objectAtIndex:0] isEqual:@"http://danielmiedema.com/"]) {
-        NSLog(@"redirected to danielmiedema.com");
         NSArray *code = [[components objectAtIndex:1] componentsSeparatedByString:@"="];
-        NSLog(@"Code: %@", [code objectAtIndex:1]);
+        
+        #if TESTING
+            NSLog(@"redirected to danielmiedema.com");
+            NSLog(@"Code: %@", [code objectAtIndex:1]);
+        #endif
         
         NSMutableURLRequest *newRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/?code=%@&client_id=%@&client_secret=%@", kGitHubOAuthTokenURL, [code objectAtIndex:1], kClientID, kClientSecret]]];
         [newRequest setValue:[NSString stringWithFormat:@"application/json"] forHTTPHeaderField:@"Accept"];
         
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:newRequest success:^(NSURLRequest *request, NSHTTPURLResponse *reponse, id JSON) {
-            NSLog(@"Response: %@", reponse);
-            NSLog(@"JSON: %@", JSON );
-
+            
+            #if TESTING
+                NSLog(@"Response: %@", reponse);
+                NSLog(@"JSON: %@", JSON );
+            #endif
             [self saveTokenInformation:JSON];
         }failure:^(NSURLRequest *request, NSHTTPURLResponse *reponse, NSError *error, id JSON) {
-            NSLog(@"failure");
-            NSLog(@"reponse: %@", reponse);
-            NSLog(@"Error: %@", error);
-            NSLog(@"JSON: %@", JSON);
+
+            #if TESTING
+                NSLog(@"failure");
+                NSLog(@"reponse: %@", reponse);
+                NSLog(@"Error: %@", error);
+                NSLog(@"JSON: %@", JSON);
+            #endif
+            
         }];
         [operation start];
         return NO;
@@ -100,8 +116,10 @@
 }
 
 - (void)saveToDefaults:(NSDictionary *)dict {
-    NSLog(@"saving to defaults");
-    NSLog(@"Dictionary to save: %@", dict);
+    #if TESTING
+        NSLog(@"saving to defaults");
+        NSLog(@"Dictionary to save: %@", dict);
+    #endif
     [[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:dict];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserInformationSavedToDefaults object:self];
