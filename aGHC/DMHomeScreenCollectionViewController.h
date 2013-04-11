@@ -1,5 +1,5 @@
 //
-//  DMSettingsTableViewController.h
+//  DMHomeScreenCollectionViewController.h
 //  aGHC
 //
 //  Created by Daniel Miedema on 4/10/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DMSettingsTableViewController : UITableViewController
+@interface DMHomeScreenCollectionViewController : UICollectionViewController
 
 @end
