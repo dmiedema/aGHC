@@ -120,9 +120,25 @@
         NSLog(@"saving to defaults");
         NSLog(@"Dictionary to save: %@", dict);
     #endif
-    [[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:dict];
+    // Get current array of accounts
+    NSMutableArray *accounts = [[NSUserDefaults standardUserDefaults] objectForKey:@"accounts"];
+    // Check to see if i already have this account in there.
+    for (NSDictionary *account in accounts) {
+        if ([[dict valueForKey:@"username"] isEqual:[accounts valueForKey:@"username"]]) {
+            // If account is already in there, throw up a notifcation and return.
+            #if TESTING
+                NSLog(@"Account is already in NSUserDefaults");
+            #endif
+            [[NSNotificationCenter defaultCenter] postNotificationName:kUserInformationAlreadyInDefaultsNotifcation object:self];
+            return; }
+    } // end fast enumeration
+    
+    // Account is new, add it to NSUserDefaults and save.
+    [accounts addObject:dict];
+    [[NSUserDefaults standardUserDefaults] setObject:accounts forKey:@"accounts"];
+    //[[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:dict];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kUserInformationSavedToDefaults object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kUserInformationSavedToDefaultsNotifcation object:self];
 }
 
 - (void)didReceiveMemoryWarning

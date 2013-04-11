@@ -17,7 +17,8 @@
 #define kGitHubAuthenticationURL @"https://github.com/login/oauth/authorize"
 #define kGitHubOAuthTokenURL     @"https://github.com/login/oauth/access_token"
 
-#define kUserInformationSavedToDefaults @"aGHC-User-Information-Saved-To-Defaults"
+#define kUserInformationSavedToDefaultsNotifcation   @"Account Information Saved To NSUserDefaults"
+#define kUserInformationAlreadyInDefaultsNotifcation @"Account Information Already In NSUserDefaults"
 
 #define kAccessToken  @"access_token"
 #define kTokenType    @"token_type"
