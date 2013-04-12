@@ -2,7 +2,7 @@
 //  DMHomeScreenTableViewController.m
 //  aGHC
 //
-//  Created by Daniel Miedema on 3/9/13.
+//  Created by Daniel Miedema on 4/11/13.
 //  Copyright (c) 2013 Daniel Miedema. All rights reserved.
 //
 
@@ -28,7 +28,7 @@
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
-    self.clearsSelectionOnViewWillAppear = NO;
+    // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
@@ -44,13 +44,14 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // #warning Incomplete method implementation.
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return 0;
 }

@@ -27,6 +27,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    UIStoryboard *storyboard;
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {}
+    
+    storyboard = [UIStoryboard storyboardWithName:@"InitialStoryboard_iPhone" bundle:[NSBundle mainBundle]];
+    
+    [self setTopViewController:[storyboard instantiateViewControllerWithIdentifier:@"Home Screen"]];
 }
 
 - (void)didReceiveMemoryWarning

@@ -14,6 +14,9 @@
 		C3767C9717168E7C00BC593B /* DMHomeScreenCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9617168E7C00BC593B /* DMHomeScreenCollectionViewController.m */; };
 		C3767C9D17168ECB00BC593B /* DMSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */; };
 		C3767C9F17168EEA00BC593B /* InitialStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3767C9E17168EEA00BC593B /* InitialStoryboard_iPhone.storyboard */; };
+		C3767CA2171696E300BC593B /* DMHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767CA1171696E300BC593B /* DMHomeScreenViewController.m */; };
+		C3767CA4171696FF00BC593B /* HomeScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3767CA3171696FF00BC593B /* HomeScreenView.xib */; };
+		C3767CAA1716994B00BC593B /* DMHomeScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767CA91716994B00BC593B /* DMHomeScreenTableViewController.m */; };
 		C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74316EA9FE9009434D5 /* CoreText.framework */; };
 		C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74416EA9FE9009434D5 /* QuartzCore.framework */; };
 		C384C75116EAA12D009434D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C75016EAA12D009434D5 /* libz.dylib */; };
@@ -32,7 +35,6 @@
 		C39840FD16EA9AD100B2ADB1 /* DMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C39840FC16EA9AD100B2ADB1 /* DMViewController.m */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
-		C3DAEC3716EC091300C51F73 /* DMHomeScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC3616EC091300C51F73 /* DMHomeScreenTableViewController.m */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
 		C3ED621B16EC702B00311A72 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621A16EC702B00311A72 /* CFNetwork.framework */; };
 		C3ED621D16EC703B00311A72 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621C16EC703B00311A72 /* MessageUI.framework */; };
@@ -52,6 +54,11 @@
 		C3767C9B17168ECB00BC593B /* DMSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSettingsTableViewController.h; sourceTree = "<group>"; };
 		C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSettingsTableViewController.m; sourceTree = "<group>"; };
 		C3767C9E17168EEA00BC593B /* InitialStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InitialStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		C3767CA0171696E300BC593B /* DMHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenViewController.h; sourceTree = "<group>"; };
+		C3767CA1171696E300BC593B /* DMHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHomeScreenViewController.m; sourceTree = "<group>"; };
+		C3767CA3171696FF00BC593B /* HomeScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenView.xib; sourceTree = "<group>"; };
+		C3767CA81716994B00BC593B /* DMHomeScreenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenTableViewController.h; sourceTree = "<group>"; };
+		C3767CA91716994B00BC593B /* DMHomeScreenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHomeScreenTableViewController.m; sourceTree = "<group>"; };
 		C384C74316EA9FE9009434D5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		C384C74416EA9FE9009434D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C384C74716EAA024009434D5 /* aGHC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = aGHC.entitlements; sourceTree = "<group>"; };
@@ -77,8 +84,6 @@
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
 		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
-		C3DAEC3516EC091300C51F73 /* DMHomeScreenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenTableViewController.h; sourceTree = "<group>"; };
-		C3DAEC3616EC091300C51F73 /* DMHomeScreenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHomeScreenTableViewController.m; sourceTree = "<group>"; };
 		C3ED621716EC6FA700311A72 /* aGHCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aGHCConstants.h; sourceTree = "<group>"; };
 		C3ED621816EC702000311A72 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C3ED621A16EC702B00311A72 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -124,10 +129,14 @@
 			children = (
 				C3767C9217168E2900BC593B /* DMInitialViewController.h */,
 				C3767C9317168E2900BC593B /* DMInitialViewController.m */,
-				C3767C9517168E7C00BC593B /* DMHomeScreenCollectionViewController.h */,
-				C3767C9617168E7C00BC593B /* DMHomeScreenCollectionViewController.m */,
 				C3767C9B17168ECB00BC593B /* DMSettingsTableViewController.h */,
 				C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */,
+				C3767C9517168E7C00BC593B /* DMHomeScreenCollectionViewController.h */,
+				C3767C9617168E7C00BC593B /* DMHomeScreenCollectionViewController.m */,
+				C3767CA0171696E300BC593B /* DMHomeScreenViewController.h */,
+				C3767CA1171696E300BC593B /* DMHomeScreenViewController.m */,
+				C3767CA81716994B00BC593B /* DMHomeScreenTableViewController.h */,
+				C3767CA91716994B00BC593B /* DMHomeScreenTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -178,8 +187,6 @@
 				C39840FC16EA9AD100B2ADB1 /* DMViewController.m */,
 				C3ED621E16EC765F00311A72 /* DMAccountViewController.h */,
 				C3ED621F16EC765F00311A72 /* DMAccountViewController.m */,
-				C3DAEC3516EC091300C51F73 /* DMHomeScreenTableViewController.h */,
-				C3DAEC3616EC091300C51F73 /* DMHomeScreenTableViewController.m */,
 				C3767C9117168E0800BC593B /* ViewControllers */,
 				C3767C8D1716895600BC593B /* StoryBoards */,
 				C3DAEC3116EC06C100C51F73 /* XIBs & Classes */,
@@ -213,6 +220,7 @@
 				C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */,
 				C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */,
 				C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */,
+				C3767CA3171696FF00BC593B /* HomeScreenView.xib */,
 			);
 			name = "XIBs & Classes";
 			sourceTree = "<group>";
@@ -278,6 +286,7 @@
 				C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */,
 				C329908E1712165500176E3A /* Avenir.ttc in Resources */,
 				C3767C9F17168EEA00BC593B /* InitialStoryboard_iPhone.storyboard in Resources */,
+				C3767CA4171696FF00BC593B /* HomeScreenView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,12 +318,13 @@
 				C39840EE16EA9AD100B2ADB1 /* DMAppDelegate.m in Sources */,
 				C39840FD16EA9AD100B2ADB1 /* DMViewController.m in Sources */,
 				C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */,
-				C3DAEC3716EC091300C51F73 /* DMHomeScreenTableViewController.m in Sources */,
 				C3ED622016EC765F00311A72 /* DMAccountViewController.m in Sources */,
 				C30FB3C917121D64002D6C69 /* DMCustomLabel.m in Sources */,
 				C3767C9417168E2900BC593B /* DMInitialViewController.m in Sources */,
 				C3767C9717168E7C00BC593B /* DMHomeScreenCollectionViewController.m in Sources */,
 				C3767C9D17168ECB00BC593B /* DMSettingsTableViewController.m in Sources */,
+				C3767CA2171696E300BC593B /* DMHomeScreenViewController.m in Sources */,
+				C3767CAA1716994B00BC593B /* DMHomeScreenTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

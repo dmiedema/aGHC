@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ECSlidingViewController.h"
+#import "DMInitialViewController.h"
+#import "DMSettingsTableViewController.h"
 
 @interface DMSettingsTableViewController : UITableViewController
 
