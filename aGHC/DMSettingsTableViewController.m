@@ -9,7 +9,7 @@
 #import "DMSettingsTableViewController.h"
 
 @interface DMSettingsTableViewController ()
-
+#define SETTINGS_OPTIONS_ARRAY @[@"About", @"Account", @"Licensing", @"Follow on Twitter", @"Contact Support", @"Done"]
 @end
 
 @implementation DMSettingsTableViewController
@@ -46,27 +46,50 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [SETTINGS_OPTIONS_ARRAY count];
 }
 
+
+#define SETTINGS_LABEL_CELL_FRAME_X   20
+#define SETTINGS_LABEL_CELL_FRAME_Y   0
+#define SETTINGS_LABEL_CELL_WIDTH     280
+#define SETTINGS_LABEL_CELL_HEIGHT    64
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    UILabel *label = [[UILabel alloc] init];
+    
+    [label setFont:[UIFont fontWithName:@"Avenir" size:24.0]];
+    [label setText:[NSString stringWithFormat:@"%@", [SETTINGS_OPTIONS_ARRAY objectAtIndex:[indexPath row]]]];
+    
+    [label setFrame:CGRectMake(SETTINGS_LABEL_CELL_FRAME_X, SETTINGS_LABEL_CELL_FRAME_Y, SETTINGS_LABEL_CELL_WIDTH, SETTINGS_LABEL_CELL_HEIGHT)];
+    
+    [[cell contentView] addSubview:label];
     
     return cell;
 }
+/*
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (section == 0 ) {
+        UIImage *image = [UIImage imageNamed:@"sL7cyZ5Oa7-2-1.png"];
+        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+        return imageView;
+    }
+//    UIView *view = [[UIView alloc] init];
+//    [view addSubview:imageView];
+//    return view;
+    return nil;
+}
+ */
 
 /*
 // Override to support conditional editing of the table view.
@@ -118,6 +141,31 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    NSLog(@"Item Selected: %@", [SETTINGS_OPTIONS_ARRAY objectAtIndex:[indexPath row]]);
+    switch ([indexPath row]) {
+        case 0: // about
+            NSLog(@"index 0");
+            break;
+        case 1: // account
+            NSLog(@"index 1");
+            break;
+        case 2: // licensing
+            NSLog(@"index 2");
+            break;
+        case 3: // follow on twitter
+            NSLog(@"index 3");
+            break;
+        case 4: // contact support
+            NSLog(@"index 4");
+            break;
+        case 5: // done
+            NSLog(@"index 5");
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DMSettingViewControllerDismissSettins" object:self];
+            break;
+        default: // le nope
+            NSLog(@"unknown option");
+            break;
+    }
 }
 
 @end
