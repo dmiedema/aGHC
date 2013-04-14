@@ -15,4 +15,6 @@
 
 - (IBAction)revealSettings:(id)sender;
 
+-(IBAction)dismissSettings:(id)sender;
+
 @end

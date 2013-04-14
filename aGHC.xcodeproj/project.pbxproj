@@ -10,6 +10,7 @@
 		C241698F525B426D927F446D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FCC8B0DAE24806B36D18EB /* libPods.a */; };
 		C30FB3C917121D64002D6C69 /* DMCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30FB3C817121D64002D6C69 /* DMCustomLabel.m */; };
 		C329908E1712165500176E3A /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C329908D1712165500176E3A /* Avenir.ttc */; };
+		C3690FD81718821900E2EBCA /* sL7cyZ5Oa7-2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */; };
 		C3767C9417168E2900BC593B /* DMInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9317168E2900BC593B /* DMInitialViewController.m */; };
 		C3767C9717168E7C00BC593B /* DMHomeScreenCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9617168E7C00BC593B /* DMHomeScreenCollectionViewController.m */; };
 		C3767C9D17168ECB00BC593B /* DMSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */; };
@@ -47,6 +48,7 @@
 		C30FB3C717121D64002D6C69 /* DMCustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCustomLabel.h; sourceTree = "<group>"; };
 		C30FB3C817121D64002D6C69 /* DMCustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCustomLabel.m; sourceTree = "<group>"; };
 		C329908D1712165500176E3A /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
+		C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sL7cyZ5Oa7-2-1.png"; sourceTree = "<group>"; };
 		C3767C9217168E2900BC593B /* DMInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInitialViewController.h; sourceTree = "<group>"; };
 		C3767C9317168E2900BC593B /* DMInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMInitialViewController.m; sourceTree = "<group>"; };
 		C3767C9517168E7C00BC593B /* DMHomeScreenCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenCollectionViewController.h; sourceTree = "<group>"; };
@@ -115,6 +117,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3690FD91718821C00E2EBCA /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		C3767C8D1716895600BC593B /* StoryBoards */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +190,7 @@
 		C39840E316EA9AD100B2ADB1 /* aGHC */ = {
 			isa = PBXGroup;
 			children = (
+				C3690FD91718821C00E2EBCA /* Images */,
 				C39840EC16EA9AD100B2ADB1 /* DMAppDelegate.h */,
 				C39840ED16EA9AD100B2ADB1 /* DMAppDelegate.m */,
 				C39840FB16EA9AD100B2ADB1 /* DMViewController.h */,
@@ -198,6 +208,7 @@
 		C39840E416EA9AD100B2ADB1 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */,
 				C329908D1712165500176E3A /* Avenir.ttc */,
 				C3ED621716EC6FA700311A72 /* aGHCConstants.h */,
 				C384C74716EAA024009434D5 /* aGHC.entitlements */,
@@ -287,6 +298,7 @@
 				C329908E1712165500176E3A /* Avenir.ttc in Resources */,
 				C3767C9F17168EEA00BC593B /* InitialStoryboard_iPhone.storyboard in Resources */,
 				C3767CA4171696FF00BC593B /* HomeScreenView.xib in Resources */,
+				C3690FD81718821900E2EBCA /* sL7cyZ5Oa7-2-1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

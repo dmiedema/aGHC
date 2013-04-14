@@ -35,11 +35,17 @@
     if(![self.slidingViewController.underLeftViewController isKindOfClass:[DMSettingsTableViewController class]])
         self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissSettings:) name:@"DMSettingViewControllerDismissSettins" object:nil];
     //[self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 
 -(IBAction)revealSettings:(id)sender {
     [self.slidingViewController anchorTopViewTo:ECRight];
+}
+
+-(IBAction)dismissSettings:(id)sender {
+    [self.slidingViewController resetTopView];
 }
 
 - (void)viewDidLoad
