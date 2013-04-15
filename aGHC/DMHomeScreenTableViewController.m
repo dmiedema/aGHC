@@ -9,7 +9,7 @@
 #import "DMHomeScreenTableViewController.h"
 
 @interface DMHomeScreenTableViewController ()
-
+#define HOME_SCREEN_OPTIONS @[@"Notifications", @"Repositories", @"Explore", @"Gists", @"News Feed", @"Search"]
 @end
 
 @implementation DMHomeScreenTableViewController
@@ -44,16 +44,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
+#define HOME_LABEL_CELL_FRAME_X   20
+#define HOME_LABEL_CELL_FRAME_Y   0
+#define HOME_LABEL_CELL_WIDTH     280
+#define HOME_LABEL_CELL_HEIGHT    64
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [HOME_SCREEN_OPTIONS count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -62,6 +64,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    UILabel *label = [[UILabel alloc] init];
+    
+    [label setFont:[UIFont fontWithName:@"Avenir" size:24.0]];
+    [label setText:[NSString stringWithFormat:@"%@", [HOME_SCREEN_OPTIONS objectAtIndex:[indexPath row]]]];
+    
+    [label setFrame:CGRectMake(HOME_LABEL_CELL_FRAME_X, HOME_LABEL_CELL_FRAME_Y, HOME_LABEL_CELL_WIDTH, HOME_LABEL_CELL_HEIGHT)];
+    
+    [[cell contentView] addSubview:label];
+
     
     return cell;
 }

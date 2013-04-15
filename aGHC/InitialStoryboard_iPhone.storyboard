@@ -37,40 +37,70 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Home Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="job-wZ-HAA">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UlR-jh-Zh4">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="cVl-bE-zsL">
+                                <items>
+                                    <navigationItem title="Title" id="m3C-xU-ehd">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" id="RzO-ln-8K7">
+                                            <connections>
+                                                <action selector="revealSettings:" destination="yEm-vk-eUl" id="M5S-tH-5vA"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6a9-6y-dFm">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <action selector="revealSettings:" destination="yEm-vk-eUl" eventType="touchUpInside" id="5cZ-Lj-k4Z"/>
+                                    <segue destination="FOK-8x-sC9" kind="embed" id="kcI-py-FIz"/>
                                 </connections>
-                            </button>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="job-wZ-HAA" firstAttribute="top" secondItem="ESy-Ge-WC2" secondAttribute="top" constant="234" id="BFw-zu-Uxj"/>
-                            <constraint firstItem="job-wZ-HAA" firstAttribute="centerX" secondItem="ESy-Ge-WC2" secondAttribute="centerX" type="default" id="Fqh-yp-4jd"/>
-                            <constraint firstItem="UlR-jh-Zh4" firstAttribute="top" secondItem="job-wZ-HAA" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Uhy-82-7fp"/>
-                            <constraint firstItem="UlR-jh-Zh4" firstAttribute="centerX" secondItem="job-wZ-HAA" secondAttribute="centerX" type="default" id="fHG-5G-hNN"/>
+                            <constraint firstItem="6a9-6y-dFm" firstAttribute="trailing" secondItem="ESy-Ge-WC2" secondAttribute="trailing" type="default" id="AbS-o4-pdk"/>
+                            <constraint firstItem="cVl-bE-zsL" firstAttribute="top" secondItem="ESy-Ge-WC2" secondAttribute="top" type="default" id="Lzw-r5-Yp9"/>
+                            <constraint firstItem="cVl-bE-zsL" firstAttribute="trailing" secondItem="ESy-Ge-WC2" secondAttribute="trailing" type="default" id="Odr-3L-ZG5"/>
+                            <constraint firstItem="6a9-6y-dFm" firstAttribute="top" secondItem="cVl-bE-zsL" secondAttribute="bottom" type="default" id="Qtu-ag-R6d"/>
+                            <constraint firstItem="6a9-6y-dFm" firstAttribute="leading" secondItem="ESy-Ge-WC2" secondAttribute="leading" type="default" id="a71-Jd-Yc0"/>
+                            <constraint firstItem="cVl-bE-zsL" firstAttribute="leading" secondItem="ESy-Ge-WC2" secondAttribute="leading" type="default" id="vOU-p1-zHR"/>
+                            <constraint firstItem="6a9-6y-dFm" firstAttribute="bottom" secondItem="ESy-Ge-WC2" secondAttribute="bottom" type="default" id="w1Z-bu-1Zl"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackTranslucent" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5Q-Li-t5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="482" y="156"/>
+        </scene>
+        <!--Home Screen Table View Controller-->
+        <scene sceneID="vNi-6H-n21">
+            <objects>
+                <tableViewController id="FOK-8x-sC9" customClass="DMHomeScreenTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" id="yr1-mf-KV3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="64" id="bNm-p9-PxL">
+                                <rect key="frame" x="0.0" y="22" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FOK-8x-sC9" id="vjf-dc-H4f"/>
+                            <outlet property="delegate" destination="FOK-8x-sC9" id="4xP-Bc-GLe"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JcF-Kn-YGf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984" y="188"/>
         </scene>
         <!--Settings Table View Controller-->
         <scene sceneID="Dbh-zT-bHs">
@@ -103,9 +133,13 @@
         </scene>
     </scenes>
     <classes>
+        <class className="DMHomeScreenTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMHomeScreenTableViewController.h"/>
+        </class>
         <class className="DMHomeScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DMHomeScreenViewController.h"/>
             <relationships>
+                <relationship kind="action" name="dismissSettings:"/>
                 <relationship kind="action" name="revealSettings:"/>
             </relationships>
         </class>
