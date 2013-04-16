@@ -39,7 +39,6 @@
 
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Mine", @"Starred", @"Watching"]];
     [segmentedControl setSelectedSegmentIndex:0];
-//    [segmentedControl setBackgroundColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1]];
     [segmentedControl setSelectionIndicatorColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1]];
     [segmentedControl setFont:[UIFont fontWithName:@"Avenir" size:20.0f]];
     [segmentedControl setSelectedTextColor:[UIColor blackColor]];
@@ -87,6 +86,7 @@
                                       [currentRepo objectForKey:@"forks_count"],
                                       [currentRepo objectForKey:@"open_issues_count"],
                                       [currentRepo objectForKey:@"watchers"]];
+    //TODO: Images
     
     return cell;
 }
@@ -97,6 +97,7 @@
 
 - (void)reloadRepositories:(id)sender {
     NSLog(@"Reload, selected index: %i", [sender selectedSegmentIndex]);
+    //TODO: Add loading indicator
     
     
     //@"https://github.com/user/repos?access_token=&token_type=bearer";
