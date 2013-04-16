@@ -43,6 +43,13 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Mine", @"Starred", @"Watching"]];
+    [segmentedControl setSelectedSegmentIndex:0];
+//    [segmentedControl setBackgroundColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1]];
+    [segmentedControl setSelectionIndicatorColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1]];
+    [segmentedControl setFont:[UIFont fontWithName:@"Avenir" size:20.0f]];
+    [segmentedControl setSelectedTextColor:[UIColor blackColor]];
+    [segmentedControl setTextColor:[UIColor grayColor]];
+    
     [segmentedControl addTarget:self action:@selector(reloadRepositories:) forControlEvents:UIControlEventValueChanged];
     [segmentedControl setFrame:CGRectMake(0, 10, 300, 54)];
     [[self view] addSubview:segmentedControl];
