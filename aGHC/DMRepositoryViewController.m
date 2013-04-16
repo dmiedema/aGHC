@@ -1,18 +1,19 @@
 //
-//  DMHomeScreenTableViewController.m
+//  DMRepositoryViewController.m
 //  aGHC
 //
-//  Created by Daniel Miedema on 4/11/13.
+//  Created by Daniel Miedema on 4/15/13.
 //  Copyright (c) 2013 Daniel Miedema. All rights reserved.
 //
 
-#import "DMHomeScreenTableViewController.h"
+#import "DMRepositoryViewController.h"
+#import "HMSegmentedControl.h"
 
-@interface DMHomeScreenTableViewController ()
-#define HOME_SCREEN_OPTIONS @[@"Notifications", @"Repositories", @"Explore", @"Gists", @"News Feed", @"Search"]
+@interface DMRepositoryViewController ()
+
 @end
 
-@implementation DMHomeScreenTableViewController
+@implementation DMRepositoryViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -29,9 +30,16 @@
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
+    
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMe:)];
  
+    self.navigationItem.leftBarButtonItem = homeButton;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Mine", @"Starred", @"Watching"]];
+    [segmentedControl setFrame:CGRectMake(0, 10, 300, 60)];
+    //[segmentedControl addTarget:<#(id)#> action:<#(SEL)#> forControlEvents:<#(UIControlEvents)#>];
+    [[self view] addSubview:segmentedControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,18 +52,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 1;
+    return 0;
 }
 
-#define HOME_LABEL_CELL_FRAME_X   20
-#define HOME_LABEL_CELL_FRAME_Y   0
-#define HOME_LABEL_CELL_WIDTH     280
-#define HOME_LABEL_CELL_HEIGHT    64
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return [HOME_SCREEN_OPTIONS count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -64,17 +70,12 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    UILabel *label = [[UILabel alloc] init];
-    
-    [label setFont:[UIFont fontWithName:@"Avenir" size:24.0]];
-    [label setText:[NSString stringWithFormat:@"%@", [HOME_SCREEN_OPTIONS objectAtIndex:[indexPath row]]]];
-    
-    [label setFrame:CGRectMake(HOME_LABEL_CELL_FRAME_X, HOME_LABEL_CELL_FRAME_Y, HOME_LABEL_CELL_WIDTH, HOME_LABEL_CELL_HEIGHT)];
-    
-    [[cell contentView] addSubview:label];
-
     
     return cell;
+}
+
+- (void)dismissMe:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
@@ -127,32 +128,6 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
-    
-    
-    NSString *itemSelected = [HOME_SCREEN_OPTIONS objectAtIndex:[indexPath row]];
-    
-    if ([itemSelected isEqualToString:@"Notifications"]) {
-        NSLog(@"Notifications Selected");
-    } else if ([itemSelected isEqualToString:@"Repositories"]) {
-        NSLog(@"Repositories Selected");
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RepositoryStoryboard_iPhone" bundle:[NSBundle mainBundle]];
-        UIViewController *viewController = [[UIViewController alloc] init];
-        [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
-        [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-        viewController = [storyboard instantiateInitialViewController];
-        [self presentViewController:viewController animated:YES completion:nil];
-    } else if ([itemSelected isEqualToString:@"Explore"]) {
-        NSLog(@"Explore Selected");
-    } else if ([itemSelected isEqualToString:@"Gists"]) {
-        NSLog(@"Gists Selected");
-    } else if ([itemSelected isEqualToString:@"News Feed"]) {
-        NSLog(@"News Feed Selected");
-    } else if ([itemSelected isEqualToString:@"Search"]) {
-        NSLog(@"Serach Selected");
-    } else {
-        NSLog(@"Unknown Option Selected");
-    }
-
 }
 
 @end

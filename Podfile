@@ -9,6 +9,8 @@ pod 'EKNotifView', :head
 pod 'HHPanningTableViewCell', :head
 pod 'JSNotifier', :head
 pod 'SVSegmentedControl', :head
-pod 'NXOAuth2Client', '~> 1.2.2'
+pod 'NXOAuth2Client'
 pod 'TestFlightLogger'
 pod 'TestFlightSDK'
+#pod 'TSMessages'
+pod 'HMSegmentedControl', '~> 1.2.0'
