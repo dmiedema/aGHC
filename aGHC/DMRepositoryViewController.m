@@ -126,7 +126,8 @@
         NSLog(@"Repositories count: %i",[[self repositories] count]);
         [[self tableView] reloadData];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        NSLog(@"Error: %@", error);
+        NSLog(@"Error: %@", error);        
+        DDLogError(@"Error loading repositores!");
         NSLog(@"JSON: %@", JSON);
     }];
     

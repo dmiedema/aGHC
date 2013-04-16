@@ -19,4 +19,7 @@
     #import "TestFlightLogger.h"
     #import "TestFlight.h"
     #import "aGHCConstants.h"
+    #import "DDLog.h"
+
+    static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #endif
