@@ -8,8 +8,14 @@
 
 #import "DMRepositoryViewController.h"
 #import "HMSegmentedControl.h"
+#import "DMRepositoryTableViewCell.h"
 
 @interface DMRepositoryViewController ()
+
+@property (nonatomic, strong) NSMutableArray *repositories;
+
+//- (void)reloadRepositories;
+- (IBAction)reloadRepositories:(id)sender;
 
 @end
 
@@ -37,9 +43,14 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Mine", @"Starred", @"Watching"]];
-    [segmentedControl setFrame:CGRectMake(0, 10, 300, 60)];
-    //[segmentedControl addTarget:<#(id)#> action:<#(SEL)#> forControlEvents:<#(UIControlEvents)#>];
+    [segmentedControl addTarget:self action:@selector(reloadRepositories:) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl setFrame:CGRectMake(0, 10, 300, 54)];
     [[self view] addSubview:segmentedControl];
+    
+    
+    [[self tableView] registerNib:[UINib nibWithNibName:@"RepositoryTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Repository Cell"];
+    
+    [self reloadRepositories:segmentedControl];
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,30 +63,72 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [[self repositories] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Repository Cell";
+    DMRepositoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    NSDictionary *currentRepo = [[self repositories] objectAtIndex:[indexPath row]];
+    cell.repositoryName.text = [currentRepo objectForKey:@"name"];
+    cell.repositoryDetailInfo.text = [NSString stringWithFormat:@"Forks: %@ - Issues: %@ - Watchers: %@",
+                                      [currentRepo objectForKey:@"forks_count"],
+                                      [currentRepo objectForKey:@"open_issues_count"],
+                                      [currentRepo objectForKey:@"watchers"]];
     
     return cell;
 }
 
 - (void)dismissMe:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)reloadRepositories:(id)sender {
+    NSLog(@"Reload, selected index: %i", [sender selectedSegmentIndex]);
+    
+    
+    //@"https://github.com/user/repos?access_token=&token_type=bearer";
+    
+    NSString *username     = [[NSUserDefaults standardUserDefaults] stringForKey:kUsername];
+    NSString *access_token = [[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken];
+    NSString *token_type   = [[NSUserDefaults standardUserDefaults] stringForKey:kTokenType];
+    NSMutableURLRequest *request;
+    
+    if ([sender selectedSegmentIndex] == 0) {
+         request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@user/repos?access_token=%@&token_type=%@", kGitHubApiURL, access_token, token_type]]];
+    } else if ([sender selectedSegmentIndex] == 1) {
+        // starred
+        request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@users/%@/starred", kGitHubApiURL, username]]];
+    } else { // watching
+        request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@users/%@/subscriptions", kGitHubApiURL, username]]];
+
+    }
+    
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *reponse, id JSON){
+        NSLog(@"JSON: %@", JSON);
+        [self setRepositories:JSON];
+        //        for (NSDictionary *jsonDictionary in JSON) {
+        //            [[self repositories] addObject:jsonDictionary];
+        //        }
+        NSLog(@"Repositories count: %i",[[self repositories] count]);
+        [[self tableView] reloadData];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"Error: %@", error);
+        NSLog(@"JSON: %@", JSON);
+    }];
+    
+    [operation start];
 }
 
 /*

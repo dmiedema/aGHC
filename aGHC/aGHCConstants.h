@@ -13,7 +13,7 @@
 #define kUUID               @"UUID"
 #define kScope              @"user,notifications,repo,gist,delete_repo"
 
-#define kGitHubURL               @"https://api.github.com"
+#define kGitHubURL               @"https://github.com/"
 #define kGitHubAuthenticationURL @"https://github.com/login/oauth/authorize"
 #define kGitHubOAuthTokenURL     @"https://github.com/login/oauth/access_token"
 

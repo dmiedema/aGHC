@@ -103,6 +103,7 @@
                                                                             kGitHubApiURL, @"user",
                                                                             kAccessToken, [tokenInfo valueForKey:kAccessToken],
                                                                             kTokenType, [tokenInfo valueForKey:kTokenType]]]];
+    [newRequest setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     AFJSONRequestOperation *getUserName = [AFJSONRequestOperation JSONRequestOperationWithRequest:newRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSLog(@"JSON: %@", JSON);
         self.username = [JSON objectForKey:@"login"];
@@ -139,6 +140,7 @@
     //[[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:dict];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserInformationSavedToDefaultsNotifcation object:self];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning

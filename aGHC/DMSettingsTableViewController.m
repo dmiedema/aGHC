@@ -7,6 +7,7 @@
 //
 
 #import "DMSettingsTableViewController.h"
+#import "DMAccountViewController.h"
 
 @interface DMSettingsTableViewController ()
 #define SETTINGS_OPTIONS_ARRAY @[@"About", @"Account", @"Licensing", @"Follow on Twitter", @"Contact Support", @"Done"]
@@ -34,6 +35,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.slidingViewController setAnchorRightRevealAmount:280.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -142,12 +145,23 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     NSLog(@"Item Selected: %@", [SETTINGS_OPTIONS_ARRAY objectAtIndex:[indexPath row]]);
+    
+    NSString *selected = [SETTINGS_OPTIONS_ARRAY objectAtIndex:[indexPath row]];
+    
+    if ([selected isEqualToString:@"Account"]) {
+        UIViewController *viewController = [[UIViewController alloc] init];
+        [viewController setModalPresentationStyle:UIModalPresentationFullScreen];
+        [viewController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+        viewController = [[DMAccountViewController alloc] init];
+        [self presentViewController:viewController animated:YES completion:nil];
+    }
+    
     switch ([indexPath row]) {
         case 0: // about
             NSLog(@"index 0");
             break;
         case 1: // account
-            NSLog(@"index 1");
+            NSLog(@"index 1");            
             break;
         case 2: // licensing
             NSLog(@"index 2");
