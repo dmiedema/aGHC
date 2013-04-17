@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		C241698F525B426D927F446D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FCC8B0DAE24806B36D18EB /* libPods.a */; };
 		C30FB3C917121D64002D6C69 /* DMCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30FB3C817121D64002D6C69 /* DMCustomLabel.m */; };
+		C31B5F45171E3023006199AD /* NotifyCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F41171E3023006199AD /* NotifyCheck.png */; };
+		C31B5F46171E3023006199AD /* NotifyCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F42171E3023006199AD /* NotifyCheck@2x.png */; };
+		C31B5F47171E3023006199AD /* NotifyX.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F43171E3023006199AD /* NotifyX.png */; };
+		C31B5F48171E3023006199AD /* NotifyX@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F44171E3023006199AD /* NotifyX@2x.png */; };
 		C329908E1712165500176E3A /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C329908D1712165500176E3A /* Avenir.ttc */; };
 		C3690FD81718821900E2EBCA /* sL7cyZ5Oa7-2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */; };
 		C3767C9417168E2900BC593B /* DMInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9317168E2900BC593B /* DMInitialViewController.m */; };
@@ -49,6 +53,10 @@
 		48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		C30FB3C717121D64002D6C69 /* DMCustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCustomLabel.h; sourceTree = "<group>"; };
 		C30FB3C817121D64002D6C69 /* DMCustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCustomLabel.m; sourceTree = "<group>"; };
+		C31B5F41171E3023006199AD /* NotifyCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotifyCheck.png; sourceTree = "<group>"; };
+		C31B5F42171E3023006199AD /* NotifyCheck@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotifyCheck@2x.png"; sourceTree = "<group>"; };
+		C31B5F43171E3023006199AD /* NotifyX.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotifyX.png; sourceTree = "<group>"; };
+		C31B5F44171E3023006199AD /* NotifyX@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NotifyX@2x.png"; sourceTree = "<group>"; };
 		C329908D1712165500176E3A /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sL7cyZ5Oa7-2-1.png"; sourceTree = "<group>"; };
 		C3767C9217168E2900BC593B /* DMInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInitialViewController.h; sourceTree = "<group>"; };
@@ -125,6 +133,10 @@
 		C3690FD91718821C00E2EBCA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C31B5F41171E3023006199AD /* NotifyCheck.png */,
+				C31B5F42171E3023006199AD /* NotifyCheck@2x.png */,
+				C31B5F43171E3023006199AD /* NotifyX.png */,
+				C31B5F44171E3023006199AD /* NotifyX@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -308,6 +320,10 @@
 				C3767CA4171696FF00BC593B /* HomeScreenView.xib in Resources */,
 				C3690FD81718821900E2EBCA /* sL7cyZ5Oa7-2-1.png in Resources */,
 				C37F7029171CB5D3003D385E /* RepositoryStoryboard_iPhone.storyboard in Resources */,
+				C31B5F45171E3023006199AD /* NotifyCheck.png in Resources */,
+				C31B5F46171E3023006199AD /* NotifyCheck@2x.png in Resources */,
+				C31B5F47171E3023006199AD /* NotifyX.png in Resources */,
+				C31B5F48171E3023006199AD /* NotifyX@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

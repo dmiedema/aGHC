@@ -9,6 +9,7 @@
 #import "DMRepositoryViewController.h"
 #import "HMSegmentedControl.h"
 #import "DMRepositoryTableViewCell.h"
+#import "JSNotifier.h"
 
 @interface DMRepositoryViewController ()
 
@@ -97,9 +98,13 @@
 
 - (void)reloadRepositories:(id)sender {
     NSLog(@"Reload, selected index: %i", [sender selectedSegmentIndex]);
+   
     //TODO: Add loading indicator
-    
-    
+    JSNotifier *notifier = [[JSNotifier alloc] initWithTitle:@"Loading..."];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activityIndicator startAnimating];
+    [notifier setAccessoryView: activityIndicator];
+    [notifier show];
     //@"https://github.com/user/repos?access_token=&token_type=bearer";
     
     NSString *username     = [[NSUserDefaults standardUserDefaults] stringForKey:kUsername];
@@ -120,16 +125,27 @@
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *reponse, id JSON){
         NSLog(@"JSON: %@", JSON);
-        [self setRepositories:JSON];
-        //        for (NSDictionary *jsonDictionary in JSON) {
-        //            [[self repositories] addObject:jsonDictionary];
-        //        }
         NSLog(@"Repositories count: %i",[[self repositories] count]);
+        
+        [self setRepositories:JSON];
+        // Reload the table
         [[self tableView] reloadData];
+        
+        // Change the notifier
+        [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+        [notifier setTitle:@"Complete" animated:YES];
+        // Set notifier to hide.
+        [notifier hideIn:2.0];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error: %@", error);        
         DDLogError(@"Error loading repositores!");
         NSLog(@"JSON: %@", JSON);
+        
+        // Change notifier to error
+        [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyX"]]];
+        [notifier setTitle:@"Error"];
+        // Make it go away
+        [notifier hideIn:2.0];
     }];
     
     [operation start];
