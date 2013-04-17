@@ -11,6 +11,8 @@
 
 @interface DMSettingsTableViewController ()
 #define SETTINGS_OPTIONS_ARRAY @[@"About", @"Account", @"Licensing", @"Follow on Twitter", @"Contact Support", @"Done"]
+
+- (void)deleteCookies;
 @end
 
 @implementation DMSettingsTableViewController
@@ -36,7 +38,16 @@
     [self.slidingViewController setAnchorRightRevealAmount:280.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
     
-    
+}
+
+-(void)deleteCookies {    
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage *storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    for (cookie in [storage cookies]) {
+        [storage deleteCookie:cookie];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
 }
 
 - (void)didReceiveMemoryWarning
