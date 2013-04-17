@@ -15,12 +15,18 @@
 
 @property (nonatomic, strong) NSMutableArray *repositories;
 
+@property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSString *access_token;
+@property (nonatomic, strong) NSString *token_type;
+
 //- (void)reloadRepositories;
 - (IBAction)reloadRepositories:(id)sender;
 
 @end
 
 @implementation DMRepositoryViewController
+
+int selectedIndex;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -37,22 +43,37 @@
     
     UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMe:)]; 
     self.navigationItem.leftBarButtonItem = homeButton;
-
-    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Mine", @"Starred", @"Watching"]];
-    [segmentedControl setSelectedSegmentIndex:0];
-    [segmentedControl setSelectionIndicatorColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1]];
-    [segmentedControl setFont:[UIFont fontWithName:@"Avenir" size:20.0f]];
-    [segmentedControl setSelectedTextColor:[UIColor blackColor]];
-    [segmentedControl setTextColor:[UIColor grayColor]];
     
-    [segmentedControl addTarget:self action:@selector(reloadRepositories:) forControlEvents:UIControlEventValueChanged];
-    [segmentedControl setFrame:CGRectMake(0, 10, 300, 54)];
-    [[self view] addSubview:segmentedControl];
+    [self setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:kUsername]];
+    [self setAccess_token:[[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken]];
+    [self setToken_type:[[NSUserDefaults standardUserDefaults] stringForKey:kTokenType]];
+    
+    selectedIndex = 0;
+    
+//    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Mine", @"Starred", @"Watching"]];
+//    [segmentedControl setSelectedSegmentIndex:0];
+//    [segmentedControl setSelectionIndicatorColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1]];
+//    [segmentedControl setFont:[UIFont fontWithName:@"Avenir" size:20.0f]];
+//    [segmentedControl setSelectedTextColor:[UIColor blackColor]];
+//    [segmentedControl setTextColor:[UIColor grayColor]];
+//    
+//    [segmentedControl addTarget:self action:@selector(reloadRepositories:) forControlEvents:UIControlEventValueChanged];
+//    [segmentedControl setFrame:CGRectMake(0, 10, 300, 54)];
+//    [[self view] addSubview:segmentedControl];
     
     
     [[self tableView] registerNib:[UINib nibWithNibName:@"RepositoryTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Repository Cell"];
     
-    [self reloadRepositories:segmentedControl];
+//    [self reloadRepositories:segmentedControl];
+    // load some info into the tableview. Select that bitch.
+    //[self performSelector:@selector(reloadRepositories:)];
+    
+    /* This is shitty but I want things to appear when the view loads
+        Loading in the 'mine' repos on load. Copy/Pasta from (reloadRespositores:) */
+    HMSegmentedControl *sender;
+    [sender setSelectedSegmentIndex:0];
+    [self reloadRepositories:sender];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,6 +99,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Repository Cell";
+    // custom cell, gotta love that custom cell
     DMRepositoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
@@ -88,6 +110,19 @@
                                       [currentRepo objectForKey:@"open_issues_count"],
                                       [currentRepo objectForKey:@"watchers"]];
     //TODO: Images
+//    NSLog(@"Current Repo Private: %@", [currentRepo objectForKey:@"private"]);
+//    NSLog(@"Current Repo Fork: %@", [currentRepo objectForKey:@"fork"]);
+    NSLog(@"Type: %@", [[currentRepo objectForKey:@"private"] class]);
+
+    
+    if ([[currentRepo objectForKey:@"private"] integerValue] == 1) {
+//        NSLog(@"--- Repo is Private --- ");
+        [[cell privateRepo] setImage:[UIImage imageNamed:@"lock"]];
+    } else [[cell privateRepo] setImage:nil];
+    if ([[currentRepo objectForKey:@"fork"] integerValue] == 1) {
+        NSLog(@"--- Repo is Fork --- ");
+        [[cell typeImage] setImage:[UIImage imageNamed:@"boxWithFork"]];
+    } else [[cell typeImage] setImage:[UIImage imageNamed:@"Box"]];
     
     return cell;
 }
@@ -98,7 +133,7 @@
 
 - (void)reloadRepositories:(id)sender {
     NSLog(@"Reload, selected index: %i", [sender selectedSegmentIndex]);
-   
+    selectedIndex = [sender selectedSegmentIndex];
     //TODO: Add loading indicator
     JSNotifier *notifier = [[JSNotifier alloc] initWithTitle:@"Loading..."];
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
@@ -107,19 +142,16 @@
     [notifier show];
     //@"https://github.com/user/repos?access_token=&token_type=bearer";
     
-    NSString *username     = [[NSUserDefaults standardUserDefaults] stringForKey:kUsername];
-    NSString *access_token = [[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken];
-    NSString *token_type   = [[NSUserDefaults standardUserDefaults] stringForKey:kTokenType];
+    
     NSMutableURLRequest *request;
     
     if ([sender selectedSegmentIndex] == 0) {
-         request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@user/repos?access_token=%@&token_type=%@", kGitHubApiURL, access_token, token_type]]];
+         request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@user/repos?access_token=%@&token_type=%@", kGitHubApiURL, [self access_token], [self token_type]]]];
     } else if ([sender selectedSegmentIndex] == 1) {
         // starred
-        request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@users/%@/starred", kGitHubApiURL, username]]];
+        request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@users/%@/starred", kGitHubApiURL, [self username]]]];
     } else { // watching
-        request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@users/%@/subscriptions", kGitHubApiURL, username]]];
-
+        request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@users/%@/subscriptions", kGitHubApiURL, [self username]]]];
     }
     
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
@@ -190,6 +222,28 @@
 }
 */
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 64.0f;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    HMSegmentedControl *segmentedControl = [[HMSegmentedControl alloc] initWithSectionTitles:@[@"Mine", @"Starred", @"Watching"]];
+    [segmentedControl setSelectedSegmentIndex:selectedIndex];
+    [segmentedControl setSelectionIndicatorColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1]];
+    [segmentedControl setFont:[UIFont fontWithName:@"Avenir" size:20.0f]];
+    [segmentedControl setSelectedTextColor:[UIColor blackColor]];
+    [segmentedControl setTextColor:[UIColor grayColor]];
+    
+    [segmentedControl addTarget:self action:@selector(reloadRepositories:) forControlEvents:UIControlEventValueChanged];
+    [segmentedControl setFrame:CGRectMake(0, 10, 300, 54)];
+    
+    return segmentedControl;
+
+}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 10, 300, 54)];
+//}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -201,6 +255,10 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    // lolololol
+    NSDictionary *selectedRepo = [[self repositories] objectAtIndex:[indexPath row]];
+    NSLog(@"Selected: %@", [selectedRepo objectForKey:@"name"]);
+    NSLog(@"\nSelected Details: %@", selectedRepo);
 }
 
 @end
