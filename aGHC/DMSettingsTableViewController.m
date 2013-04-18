@@ -37,6 +37,8 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     [self.slidingViewController setAnchorRightRevealAmount:280.0f];
     self.slidingViewController.underLeftWidthLayout = ECFullWidth;
+    // ditch them cookies
+    [self deleteCookies];
     
 }
 
@@ -159,13 +161,18 @@
     
     NSString *selected = [SETTINGS_OPTIONS_ARRAY objectAtIndex:[indexPath row]];
     
-    if ([selected isEqualToString:@"Account"]) {
+    // about
+    if ([selected isEqualToString:@"Account"]) { // acount
         UIViewController *viewController = [[UIViewController alloc] init];
         [viewController setModalPresentationStyle:UIModalPresentationFullScreen];
         [viewController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
         viewController = [[DMAccountViewController alloc] init];
         [self presentViewController:viewController animated:YES completion:nil];
     }
+    // licensing
+    // follow on twitter
+    // contact support
+    // done
     
     switch ([indexPath row]) {
         case 0: // about
