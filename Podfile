@@ -14,3 +14,5 @@ pod 'TestFlightLogger'
 pod 'TestFlightSDK'
 #pod 'TSMessages'
 pod 'HMSegmentedControl', '~> 1.2.0'
+pod 'ReactiveCocoa'
+

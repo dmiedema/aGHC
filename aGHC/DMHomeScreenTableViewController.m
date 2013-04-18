@@ -143,12 +143,24 @@
         [self presentViewController:viewController animated:YES completion:nil];
     } else if ([itemSelected isEqualToString:@"Explore"]) {
         NSLog(@"Explore Selected");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ExploreStoryboard_iPhone" bundle:[NSBundle mainBundle]];
+        UIViewController *viewController = [[UIViewController alloc] init];
+        [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        viewController = [storyboard instantiateInitialViewController];
+        [self presentViewController:viewController animated:YES completion:nil];
     } else if ([itemSelected isEqualToString:@"Gists"]) {
         NSLog(@"Gists Selected");
     } else if ([itemSelected isEqualToString:@"News Feed"]) {
         NSLog(@"News Feed Selected");
     } else if ([itemSelected isEqualToString:@"Search"]) {
         NSLog(@"Serach Selected");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SearchStoryboard_iPhone" bundle:[NSBundle mainBundle]];
+        UIViewController *viewController = [[UIViewController alloc] init];
+        [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        viewController = [storyboard instantiateInitialViewController];
+        [self presentViewController:viewController animated:YES completion:nil];
     } else {
         NSLog(@"Unknown Option Selected");
     }
