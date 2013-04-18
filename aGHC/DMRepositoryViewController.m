@@ -109,18 +109,14 @@ int selectedIndex;
                                       [currentRepo objectForKey:@"forks_count"],
                                       [currentRepo objectForKey:@"open_issues_count"],
                                       [currentRepo objectForKey:@"watchers"]];
-    //TODO: Images
-//    NSLog(@"Current Repo Private: %@", [currentRepo objectForKey:@"private"]);
-//    NSLog(@"Current Repo Fork: %@", [currentRepo objectForKey:@"fork"]);
-    NSLog(@"Type: %@", [[currentRepo objectForKey:@"private"] class]);
 
     
+    // repo private?
     if ([[currentRepo objectForKey:@"private"] integerValue] == 1) {
-//        NSLog(@"--- Repo is Private --- ");
         [[cell privateRepo] setImage:[UIImage imageNamed:@"lock"]];
     } else [[cell privateRepo] setImage:nil];
+    // repo fork?
     if ([[currentRepo objectForKey:@"fork"] integerValue] == 1) {
-        NSLog(@"--- Repo is Fork --- ");
         [[cell typeImage] setImage:[UIImage imageNamed:@"boxWithFork"]];
     } else [[cell typeImage] setImage:[UIImage imageNamed:@"Box"]];
     
@@ -256,6 +252,9 @@ int selectedIndex;
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     // lolololol
+    
+    
+    
     NSDictionary *selectedRepo = [[self repositories] objectAtIndex:[indexPath row]];
     NSLog(@"Selected: %@", [selectedRepo objectForKey:@"name"]);
     NSLog(@"\nSelected Details: %@", selectedRepo);
