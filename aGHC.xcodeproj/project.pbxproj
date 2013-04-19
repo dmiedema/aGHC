@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		C241698F525B426D927F446D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FCC8B0DAE24806B36D18EB /* libPods.a */; };
+		C30235541721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30235531721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard */; };
+		C302355C1721DE5400842687 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C30235561721DE5400842687 /* LICENSE.md */; };
+		C302355D1721DE5400842687 /* M6ParallaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235581721DE5400842687 /* M6ParallaxController.m */; };
+		C302355E1721DE5400842687 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C30235591721DE5400842687 /* README.md */; };
+		C302355F1721DE5400842687 /* UIViewController+M6ParallaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = C302355B1721DE5400842687 /* UIViewController+M6ParallaxController.m */; };
+		C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */; };
+		C30235651721DECE00842687 /* DMParallaxedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235641721DECE00842687 /* DMParallaxedViewController.m */; };
+		C30235681721DEE600842687 /* DMParallaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235671721DEE600842687 /* DMParallaxViewController.m */; };
 		C30FB3C917121D64002D6C69 /* DMCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30FB3C817121D64002D6C69 /* DMCustomLabel.m */; };
 		C31B5F45171E3023006199AD /* NotifyCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F41171E3023006199AD /* NotifyCheck.png */; };
 		C31B5F46171E3023006199AD /* NotifyCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F42171E3023006199AD /* NotifyCheck@2x.png */; };
@@ -64,6 +72,20 @@
 /* Begin PBXFileReference section */
 		46FCC8B0DAE24806B36D18EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		C30235531721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RepositoryViewStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		C30235561721DE5400842687 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
+		C30235571721DE5400842687 /* M6ParallaxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M6ParallaxController.h; sourceTree = "<group>"; };
+		C30235581721DE5400842687 /* M6ParallaxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M6ParallaxController.m; sourceTree = "<group>"; };
+		C30235591721DE5400842687 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		C302355A1721DE5400842687 /* UIViewController+M6ParallaxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+M6ParallaxController.h"; sourceTree = "<group>"; };
+		C302355B1721DE5400842687 /* UIViewController+M6ParallaxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+M6ParallaxController.m"; sourceTree = "<group>"; };
+		C30235601721DEAF00842687 /* DMRepositoryDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryDetailTableViewController.h; sourceTree = "<group>"; };
+		C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryDetailTableViewController.m; sourceTree = "<group>"; };
+		C30235631721DECE00842687 /* DMParallaxedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMParallaxedViewController.h; sourceTree = "<group>"; };
+		C30235641721DECE00842687 /* DMParallaxedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMParallaxedViewController.m; sourceTree = "<group>"; };
+		C30235661721DEE600842687 /* DMParallaxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMParallaxViewController.h; sourceTree = "<group>"; };
+		C30235671721DEE600842687 /* DMParallaxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMParallaxViewController.m; sourceTree = "<group>"; };
+		C30235701721E04900842687 /* DMAppDelegate_TODO_List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMAppDelegate_TODO_List.h; sourceTree = "<group>"; };
 		C30FB3C717121D64002D6C69 /* DMCustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCustomLabel.h; sourceTree = "<group>"; };
 		C30FB3C817121D64002D6C69 /* DMCustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCustomLabel.m; sourceTree = "<group>"; };
 		C31B5F41171E3023006199AD /* NotifyCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotifyCheck.png; sourceTree = "<group>"; };
@@ -159,6 +181,94 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C30235551721DE4300842687 /* M6ParallaxController */ = {
+			isa = PBXGroup;
+			children = (
+				C30235561721DE5400842687 /* LICENSE.md */,
+				C30235571721DE5400842687 /* M6ParallaxController.h */,
+				C30235581721DE5400842687 /* M6ParallaxController.m */,
+				C30235591721DE5400842687 /* README.md */,
+				C302355A1721DE5400842687 /* UIViewController+M6ParallaxController.h */,
+				C302355B1721DE5400842687 /* UIViewController+M6ParallaxController.m */,
+			);
+			name = M6ParallaxController;
+			sourceTree = "<group>";
+		};
+		C30235691721DEEB00842687 /* Repository Detail View */ = {
+			isa = PBXGroup;
+			children = (
+				C30235601721DEAF00842687 /* DMRepositoryDetailTableViewController.h */,
+				C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */,
+				C30235631721DECE00842687 /* DMParallaxedViewController.h */,
+				C30235641721DECE00842687 /* DMParallaxedViewController.m */,
+				C30235661721DEE600842687 /* DMParallaxViewController.h */,
+				C30235671721DEE600842687 /* DMParallaxViewController.m */,
+			);
+			name = "Repository Detail View";
+			sourceTree = "<group>";
+		};
+		C302356A1721DF0700842687 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				C3A8EB82171F04CA001C85DD /* DMExploreTableViewController.h */,
+				C3A8EB83171F04CA001C85DD /* DMExploreTableViewController.m */,
+			);
+			name = Explore;
+			sourceTree = "<group>";
+		};
+		C302356B1721DF1500842687 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C3A8EB7D171F0332001C85DD /* DMSearchResultsViewController.h */,
+				C3A8EB7E171F0332001C85DD /* DMSearchResultsViewController.m */,
+				C37D72AA171FC66C00AB948C /* DMSearchResultsTableViewController.h */,
+				C37D72AB171FC66C00AB948C /* DMSearchResultsTableViewController.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		C302356C1721DF3300842687 /* My Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				C3AB55D0171CB16600D992C2 /* DMRepositoryViewController.h */,
+				C3AB55D1171CB16600D992C2 /* DMRepositoryViewController.m */,
+			);
+			name = "My Repositories";
+			sourceTree = "<group>";
+		};
+		C302356D1721DF3E00842687 /* Home Screen */ = {
+			isa = PBXGroup;
+			children = (
+				C3767C9517168E7C00BC593B /* DMHomeScreenCollectionViewController.h */,
+				C3767C9617168E7C00BC593B /* DMHomeScreenCollectionViewController.m */,
+				C3767CA0171696E300BC593B /* DMHomeScreenViewController.h */,
+				C3767CA1171696E300BC593B /* DMHomeScreenViewController.m */,
+				C3767CA81716994B00BC593B /* DMHomeScreenTableViewController.h */,
+				C3767CA91716994B00BC593B /* DMHomeScreenTableViewController.m */,
+			);
+			name = "Home Screen";
+			sourceTree = "<group>";
+		};
+		C302356E1721DF4500842687 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C3ED621E16EC765F00311A72 /* DMAccountViewController.h */,
+				C3ED621F16EC765F00311A72 /* DMAccountViewController.m */,
+				C3767C9B17168ECB00BC593B /* DMSettingsTableViewController.h */,
+				C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		C302356F1721DF4F00842687 /* Initial View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C3767C9217168E2900BC593B /* DMInitialViewController.h */,
+				C3767C9317168E2900BC593B /* DMInitialViewController.m */,
+			);
+			name = "Initial View Controller";
+			sourceTree = "<group>";
+		};
 		C3690FD91718821C00E2EBCA /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +297,7 @@
 				C37F7028171CB5D3003D385E /* RepositoryStoryboard_iPhone.storyboard */,
 				C3A8EB7B171F02E3001C85DD /* SearchStoryboard_iPhone.storyboard */,
 				C3A8EB80171F048C001C85DD /* ExploreStoryboard_iPhone.storyboard */,
+				C30235531721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard */,
 			);
 			name = StoryBoards;
 			sourceTree = "<group>";
@@ -194,24 +305,13 @@
 		C3767C9117168E0800BC593B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C3767C9217168E2900BC593B /* DMInitialViewController.h */,
-				C3767C9317168E2900BC593B /* DMInitialViewController.m */,
-				C3767C9B17168ECB00BC593B /* DMSettingsTableViewController.h */,
-				C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */,
-				C3767C9517168E7C00BC593B /* DMHomeScreenCollectionViewController.h */,
-				C3767C9617168E7C00BC593B /* DMHomeScreenCollectionViewController.m */,
-				C3767CA0171696E300BC593B /* DMHomeScreenViewController.h */,
-				C3767CA1171696E300BC593B /* DMHomeScreenViewController.m */,
-				C3767CA81716994B00BC593B /* DMHomeScreenTableViewController.h */,
-				C3767CA91716994B00BC593B /* DMHomeScreenTableViewController.m */,
-				C3AB55D0171CB16600D992C2 /* DMRepositoryViewController.h */,
-				C3AB55D1171CB16600D992C2 /* DMRepositoryViewController.m */,
-				C3A8EB7D171F0332001C85DD /* DMSearchResultsViewController.h */,
-				C3A8EB7E171F0332001C85DD /* DMSearchResultsViewController.m */,
-				C37D72AA171FC66C00AB948C /* DMSearchResultsTableViewController.h */,
-				C37D72AB171FC66C00AB948C /* DMSearchResultsTableViewController.m */,
-				C3A8EB82171F04CA001C85DD /* DMExploreTableViewController.h */,
-				C3A8EB83171F04CA001C85DD /* DMExploreTableViewController.m */,
+				C302356F1721DF4F00842687 /* Initial View Controller */,
+				C302356E1721DF4500842687 /* Settings */,
+				C302356D1721DF3E00842687 /* Home Screen */,
+				C302356C1721DF3300842687 /* My Repositories */,
+				C302356B1721DF1500842687 /* Search */,
+				C302356A1721DF0700842687 /* Explore */,
+				C30235691721DEEB00842687 /* Repository Detail View */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -219,6 +319,7 @@
 		C39840D116EA9AD100B2ADB1 = {
 			isa = PBXGroup;
 			children = (
+				C30235701721E04900842687 /* DMAppDelegate_TODO_List.h */,
 				C39840E316EA9AD100B2ADB1 /* aGHC */,
 				C39840DC16EA9AD100B2ADB1 /* Frameworks */,
 				C39840DB16EA9AD100B2ADB1 /* Products */,
@@ -256,13 +357,12 @@
 		C39840E316EA9AD100B2ADB1 /* aGHC */ = {
 			isa = PBXGroup;
 			children = (
+				C30235551721DE4300842687 /* M6ParallaxController */,
 				C3690FD91718821C00E2EBCA /* Images */,
 				C39840EC16EA9AD100B2ADB1 /* DMAppDelegate.h */,
 				C39840ED16EA9AD100B2ADB1 /* DMAppDelegate.m */,
 				C39840FB16EA9AD100B2ADB1 /* DMViewController.h */,
 				C39840FC16EA9AD100B2ADB1 /* DMViewController.m */,
-				C3ED621E16EC765F00311A72 /* DMAccountViewController.h */,
-				C3ED621F16EC765F00311A72 /* DMAccountViewController.m */,
 				C3767C9117168E0800BC593B /* ViewControllers */,
 				C3767C8D1716895600BC593B /* StoryBoards */,
 				C3DAEC3116EC06C100C51F73 /* XIBs & Classes */,
@@ -379,6 +479,9 @@
 				C31B5F74171E7F63006199AD /* lock.png in Resources */,
 				C3A8EB7C171F02E3001C85DD /* SearchStoryboard_iPhone.storyboard in Resources */,
 				C3A8EB81171F048C001C85DD /* ExploreStoryboard_iPhone.storyboard in Resources */,
+				C30235541721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard in Resources */,
+				C302355C1721DE5400842687 /* LICENSE.md in Resources */,
+				C302355E1721DE5400842687 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +524,11 @@
 				C3A8EB7F171F0332001C85DD /* DMSearchResultsViewController.m in Sources */,
 				C3A8EB84171F04CA001C85DD /* DMExploreTableViewController.m in Sources */,
 				C37D72AC171FC66C00AB948C /* DMSearchResultsTableViewController.m in Sources */,
+				C302355D1721DE5400842687 /* M6ParallaxController.m in Sources */,
+				C302355F1721DE5400842687 /* UIViewController+M6ParallaxController.m in Sources */,
+				C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */,
+				C30235651721DECE00842687 /* DMParallaxedViewController.m in Sources */,
+				C30235681721DEE600842687 /* DMParallaxViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

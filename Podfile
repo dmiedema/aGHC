@@ -12,7 +12,8 @@ pod 'SVSegmentedControl', :head
 pod 'NXOAuth2Client'
 pod 'TestFlightLogger'
 pod 'TestFlightSDK'
-#pod 'TSMessages'
+pod 'TSMessages'
 pod 'HMSegmentedControl', '~> 1.2.0'
 pod 'ReactiveCocoa'
-
+pod 'MBProgressHUD', '~> 0.6'
+#pod 'M6ParallaxController'
