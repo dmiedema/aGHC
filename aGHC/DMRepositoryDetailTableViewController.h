@@ -18,11 +18,11 @@
 @property (nonatomic, strong) IBOutlet UILabel *username;
 @property (nonatomic, strong) IBOutlet UILabel *description;
 @property (nonatomic, strong) IBOutlet UILabel *forks;
-@property (nonatomic, strong) IBOutlet UILabel *watchers;
-@property (nonatomic, strong) IBOutlet UILabel *issues;
+@property (nonatomic, strong) IBOutlet UILabel *stargazers;
 @property (nonatomic, strong) IBOutlet UILabel *openIssues;
 @property (nonatomic, strong) IBOutlet UILabel *downloads;
 @property (nonatomic, strong) IBOutlet UILabel *size;
+@property (nonatomic, strong) IBOutlet UILabel *exploreCode;
 
 @property (nonatomic, strong) IBOutlet UIButton *forkButton;
 @property (nonatomic, strong) IBOutlet UIButton *watchButton;
