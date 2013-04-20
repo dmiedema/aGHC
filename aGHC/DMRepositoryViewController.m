@@ -10,6 +10,9 @@
 #import "HMSegmentedControl.h"
 #import "DMRepositoryTableViewCell.h"
 #import "JSNotifier.h"
+#import "DMParallaxViewController.h"
+
+#import "DMRepositoryDetailViewController.h"
 
 @interface DMRepositoryViewController ()
 
@@ -253,11 +256,24 @@ int selectedIndex;
      */
     // lolololol
     
-    
-    
     NSDictionary *selectedRepo = [[self repositories] objectAtIndex:[indexPath row]];
     NSLog(@"Selected: %@", [selectedRepo objectForKey:@"name"]);
     NSLog(@"\nSelected Details: %@", selectedRepo);
+    
+    DMRepositoryDetailViewController *viewController = [[DMRepositoryDetailViewController alloc] init];
+    [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
+    [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [viewController setRepo:selectedRepo];
+    [self presentViewController:viewController animated:YES completion:nil];
+    
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RepositoryViewStoryboard_iPhone" bundle:[NSBundle mainBundle]];
+//    DMParallaxViewController *viewController = [[DMParallaxViewController alloc] init];
+//    [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
+//    [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+//    viewController = [storyboard instantiateInitialViewController];
+//    [viewController setRepo:selectedRepo];
+//    [self presentViewController:viewController animated:YES completion:nil];
+    
 }
 
 @end

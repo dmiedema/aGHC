@@ -21,13 +21,13 @@
 @property (nonatomic, strong) IBOutlet UILabel *stargazers;
 @property (nonatomic, strong) IBOutlet UILabel *openIssues;
 @property (nonatomic, strong) IBOutlet UILabel *size;
-@property (nonatomic, strong) IBOutlet UILabel *exploreCode;
 
-@property (nonatomic, strong) IBOutlet UIButton *forkButton;
-@property (nonatomic, strong) IBOutlet UIButton *watchButton;
-@property (nonatomic, strong) IBOutlet UIButton *starButton;
+//@property (nonatomic, strong) IBOutlet UIButton *forkButton;
+//@property (nonatomic, strong) IBOutlet UIButton *watchButton;
+//@property (nonatomic, strong) IBOutlet UIButton *starButton;
+//@property (nonatomic, strong) IBOutlet UIButton *exploreCode;
 
-- (IBAction)buttonPressed:(UIButton *)sender;
+//- (IBAction)buttonPressed:(UIButton *)sender;
 
 
 @end

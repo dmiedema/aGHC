@@ -16,6 +16,10 @@
 		C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */; };
 		C30235651721DECE00842687 /* DMParallaxedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235641721DECE00842687 /* DMParallaxedViewController.m */; };
 		C30235681721DEE600842687 /* DMParallaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235671721DEE600842687 /* DMParallaxViewController.m */; };
+		C30235741722534300842687 /* DMRepositoryDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C30235711722534200842687 /* DMRepositoryDetailTableViewCell.xib */; };
+		C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235731722534300842687 /* DMRepositoryDetailTableViewCell.m */; };
+		C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C302357717226B0500842687 /* DMRepositoryDetailViewController.m */; };
+		C302357A17226B3B00842687 /* RepositoryDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C302357917226B3B00842687 /* RepositoryDetailView.xib */; };
 		C30FB3C917121D64002D6C69 /* DMCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30FB3C817121D64002D6C69 /* DMCustomLabel.m */; };
 		C31B5F45171E3023006199AD /* NotifyCheck.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F41171E3023006199AD /* NotifyCheck.png */; };
 		C31B5F46171E3023006199AD /* NotifyCheck@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F42171E3023006199AD /* NotifyCheck@2x.png */; };
@@ -86,6 +90,12 @@
 		C30235661721DEE600842687 /* DMParallaxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMParallaxViewController.h; sourceTree = "<group>"; };
 		C30235671721DEE600842687 /* DMParallaxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMParallaxViewController.m; sourceTree = "<group>"; };
 		C30235701721E04900842687 /* DMAppDelegate_TODO_List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMAppDelegate_TODO_List.h; sourceTree = "<group>"; };
+		C30235711722534200842687 /* DMRepositoryDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DMRepositoryDetailTableViewCell.xib; path = ../DMRepositoryDetailTableViewCell.xib; sourceTree = "<group>"; };
+		C30235721722534200842687 /* DMRepositoryDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMRepositoryDetailTableViewCell.h; path = ../DMRepositoryDetailTableViewCell.h; sourceTree = "<group>"; };
+		C30235731722534300842687 /* DMRepositoryDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DMRepositoryDetailTableViewCell.m; path = ../DMRepositoryDetailTableViewCell.m; sourceTree = "<group>"; };
+		C302357617226B0500842687 /* DMRepositoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryDetailViewController.h; sourceTree = "<group>"; };
+		C302357717226B0500842687 /* DMRepositoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryDetailViewController.m; sourceTree = "<group>"; };
+		C302357917226B3B00842687 /* RepositoryDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryDetailView.xib; sourceTree = "<group>"; };
 		C30FB3C717121D64002D6C69 /* DMCustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCustomLabel.h; sourceTree = "<group>"; };
 		C30FB3C817121D64002D6C69 /* DMCustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCustomLabel.m; sourceTree = "<group>"; };
 		C31B5F41171E3023006199AD /* NotifyCheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NotifyCheck.png; sourceTree = "<group>"; };
@@ -312,6 +322,8 @@
 				C302356B1721DF1500842687 /* Search */,
 				C302356A1721DF0700842687 /* Explore */,
 				C30235691721DEEB00842687 /* Repository Detail View */,
+				C302357617226B0500842687 /* DMRepositoryDetailViewController.h */,
+				C302357717226B0500842687 /* DMRepositoryDetailViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -391,12 +403,16 @@
 		C3DAEC3116EC06C100C51F73 /* XIBs & Classes */ = {
 			isa = PBXGroup;
 			children = (
+				C30235711722534200842687 /* DMRepositoryDetailTableViewCell.xib */,
+				C30235721722534200842687 /* DMRepositoryDetailTableViewCell.h */,
+				C30235731722534300842687 /* DMRepositoryDetailTableViewCell.m */,
 				C30FB3C717121D64002D6C69 /* DMCustomLabel.h */,
 				C30FB3C817121D64002D6C69 /* DMCustomLabel.m */,
 				C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */,
 				C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */,
 				C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */,
 				C3767CA3171696FF00BC593B /* HomeScreenView.xib */,
+				C302357917226B3B00842687 /* RepositoryDetailView.xib */,
 			);
 			name = "XIBs & Classes";
 			sourceTree = "<group>";
@@ -482,6 +498,8 @@
 				C30235541721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard in Resources */,
 				C302355C1721DE5400842687 /* LICENSE.md in Resources */,
 				C302355E1721DE5400842687 /* README.md in Resources */,
+				C30235741722534300842687 /* DMRepositoryDetailTableViewCell.xib in Resources */,
+				C302357A17226B3B00842687 /* RepositoryDetailView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,6 +547,8 @@
 				C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */,
 				C30235651721DECE00842687 /* DMParallaxedViewController.m in Sources */,
 				C30235681721DEE600842687 /* DMParallaxViewController.m in Sources */,
+				C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */,
+				C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

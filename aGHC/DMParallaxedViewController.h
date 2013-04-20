@@ -11,4 +11,12 @@
 
 @interface DMParallaxedViewController : UIViewController <M6ParallaxMasterViewControllerDelegate>
 
+@property (nonatomic, strong) NSString *imageURL;
+@property (nonatomic, strong) NSString *repoName;
+
+@property (nonatomic, strong) IBOutlet UIImageView *imageView;
+@property (nonatomic, strong) IBOutlet UILabel *repoNameLabel;
+
+- (IBAction)loadUser:(id)sender;
+
 @end

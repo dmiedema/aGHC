@@ -37,9 +37,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)awakeFromNib {
-    DMParallaxedViewController *parallaxedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Parallaxed ViewController"];
-    DMRepositoryDetailTableViewController *repositoryDetailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Repository Detail TableViewController"];
+- (void)awakeFromNib {
+    NSLog(@"\n ---- awakeFromNib in ParallaxViewController called ---- \n");
+    DMParallaxedViewController *parallaxedViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"ParallaxedViewController"];
+    DMRepositoryDetailTableViewController *repositoryDetailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"RepositoryDetailTableViewController"];
+    NSLog(@"View controllers instantiated");
     
     [repositoryDetailViewController setRepo:[self repo]];
     

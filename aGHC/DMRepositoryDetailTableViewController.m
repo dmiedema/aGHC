@@ -13,7 +13,7 @@
 
 @interface DMRepositoryDetailTableViewController ()
 
-- (IBAction)dismissMe:(id)sender;
+//- (IBAction)dismissMe:(id)sender;
 - (void)loadDetailsOfRepository;
 
 @end
@@ -32,6 +32,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[self tableView] registerNib:
+     [UINib nibWithNibName:@"DMRepositoryDetailTableViewCell" bundle:[NSBundle mainBundle]]
+           forCellReuseIdentifier:@"cell"];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -53,13 +57,13 @@
     [self.parallaxController tableViewControllerDidScroll:self];
 }
 // incase i need to dismiss
-- (void)dismissMe:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+//- (void)dismissMe:(id)sender {
+//    [self dismissViewControllerAnimated:YES completion:nil];
+//}
 
 // is this for the view controller? this seems more 'model' code...
 - (void)loadDetailsOfRepository{
-    UIFont *defaultFont = [UIFont fontWithName:@"Avenir" size:20.0f];
+    UIFont *defaultFont = [UIFont fontWithName:@"Avenir" size:20.0];
     
     // set up label/button fonts
     [[self username] setFont:defaultFont];
@@ -68,7 +72,6 @@
     [[self stargazers] setFont:defaultFont];
     [[self openIssues] setFont:defaultFont];
     [[self size] setFont:defaultFont];
-    [[self exploreCode] setFont:defaultFont];
     
     // put the crap in the labels
     [[self description] setText:[[self repo] objectForKey:@"description"]];
@@ -76,7 +79,12 @@
     [[self stargazers]  setText:[NSString stringWithFormat:@"Stars - %@", [[self repo] objectForKey:@"watchers_count"]]];
     [[self openIssues]  setText:[NSString stringWithFormat:@"Current Issues - %@", [[self repo] objectForKey:@"open_issues_count"]]];
     [[self size]        setText:[NSString stringWithFormat:@"Size - %@", [[self repo] objectForKey:@"size"]]];
-    [[self exploreCode] setText:@"Explore the Code"];
+    
+    // set up description cell size
+    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
+    CGSize labelSize = [[[self repo] objectForKey:@"description"] sizeWithFont:defaultFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    [[self description] setFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
+    
 }
 #pragma mark - Table view data source
 
@@ -97,6 +105,10 @@
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    if (!cell) {
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    [[cell textLabel] setText:@"Derpy"];
     // Configure the cell...
     
     return cell;
@@ -182,7 +194,7 @@
     NSLog(@"%@", [selectedCell textLabel]);
 }
 
--(void)buttonPressed:(UIButton *)sender {
+- (IBAction)buttonPressed:(UIButton *)sender {
     NSLog(@"Button Press: %@", [sender currentTitle]);
 }
 

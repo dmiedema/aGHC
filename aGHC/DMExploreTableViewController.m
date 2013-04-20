@@ -114,10 +114,12 @@
     // Configure the cell...
     NSDictionary *currentRepo = [[self repositories] objectAtIndex:[indexPath row]];
     cell.repositoryName.text = [currentRepo objectForKey:@"name"];
+    /*
     cell.repositoryDetailInfo.text = [NSString stringWithFormat:@"Forks: %@ - Issues: %@ - Watchers: %@",
                                       [currentRepo objectForKey:@"forks_count"],
                                       [currentRepo objectForKey:@"open_issues_count"],
                                       [currentRepo objectForKey:@"watchers"]];
+     */
     
     
     // repo private?

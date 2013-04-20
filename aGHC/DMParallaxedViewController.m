@@ -10,10 +10,7 @@
 
 @interface DMParallaxedViewController () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
-@property (nonatomic, weak) IBOutlet UILabel *usernameLabel;
 
-- (IBAction)loadUser:(id)sender;
 
 @end
 
@@ -36,6 +33,11 @@
     UIGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadUser:)];
     [tapGestureRecognizer setDelegate:self];
     [[self imageView] addGestureRecognizer:tapGestureRecognizer];
+    
+    [[self repoNameLabel] setFont:[UIFont fontWithName:@"Avenir" size:24.0f]];
+    [[self repoNameLabel] setText:[self repoName]];
+    
+    [[self imageView] setImageWithURL:[NSURL URLWithString:[self imageURL]]];
 
 }
 
@@ -55,11 +57,11 @@
     
     if (newHeight >= parallaxController.parallaxedViewControllerStandartHeight) {
         [[self imageView] setAlpha:1.0];
-        [[self usernameLabel] setAlpha:1.0];
+        [[self repoNameLabel] setAlpha:1.0];
     } else {
         float alpha = newHeight /parallaxController.parallaxedViewControllerStandartHeight;
         [[self imageView] setAlpha:alpha];
-        [[self usernameLabel] setAlpha:alpha];
+        [[self repoNameLabel] setAlpha:alpha];
     }
 }
 

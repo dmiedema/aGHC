@@ -21,7 +21,7 @@
         <!--Parallaxed View Controller-->
         <scene sceneID="YCj-LX-4t2">
             <objects>
-                <viewController id="smF-Em-xLJ" customClass="DMParallaxedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ParallaxedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="smF-Em-xLJ" customClass="DMParallaxedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KlN-em-4PZ">
                         <rect key="frame" x="0.0" y="20" width="320" height="250"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -49,8 +49,8 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <connections>
-                        <outlet property="imageView" destination="smT-w9-stb" id="Wna-bt-g1t"/>
-                        <outlet property="usernameLabel" destination="1d5-vi-4hm" id="pzh-Dh-9fd"/>
+                        <outlet property="imageView" destination="smT-w9-stb" id="zc1-hq-UNy"/>
+                        <outlet property="repoNameLabel" destination="1d5-vi-4hm" id="McZ-Fh-UUd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hFk-54-HcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -60,7 +60,7 @@
         <!--Repository Detail Table View Controller-->
         <scene sceneID="4RN-B0-b14">
             <objects>
-                <tableViewController id="cXu-4m-WPC" customClass="DMRepositoryDetailTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RepositoryDetailTableViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="cXu-4m-WPC" customClass="DMRepositoryDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="54" sectionHeaderHeight="22" sectionFooterHeight="22" id="bbu-0p-ggX">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,7 +68,7 @@
                         <sections>
                             <tableViewSection headerTitle=" --- " id="L3p-6N-HJA">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="0ai-Yc-BMD">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="0ai-Yc-BMD">
                                         <rect key="frame" x="0.0" y="22" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -92,7 +92,7 @@ something something</string>
                                             <constraint firstItem="PIL-hV-XhO" firstAttribute="leading" secondItem="0ai-Yc-BMD" secondAttribute="leading" constant="20" type="default" id="xIL-3H-Ibk"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="94" id="Sqn-Vv-cci">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="94" id="Sqn-Vv-cci">
                                         <rect key="frame" x="0.0" y="76" width="320" height="94"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -111,9 +111,6 @@ something something</string>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="buttonPressed:" destination="cXu-4m-WPC" eventType="touchUpInside" id="mWw-Ss-C8E"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pfS-j3-EPx">
                                                     <constraints>
@@ -127,9 +124,6 @@ something something</string>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="buttonPressed:" destination="cXu-4m-WPC" eventType="touchUpInside" id="9qF-GE-mQT"/>
-                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Smb-XO-ry7">
                                                     <constraints>
@@ -143,9 +137,6 @@ something something</string>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="buttonPressed:" destination="cXu-4m-WPC" eventType="touchUpInside" id="uVf-xn-Kn6"/>
-                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="forks" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cdn-T0-rMa">
                                                     <constraints>
@@ -181,7 +172,7 @@ something something</string>
                                             <constraint firstItem="cdn-T0-rMa" firstAttribute="top" secondItem="CAJ-9C-e6q" secondAttribute="top" type="default" id="xA7-w5-BDm"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eQc-xc-WCY">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="eQc-xc-WCY">
                                         <rect key="frame" x="0.0" y="170" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -203,7 +194,7 @@ something something</string>
                                             <constraint firstAttribute="trailing" secondItem="gyq-7f-6ac" secondAttribute="trailing" constant="20" type="default" id="yFz-7d-lDO"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6ah-MP-dMK">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6ah-MP-dMK">
                                         <rect key="frame" x="0.0" y="224" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -225,7 +216,7 @@ something something</string>
                                             <constraint firstAttribute="trailing" secondItem="5GI-4v-Q0U" secondAttribute="trailing" constant="20" type="default" id="ctD-V7-INh"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="X9y-0s-IxJ">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="X9y-0s-IxJ">
                                         <rect key="frame" x="0.0" y="278" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -247,7 +238,7 @@ something something</string>
                                             <constraint firstAttribute="trailing" secondItem="QHl-P2-VD7" secondAttribute="trailing" constant="20" type="default" id="eOC-VM-TIH"/>
                                         </constraints>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sko-fu-oVB">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="sko-fu-oVB">
                                         <rect key="frame" x="0.0" y="332" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -263,9 +254,6 @@ something something</string>
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <connections>
-                                                        <action selector="buttonPressed:" destination="cXu-4m-WPC" eventType="touchUpInside" id="Rh8-L6-89H"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -286,16 +274,12 @@ something something</string>
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="buttonPressed" destination="huF-FW-TOW" id="rB4-1h-Nr8"/>
                         <outlet property="description" destination="PIL-hV-XhO" id="hXL-nM-A17"/>
-                        <outlet property="forkButton" destination="huF-FW-TOW" id="Zcf-cd-4rx"/>
                         <outlet property="forks" destination="cdn-T0-rMa" id="aom-1Y-Kjb"/>
                         <outlet property="openIssues" destination="5GI-4v-Q0U" id="46G-Fy-qES"/>
                         <outlet property="size" destination="QHl-P2-VD7" id="gSz-5S-NJc"/>
-                        <outlet property="starButton" destination="Smb-XO-ry7" id="sqR-bd-1yt"/>
                         <outlet property="stargazers" destination="CAJ-9C-e6q" id="FyJ-SY-ywq"/>
                         <outlet property="username" destination="gyq-7f-6ac" id="Moa-7Y-4kV"/>
-                        <outlet property="watchButton" destination="pfS-j3-EPx" id="6nW-sQ-CnB"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jah-Oa-aVb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -312,24 +296,19 @@ something something</string>
             <relationships>
                 <relationship kind="action" name="loadUser:"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="usernameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="repoNameLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="DMRepositoryDetailTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DMRepositoryDetailTableViewController.h"/>
             <relationships>
                 <relationship kind="action" name="buttonPressed:" candidateClass="UIButton"/>
-                <relationship kind="action" name="dismissMe:"/>
                 <relationship kind="outlet" name="description" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="exploreCode" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="forkButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="forks" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="openIssues" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="size" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="starButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="stargazers" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="username" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="watchButton" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="M6ParallaxController" superclassName="UIViewController">
