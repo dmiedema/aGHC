@@ -48,7 +48,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
+    // TODO: Add a dismissal button/titlebar thing.
     NSLog(@"\n\nInformation to load: %@", [self repo]);
     // Custom initialization
     // create scroll view

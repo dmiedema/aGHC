@@ -264,7 +264,8 @@ int selectedIndex;
     [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
     [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [viewController setRepo:selectedRepo];
-    [self presentViewController:viewController animated:YES completion:nil];
+
+    [[self navigationController] presentViewController:viewController animated:YES completion:nil];
     
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RepositoryViewStoryboard_iPhone" bundle:[NSBundle mainBundle]];
 //    DMParallaxViewController *viewController = [[DMParallaxViewController alloc] init];
