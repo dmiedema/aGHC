@@ -57,20 +57,39 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+// is this for the view controller? this seems more 'model' code...
+- (void)loadDetailsOfRepository{
+    UIFont *defaultFont = [UIFont fontWithName:@"Avenir" size:20.0f];
+    
+    // set up label/button fonts
+    [[self username] setFont:defaultFont];
+    [[self description] setFont:defaultFont];
+    [[self forks] setFont:defaultFont];
+    [[self stargazers] setFont:defaultFont];
+    [[self openIssues] setFont:defaultFont];
+    [[self size] setFont:defaultFont];
+    [[self exploreCode] setFont:defaultFont];
+    
+    // put the crap in the labels
+    [[self description] setText:[[self repo] objectForKey:@"description"]];
+    [[self forks]       setText:[NSString stringWithFormat:@"Forks - %@", [[self repo] objectForKey:@"forks"]]];
+    [[self stargazers]  setText:[NSString stringWithFormat:@"Stars - %@", [[self repo] objectForKey:@"watchers_count"]]];
+    [[self openIssues]  setText:[NSString stringWithFormat:@"Current Issues - %@", [[self repo] objectForKey:@"open_issues_count"]]];
+    [[self size]        setText:[NSString stringWithFormat:@"Size - %@", [[self repo] objectForKey:@"size"]]];
+    [[self exploreCode] setText:@"Explore the Code"];
+}
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return 9;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -99,6 +118,9 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath row] == 0) {
+        return 74.0f;
+    }
     return 54.0f;
 }
 /*
@@ -151,6 +173,17 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    NSLog(@"Selected Item: %@", @"string");
+//    int row = [indexPath row];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"%@", [selectedCell textLabel]);
+}
+
+-(void)buttonPressed:(UIButton *)sender {
+    NSLog(@"Button Press: %@", [sender currentTitle]);
 }
 
 @end
