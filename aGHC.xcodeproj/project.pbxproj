@@ -207,6 +207,8 @@
 		C30235691721DEEB00842687 /* Repository Detail View */ = {
 			isa = PBXGroup;
 			children = (
+				C302357617226B0500842687 /* DMRepositoryDetailViewController.h */,
+				C302357717226B0500842687 /* DMRepositoryDetailViewController.m */,
 				C30235601721DEAF00842687 /* DMRepositoryDetailTableViewController.h */,
 				C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */,
 				C30235631721DECE00842687 /* DMParallaxedViewController.h */,
@@ -322,8 +324,6 @@
 				C302356B1721DF1500842687 /* Search */,
 				C302356A1721DF0700842687 /* Explore */,
 				C30235691721DEEB00842687 /* Repository Detail View */,
-				C302357617226B0500842687 /* DMRepositoryDetailViewController.h */,
-				C302357717226B0500842687 /* DMRepositoryDetailViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

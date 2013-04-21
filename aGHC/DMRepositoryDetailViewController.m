@@ -7,6 +7,7 @@
 //
 
 #import "DMRepositoryDetailViewController.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 @interface DMRepositoryDetailViewController ()
 
@@ -50,6 +51,7 @@
 	// Do any additional setup after loading the view.
     // TODO: Add a dismissal button/titlebar thing.
     NSLog(@"\n\nInformation to load: %@", [self repo]);
+    NSDictionary *owner = [[self repo] objectForKey:@"owner"];
     // Custom initialization
     // create scroll view
     float x = 20.0;
@@ -58,16 +60,42 @@
     UIFont *defaultFont = [UIFont fontWithName:@"Avenir" size:20.0];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, y, 320, 320)];
-    [imageView setImage:[UIImage imageNamed:@"sL7cyZ5Oa7-2-1"]];
+    [imageView setImageWithURL:[NSURL URLWithString:[owner objectForKey:@"avatar_url"]] placeholderImage:[UIImage imageNamed:@"sL7cyZ5Oa7-2-1"]];
+//    [imageView setImage:[UIImage imageNamed:@"sL7cyZ5Oa7-2-1"]];
+    // set up dismiss button
+    UIButton *dismissButton = [[UIButton alloc] init];
+    [dismissButton setBackgroundColor:[UIColor colorWithRed:235 green:235 blue:235 alpha:0.7]];
+//    [dismissButton setImage:[UIImage imageNamed:@"NotifyX"] forState:UIControlStateNormal];
+    [dismissButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [dismissButton setTitle:@"X" forState:UIControlStateNormal];
+    [dismissButton setTitle:@":(" forState:UIControlStateHighlighted];
+    [dismissButton setTag:0];
+    [dismissButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [dismissButton setFrame:CGRectMake(10, 10, 44, 44)];
+    
     // currently 320 down after image
     y+=320;
     NSLog(@"%f", y);
+    
     // set up repository name label
     UILabel *repositoryNameLabel = [[UILabel alloc] init];
-    [repositoryNameLabel setFont:defaultFont];
+    // set it a glow
+    [[repositoryNameLabel layer] setShadowColor:[[UIColor blackColor] CGColor]];
+    [[repositoryNameLabel layer] setShadowRadius:1.0f];
+    [[repositoryNameLabel layer] setShadowOpacity:1];
+    [[repositoryNameLabel layer] setShadowOffset:CGSizeZero];
+    [[repositoryNameLabel layer] setMasksToBounds:NO];
+    // set it up
+    [repositoryNameLabel setFont:[UIFont fontWithName:@"Avenir" size:32.0]];
+    [repositoryNameLabel setAdjustsFontSizeToFitWidth:YES];
+    [repositoryNameLabel setMinimumScaleFactor:.1];
+    [repositoryNameLabel setNumberOfLines:1];
+    [repositoryNameLabel setAdjustsFontSizeToFitWidth:YES];
     [repositoryNameLabel setText:[[self repo] objectForKey:@"name"]];
     [repositoryNameLabel setBackgroundColor:[UIColor clearColor]];
-    [repositoryNameLabel setFrame:CGRectMake((self.view.frame.size.width / 2), 290, LABEL_WIDTH, LABEL_HEIGHT)];
+    [repositoryNameLabel setTextColor:[UIColor whiteColor]];
+    [repositoryNameLabel setFrame:CGRectMake((self.view.frame.size.width / 2)-45, 220, LABEL_WIDTH-75, LABEL_HEIGHT)];
+    
     // set up description label
     UILabel *descriptionLabel = [[UILabel alloc] init];
     [descriptionLabel setFont:defaultFont];
@@ -84,7 +112,7 @@
     y += labelSize.height;
     NSLog(@"%f", y);
     // set up username label
-    NSDictionary *owner = [[self repo] objectForKey:@"owner"];
+    
     UILabel *usernameLabel = [[UILabel alloc] init];
     [usernameLabel setFont:defaultFont];
     [usernameLabel setText:[NSString stringWithFormat:@"Creator - %@", [owner objectForKey:@"login"]]];
@@ -97,20 +125,20 @@
     UIButton *forksButton = [[UIButton alloc] init];
     [forksButton setTitle:@"Fork" forState:UIControlStateNormal];
     [forksButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [forksButton setTitleColor:[UIColor blackColor] forState:UIControlStateApplication];
-    [forksButton setFrame:CGRectMake(x, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
+    [forksButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [forksButton setFrame:CGRectMake(x+10, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     // Set up watch button
     UIButton *watchButton = [[UIButton alloc] init];
     [watchButton setTitle:@"Watch" forState:UIControlStateNormal];
-    [watchButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [watchButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [watchButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [watchButton setFrame:CGRectMake((x*2) + BUTTON_WIDTH, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
+    [watchButton setFrame:CGRectMake((x+(10*3)) + BUTTON_WIDTH, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     // set up star button
     UIButton *starButton = [[UIButton alloc] init];
     [starButton setTitle:@"Star" forState:UIControlStateNormal];
-    [starButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [starButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [starButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [starButton setFrame:CGRectMake((x*4) + (BUTTON_WIDTH * 2), y, BUTTON_WIDTH, BUTTON_HEIGHT)];
+    [starButton setFrame:CGRectMake((x+(10*5)) + (BUTTON_WIDTH * 2), y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     //
     y += BUTTON_HEIGHT;
     NSLog(@"%f", y);
@@ -141,7 +169,7 @@
     // explore code button
     UIButton *exploreCode = [[UIButton alloc] init];
     [exploreCode setTitle:@"Explore Code" forState:UIControlStateNormal];
-    [exploreCode setTitleColor:[UIColor darkGrayColor] forState:UIControlStateApplication];
+    [exploreCode setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [exploreCode addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [exploreCode setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
     y += BUTTON_HEIGHT;
@@ -158,10 +186,11 @@
     [scrollView addSubview:watchersLabel];
     [scrollView addSubview:issuesLabel];
     [scrollView addSubview:exploreCode];
+    [scrollView addSubview:dismissButton];
     
     // add the scroll view into the view
     [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, y)];
-    [scrollView setBackgroundColor:[UIColor redColor]];
+    [scrollView setBackgroundColor:[UIColor whiteColor]];
     [[self view] addSubview:scrollView];
     
     NSLog(@"current y : %f", y);
@@ -174,5 +203,8 @@
 }
 - (void)buttonPressed:(UIButton *)sender {
     NSLog(@"sender: %@", [[sender titleLabel] text]);
+    if ([[[sender titleLabel] text] isEqualToString:@"X"] || [[[sender titleLabel] text] isEqualToString:@":("]) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 @end
