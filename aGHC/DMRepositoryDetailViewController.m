@@ -8,9 +8,11 @@
 
 #import "DMRepositoryDetailViewController.h"
 #import <CoreGraphics/CoreGraphics.h>
+#import "MMMarkdown.h"
+#import "MF_Base64Additions.h"
 
 @interface DMRepositoryDetailViewController ()
-
+@property (nonatomic, strong) NSString *rawHTML;
 @end
 
 @implementation DMRepositoryDetailViewController
@@ -161,6 +163,58 @@
     [exploreCode setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
     y += BUTTON_HEIGHT;
     NSLog(@"%f", y);
+    
+    // create readme markdown view
+    UIWebView *readmeView = [[UIWebView alloc] init];
+    // Accept Header
+    // application/vnd.github.v3.html+json
+    // on https://api.github.com/repos/dmiedema/dropboxcollection/readme
+    // or kGitHubApiURL /repos/:user/:repo/readme
+    // and render output to webview
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@repos/%@/%@/readme?%@=%@&%@=%@", kGitHubApiURL, [owner objectForKey:@"login"], [[self repo] objectForKey:@"name" ], kAccessToken, [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken], kTokenType, [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType]]]];
+    //NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@repos/%@/%@/readme", kGitHubApiURL, [owner objectForKey:@"login"], [[self repo] objectForKey:@"name" ]]]];
+    NSLog(@"Request - %@", request);
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    //[request setValue:@"application/vnd.github.v3.html+json" forHTTPHeaderField:@"Accept"];
+//    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+//    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"Response - %@", [NSString stringWithContentsOfURL:[request URL] encoding:NSStringEncodingConversionAllowLossy error:nil]);
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"Error - %@", error);
+//    }];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        NSLog(@"Response -- %@", JSON);
+        NSLog(@"Content - %@", [JSON objectForKey:@"content"]);
+        NSLog(@"Decoded - %@", [NSString stringFromBase64String:[JSON objectForKey:@"content"]]);
+        [self setRawHTML:[NSString stringFromBase64String:[JSON objectForKey:@"content"]]];
+
+        NSLog(@"HTML - %@", [MMMarkdown HTMLStringWithMarkdown:[NSString stringFromBase64String:[JSON objectForKey:@"content"]] error:nil]);
+        
+        [readmeView loadHTMLString:[MMMarkdown HTMLStringWithMarkdown:[self rawHTML] error:nil] baseURL:nil];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"HTML -- %@", JSON);
+        NSLog(@"Error - %@", error);
+        NSLog(@"Error loading README");
+    }];
+    [operation start];
+    [readmeView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin];
+
+    [readmeView setFrame:CGRectMake(0, y, self.view.frame.size.width, [[readmeView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue])];
+    [readmeView sizeToFit];
+    y += readmeView.frame.size.height;
+    
+//    CGRectMake(x, y, LABEL_WIDTH, <#CGFloat height#>)
+//    [descriptionLabel setFont:defaultFont];
+//    [descriptionLabel setLineBreakMode:NSLineBreakByWordWrapping];
+//    [descriptionLabel setNumberOfLines:0];
+//    [descriptionLabel setBackgroundColor:[UIColor clearColor]];
+//    [descriptionLabel setTextColor:[UIColor darkGrayColor]];
+    //NSString *descrption = [[self repo] objectForKey:@"description"];
+    //CGSize constraintSize = CGSizeMake(LABEL_WIDTH, MAXFLOAT);
+//    //CGSize labelSize = [descrption sizeWithFont:defaultFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+//    [descriptionLabel setFrame:CGRectMake(x, y, labelSize.width, labelSize.height)];
+//    [descriptionLabel setText:descrption];
+    
     // add subviews to scroll view. And there are a lot of them holy fuck.
     [scrollView addSubview:imageView];
     [scrollView addSubview:repositoryNameLabel];
@@ -174,6 +228,7 @@
     [scrollView addSubview:issuesLabel];
     [scrollView addSubview:exploreCode];
     [scrollView addSubview:dismissButton];
+    [scrollView addSubview:readmeView];
     
     // add the scroll view into the view
     [scrollView setContentSize:CGSizeMake(self.view.frame.size.width, y)];

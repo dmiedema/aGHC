@@ -44,6 +44,7 @@
 		C3767CAA1716994B00BC593B /* DMHomeScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767CA91716994B00BC593B /* DMHomeScreenTableViewController.m */; };
 		C37D72AC171FC66C00AB948C /* DMSearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37D72AB171FC66C00AB948C /* DMSearchResultsTableViewController.m */; };
 		C37F7029171CB5D3003D385E /* RepositoryStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37F7028171CB5D3003D385E /* RepositoryStoryboard_iPhone.storyboard */; };
+		C381C8041723F15500D29F01 /* libMMMarkdown-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C381C8031723F15500D29F01 /* libMMMarkdown-iOS.a */; };
 		C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74316EA9FE9009434D5 /* CoreText.framework */; };
 		C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C74416EA9FE9009434D5 /* QuartzCore.framework */; };
 		C384C75116EAA12D009434D5 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C384C75016EAA12D009434D5 /* libz.dylib */; };
@@ -127,6 +128,7 @@
 		C37D72AA171FC66C00AB948C /* DMSearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSearchResultsTableViewController.h; sourceTree = "<group>"; };
 		C37D72AB171FC66C00AB948C /* DMSearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSearchResultsTableViewController.m; sourceTree = "<group>"; };
 		C37F7028171CB5D3003D385E /* RepositoryStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RepositoryStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		C381C8031723F15500D29F01 /* libMMMarkdown-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libMMMarkdown-iOS.a"; sourceTree = "<group>"; };
 		C384C74316EA9FE9009434D5 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		C384C74416EA9FE9009434D5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		C384C74716EAA024009434D5 /* aGHC.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = aGHC.entitlements; sourceTree = "<group>"; };
@@ -173,18 +175,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C3ED621D16EC703B00311A72 /* MessageUI.framework in Frameworks */,
 				C3ED621B16EC702B00311A72 /* CFNetwork.framework in Frameworks */,
 				C3ED621916EC702000311A72 /* Security.framework in Frameworks */,
 				C384C75516EAA4A9009434D5 /* MobileCoreServices.framework in Frameworks */,
 				C384C75316EAA498009434D5 /* SystemConfiguration.framework in Frameworks */,
 				C384C75116EAA12D009434D5 /* libz.dylib in Frameworks */,
-				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C384C74616EA9FE9009434D5 /* QuartzCore.framework in Frameworks */,
 				C39840E216EA9AD100B2ADB1 /* CoreGraphics.framework in Frameworks */,
 				C39840DE16EA9AD100B2ADB1 /* UIKit.framework in Frameworks */,
 				C39840E016EA9AD100B2ADB1 /* Foundation.framework in Frameworks */,
 				C241698F525B426D927F446D /* libPods.a in Frameworks */,
+				C381C8041723F15500D29F01 /* libMMMarkdown-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,6 +353,7 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C381C8031723F15500D29F01 /* libMMMarkdown-iOS.a */,
 				C3ED621C16EC703B00311A72 /* MessageUI.framework */,
 				C3ED621A16EC702B00311A72 /* CFNetwork.framework */,
 				C3ED621816EC702000311A72 /* Security.framework */,
@@ -645,6 +649,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.2\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -666,6 +671,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.2\"",
+					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
