@@ -100,7 +100,9 @@
     
     UILabel *usernameLabel = [[UILabel alloc] init];
     [usernameLabel setFont:defaultFont];
-    [usernameLabel setText:[NSString stringWithFormat:@"Creator - %@", [owner objectForKey:@"login"]]];
+    if ([[[self repo] objectForKey:@"fork"] integerValue] == NO)
+        [usernameLabel setText:[NSString stringWithFormat:@"Created by - %@", [owner objectForKey:@"login"]]];
+    else [usernameLabel setText:[NSString stringWithFormat:@"Forked by - %@", [owner objectForKey:@"login"]]];
     [usernameLabel setBackgroundColor:[UIColor clearColor]];
     [usernameLabel setFrame:CGRectMake(x, y, LABEL_WIDTH, LABEL_HEIGHT)];
     //
@@ -190,6 +192,8 @@
     NSLog(@"sender: %@", [[sender titleLabel] text]);
     if ([[[sender titleLabel] text] isEqualToString:@"X"] || [[[sender titleLabel] text] isEqualToString:@":("]) {
         [self dismissViewControllerAnimated:YES completion:nil];
+    } else if ([[[sender titleLabel] text] isEqualToString:@"Explore Code"]) {
+        
     }
 }
 @end

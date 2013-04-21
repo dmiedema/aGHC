@@ -9,6 +9,7 @@
 #import "DMExploreTableViewController.h"
 #import "DMRepositoryTableViewCell.h"
 #import "JSNotifier.h"
+#import "DMRepositoryDetailViewController.h"
 
 @interface DMExploreTableViewController ()
 
@@ -186,6 +187,14 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+    NSDictionary *selectedRepo = [[self repositories] objectAtIndex:[indexPath row]];
+    
+    DMRepositoryDetailViewController *viewController = [[DMRepositoryDetailViewController alloc] init];
+    [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
+    [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+    [viewController setRepo:selectedRepo];
+    
+    [[self navigationController] presentViewController:viewController animated:YES completion:nil];
 }
 
 @end
