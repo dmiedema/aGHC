@@ -16,6 +16,8 @@
 @property (nonatomic, strong) NSMutableArray *repositories;
 @property (nonatomic, strong) IBOutlet UITextField *searchTextBox;
 
+@property (nonatomic, strong) NSDictionary *fulldetails;
+
 - (IBAction)dismissMe:(id)sender;
 - (IBAction)runSearch:(id)sender;
 
@@ -215,11 +217,26 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     NSDictionary *selectedRepo = [[self repositories] objectAtIndex:[indexPath row]];
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken];
+    NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
+    NSString *repo  = [selectedRepo objectForKey:@"name"];
+    NSString *owner = [selectedRepo objectForKey:@"owner"];
+
+    // repos/:owner/:repo
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@repos/%@/%@?%@=%@&%@=%@", kGitHubApiURL, owner, repo, kAccessToken, token, kTokenType, tokenType]]];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [self setFulldetails:JSON];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"Error - %@", error);
+    }];
+    [operation start];
     
     DMRepositoryDetailViewController *viewController = [[DMRepositoryDetailViewController alloc] init];
     [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
     [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    [viewController setRepo:selectedRepo];
+    [viewController setRepo:[self fulldetails]];
     
     [[self navigationController] presentViewController:viewController animated:YES completion:nil];
 }
