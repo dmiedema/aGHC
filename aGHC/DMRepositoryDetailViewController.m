@@ -11,21 +11,6 @@
 
 @interface DMRepositoryDetailViewController ()
 
-//@property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UIImageView *imageView;
-@property (nonatomic, strong) UILabel *repositoryNameLabel;
-@property (nonatomic, strong) UILabel *usernameLabel;
-@property (nonatomic, strong) UILabel *description;
-@property (nonatomic, strong) UILabel *forksLabel;
-@property (nonatomic, strong) UILabel *starsLabel;
-@property (nonatomic, strong) UILabel *sizeLabel;
-@property (nonatomic, strong) UILabel *issuesLabel;
-
-@property (nonatomic, strong) UIButton *forkButton;
-@property (nonatomic, strong) UIButton *watchButton;
-@property (nonatomic, strong) UIButton *starButton;
-@property (nonatomic, strong) UIButton *exploreCodeButton;
-
 @end
 
 @implementation DMRepositoryDetailViewController
