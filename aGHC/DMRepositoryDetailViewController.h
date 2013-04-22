@@ -11,5 +11,7 @@
 @interface DMRepositoryDetailViewController : UIViewController
 
 @property (nonatomic, strong) NSDictionary *repo;
+@property (nonatomic, strong) NSString *ownerName;
+@property (nonatomic, strong) NSString *repoName;
 
 @end
