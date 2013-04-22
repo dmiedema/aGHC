@@ -50,9 +50,8 @@
     [notifier setAccessoryView: activityIndicator];
     [notifier show];
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@ /legacy/repos/search/%@", kGitHubApiURL, searchString]]];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@ /legacy/repos/search/%@", kGitHubApiURL, [searchString stringByReplacingOccurrencesOfString:@" " withString:@""]]]];
+    [request setValue:kResourceContentTypeDefault forHTTPHeaderField:@"Accept"];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *reponse, id JSON){
         NSLog(@"JSON: %@", JSON);
 //        NSLog(@"Repositories count: %i",[[self repositories] count]);

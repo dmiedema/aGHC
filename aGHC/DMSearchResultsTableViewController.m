@@ -221,9 +221,15 @@
     NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
     NSString *repo  = [selectedRepo objectForKey:@"name"];
     NSString *owner = [selectedRepo objectForKey:@"owner"];
-
+    
+    NSLog(@"%@ -- %@", repo, owner);
+    NSString *requestString;
+    if (token == NULL || tokenType == NULL)
+        requestString = [NSString stringWithFormat:@"%@repos/%@/%@", kGitHubApiURL, owner, repo];
+    else requestString = [NSString stringWithFormat:@"%@repos/%@/%@?%@=%@&%@=%@", kGitHubApiURL, owner, repo, kAccessToken, token, kTokenType, tokenType];
+    NSLog(@"Request string - %@", requestString);
     // repos/:owner/:repo
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@repos/%@/%@?%@=%@&%@=%@", kGitHubApiURL, owner, repo, kAccessToken, token, kTokenType, tokenType]]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
@@ -231,12 +237,18 @@
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error - %@", error);
     }];
-    [operation start];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [operation start];
+    });
+//    [operation start];
     
     DMRepositoryDetailViewController *viewController = [[DMRepositoryDetailViewController alloc] init];
     [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
     [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    [viewController setRepo:[self fulldetails]];
+    NSLog(@"Full details - %@", [self fulldetails]);
+//    [viewController setRepo:[self fulldetails]];
+    [viewController setOwnerName:[selectedRepo objectForKey:@"owner"]];
+    [viewController setRepoName:[selectedRepo objectForKey:@"name"]];
     
     [[self navigationController] presentViewController:viewController animated:YES completion:nil];
 }

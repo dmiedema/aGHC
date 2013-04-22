@@ -30,4 +30,5 @@
 //- (IBAction)buttonPressed:(UIButton *)sender;
 
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 @end

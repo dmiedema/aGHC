@@ -14,6 +14,8 @@
 
 #import "DMRepositoryDetailViewController.h"
 
+//static NSString *const kResourceContentTypeDefault = @"application/json";
+
 @interface DMRepositoryViewController ()
 
 @property (nonatomic, strong) NSMutableArray *repositories;
@@ -153,7 +155,7 @@ int selectedIndex;
         request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@users/%@/subscriptions", kGitHubApiURL, [self username]]]];
     }
     
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:kResourceContentTypeDefault forHTTPHeaderField:@"Accept"];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *reponse, id JSON){
         NSLog(@"JSON: %@", JSON);
         NSLog(@"Repositories count: %i",[[self repositories] count]);
