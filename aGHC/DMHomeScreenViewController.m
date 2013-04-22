@@ -36,7 +36,7 @@
         self.slidingViewController.underLeftViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Settings"];
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissSettings:) name:@"DMSettingViewControllerDismissSettins" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissSettings:) name:@"DMSettingViewControllerDismissSettings" object:nil];
     //[self.view addGestureRecognizer:self.slidingViewController.panGesture];
 }
 

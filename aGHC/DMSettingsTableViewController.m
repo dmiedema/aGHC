@@ -192,7 +192,7 @@
             break;
         case 5: // done
             NSLog(@"index 5");
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"DMSettingViewControllerDismissSettins" object:self];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"DMSettingViewControllerDismissSettings" object:self];
             break;
         default: // le nope
             NSLog(@"unknown option");
