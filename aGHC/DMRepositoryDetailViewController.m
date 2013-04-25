@@ -138,7 +138,7 @@
     [descriptionLabel setNumberOfLines:0];
     [descriptionLabel setBackgroundColor:[UIColor clearColor]];
     [descriptionLabel setTextColor:[UIColor darkGrayColor]];
-    NSString *descrption = [[self repo] objectForKey:@"description"];
+    NSString *descrption = ([[self repo] objectForKey:@"description"] != NULL) ? [[self repo] objectForKey:@"description"] : @"" ;
     CGSize constraintSize = CGSizeMake(LABEL_WIDTH, MAXFLOAT);
     CGSize labelSize = [descrption sizeWithFont:defaultFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     [descriptionLabel setFrame:CGRectMake(x, y, labelSize.width, labelSize.height)];
@@ -564,10 +564,104 @@
 
 - (void)buttonPressed:(UIButton *)sender {
     NSLog(@"sender: %@", [[sender titleLabel] text]);
+    // create activity indicator
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    // create JSNotifier
+    JSNotifier *notifier = [[JSNotifier alloc] initWithTitle:[NSString stringWithFormat:@"%@ing", [[sender titleLabel] text]]];
+    // set accessory view
+    [notifier setAccessoryView:activityIndicator];
+    // animate and show once i need to
+    
+    NSDictionary *owner = [[self repo] objectForKey:@"owner"];
+    NSString *token     = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken];
+    NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
+    NSString *ownername = [owner objectForKey:@"login"];
+    NSString *reponame  = [[self repo] objectForKey:@"name"];
+    
     if ([[[sender titleLabel] text] isEqualToString:@"X"] || [[[sender titleLabel] text] isEqualToString:@":("]) {
         [self dismissViewControllerAnimated:YES completion:nil];
-    } else if ([[[sender titleLabel] text] isEqualToString:@"Explore Code"]) {
+    } else if ([[[sender titleLabel] text] isEqualToString:@"Fork"]) {
+        [activityIndicator startAnimating];
+        [notifier show];
+        //POST /repos/:owner/:repo/forks
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@repos/%@/%@/forks?%@=%@&%@=%@", kGitHubApiURL, ownername, reponame, kAccessToken, token, kTokenType, tokenType]]];
+        [request setHTTPMethod:@"POST"];
+//        [request setValue:token forHTTPHeaderField:kAccessToken];
+//        [request setValue:tokenType forHTTPHeaderField:tokenType];
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+                [notifier setTitle:@"Forked" animated:YES];
+                [notifier hideIn:2.0];
+            });
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error Forking - %@", error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyX"]]];
+                [notifier setTitle:@"Error" animated:YES];
+                [notifier hideIn:2.0];
+            });
+        }];
+        [operation start];
         
+    } else if ([[[sender titleLabel] text] isEqualToString:@"Watch"]) {
+        [activityIndicator startAnimating];
+        [notifier show];
+        // PUT /repos/:owner/:repo/subscription
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@repos/%@/%@/subscription?%@=%@&%@=%@", kGitHubApiURL, ownername, reponame, kAccessToken, token, kTokenType, tokenType]]];
+        [request setHTTPMethod:@"PUT"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+        NSString *jsonInput = @"{\"subscribed\" : true, \"ignored\" : false }";
+        [request setHTTPBody:[jsonInput dataUsingEncoding:NSUTF8StringEncoding]];
+//        [request setValue:token forHTTPHeaderField:kAccessToken];
+//        [request setValue:tokenType forHTTPHeaderField:tokenType];
+        NSLog(@"request string -- %@", [request URL]);
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+                [notifier setTitle:@"Watched" animated:YES];
+                [notifier hideIn:2.0];
+            });
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error Watching - %@", error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyX"]]];
+                [notifier setTitle:@"Error" animated:YES];
+                [notifier hideIn:2.0];
+            });
+        }];
+        [operation start];
+    } else if ([[[sender titleLabel] text] isEqualToString:@"Star"]) {
+        [activityIndicator startAnimating];
+        [notifier show];
+        // PUT /user/starred/:owner/:repo
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@user/starred/%@/%@?%@=%@&%@=%@", kGitHubApiURL, ownername, reponame, kAccessToken, token, kTokenType, tokenType]]];
+        [request setHTTPMethod:@"PUT"];
+        
+//        [request setValue:token forHTTPHeaderField:kAccessToken];
+//        [request setValue:tokenType forHTTPHeaderField:tokenType];
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+                [notifier setTitle:@"Stared" animated:YES];
+                [notifier hideIn:2.0];
+            });
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"Error Staring - %@", error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyX"]]];
+                [notifier setTitle:@"Error" animated:YES];
+                [notifier hideIn:2.0];
+            });
+        }];
+        [operation start];
+    } else if ([[[sender titleLabel] text] isEqualToString:@"Explore Code"]) {
+        // Code View.
+    } else {
+        NSLog(@"Unknown button pressed");
     }
 }
 @end
