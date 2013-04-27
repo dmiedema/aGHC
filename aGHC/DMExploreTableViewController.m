@@ -192,7 +192,9 @@
     DMRepositoryDetailViewController *viewController = [[DMRepositoryDetailViewController alloc] init];
     [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
     [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    [viewController setRepo:selectedRepo];
+    
+    [viewController setOwnerName:[selectedRepo objectForKey:@"owner"]];
+    [viewController setRepoName:[selectedRepo objectForKey:@"name"]];
     
     [[self navigationController] presentViewController:viewController animated:YES completion:nil];
 }
