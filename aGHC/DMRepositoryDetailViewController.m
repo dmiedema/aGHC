@@ -163,18 +163,22 @@
     [forksButton setTitle:@"Fork" forState:UIControlStateNormal];
     [forksButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [forksButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [forksButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+//    [forksButton setBackgroundImage:[UIColor grayColor] forState:UIControlStateHighlighted];
     [forksButton setFrame:CGRectMake(x+10, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     // Set up watch button
     UIButton *watchButton = [[UIButton alloc] init];
     [watchButton setTitle:@"Watch" forState:UIControlStateNormal];
     [watchButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [watchButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [watchButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
     [watchButton setFrame:CGRectMake((x+(10*3)) + BUTTON_WIDTH, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     // set up star button
     UIButton *starButton = [[UIButton alloc] init];
     [starButton setTitle:@"Star" forState:UIControlStateNormal];
     [starButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [starButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [starButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
     [starButton setFrame:CGRectMake((x+(10*5)) + (BUTTON_WIDTH * 2), y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     //
     y += BUTTON_HEIGHT;
