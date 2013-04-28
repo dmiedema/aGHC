@@ -454,14 +454,19 @@
         [self setRawHTML:[NSString stringWithFormat:@"%@%@", stylestring, [NSString stringFromBase64String:[JSON objectForKey:@"content"]]]];
         
         NSLog(@"HTML - %@", [MMMarkdown HTMLStringWithMarkdown:[NSString stringFromBase64String:[JSON objectForKey:@"content"]] error:nil]);
-        
-        [readmeView loadHTMLString:[MMMarkdown HTMLStringWithMarkdown:[self rawHTML] error:nil] baseURL:nil];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [readmeView loadHTMLString:[MMMarkdown HTMLStringWithMarkdown:[self rawHTML] error:nil] baseURL:nil];
+        });
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"HTML -- %@", JSON);
         NSLog(@"Error - %@", error);
         NSLog(@"Error loading README");
     }];
-    [operation start];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void){
+        [operation start];
+    });
+    
     [readmeView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin];
     
     [readmeView setFrame:CGRectMake(0, y, self.view.frame.size.width, [[readmeView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue])];
@@ -588,6 +593,21 @@
         [operation start];
     } else if ([[[sender titleLabel] text] isEqualToString:@"Explore Code"]) {
         // Code View.
+        //        /repos/:owner/:repo/contents/:path
+        NSString *baseURL = [NSString stringWithFormat:@"%@repos/%@/%@/contents/", kGitHubApiURL, ownername, reponame];
+        NSString *requestURL;
+        if( [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken])
+//            NSString *requestURL = [NSString stringb][NSString stringWithFormat:@"%@repos/%@/%@/contents"]
+            requestURL = [NSString stringWithFormat:@"%@?%@=%@&%@=%@", baseURL, kAccessToken, token, kTokenType, tokenType];
+        else requestURL = baseURL;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:requestURL]];
+        
+        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            NSLog(@"JSON : %@", JSON);
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            NSLog(@"Error : %@", error);
+        }];
+        [operation start];
     } else {
         NSLog(@"Unknown button pressed");
     }
