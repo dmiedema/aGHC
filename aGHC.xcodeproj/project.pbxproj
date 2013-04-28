@@ -14,8 +14,6 @@
 		C302355E1721DE5400842687 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C30235591721DE5400842687 /* README.md */; };
 		C302355F1721DE5400842687 /* UIViewController+M6ParallaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = C302355B1721DE5400842687 /* UIViewController+M6ParallaxController.m */; };
 		C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */; };
-		C30235651721DECE00842687 /* DMParallaxedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235641721DECE00842687 /* DMParallaxedViewController.m */; };
-		C30235681721DEE600842687 /* DMParallaxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235671721DEE600842687 /* DMParallaxViewController.m */; };
 		C30235741722534300842687 /* DMRepositoryDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C30235711722534200842687 /* DMRepositoryDetailTableViewCell.xib */; };
 		C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235731722534300842687 /* DMRepositoryDetailTableViewCell.m */; };
 		C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C302357717226B0500842687 /* DMRepositoryDetailViewController.m */; };
@@ -86,10 +84,6 @@
 		C302355B1721DE5400842687 /* UIViewController+M6ParallaxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+M6ParallaxController.m"; sourceTree = "<group>"; };
 		C30235601721DEAF00842687 /* DMRepositoryDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryDetailTableViewController.h; sourceTree = "<group>"; };
 		C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryDetailTableViewController.m; sourceTree = "<group>"; };
-		C30235631721DECE00842687 /* DMParallaxedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMParallaxedViewController.h; sourceTree = "<group>"; };
-		C30235641721DECE00842687 /* DMParallaxedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMParallaxedViewController.m; sourceTree = "<group>"; };
-		C30235661721DEE600842687 /* DMParallaxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMParallaxViewController.h; sourceTree = "<group>"; };
-		C30235671721DEE600842687 /* DMParallaxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMParallaxViewController.m; sourceTree = "<group>"; };
 		C30235701721E04900842687 /* DMAppDelegate_TODO_List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMAppDelegate_TODO_List.h; sourceTree = "<group>"; };
 		C30235711722534200842687 /* DMRepositoryDetailTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DMRepositoryDetailTableViewCell.xib; path = ../DMRepositoryDetailTableViewCell.xib; sourceTree = "<group>"; };
 		C30235721722534200842687 /* DMRepositoryDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DMRepositoryDetailTableViewCell.h; path = ../DMRepositoryDetailTableViewCell.h; sourceTree = "<group>"; };
@@ -214,10 +208,6 @@
 				C302357717226B0500842687 /* DMRepositoryDetailViewController.m */,
 				C30235601721DEAF00842687 /* DMRepositoryDetailTableViewController.h */,
 				C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */,
-				C30235631721DECE00842687 /* DMParallaxedViewController.h */,
-				C30235641721DECE00842687 /* DMParallaxedViewController.m */,
-				C30235661721DEE600842687 /* DMParallaxViewController.h */,
-				C30235671721DEE600842687 /* DMParallaxViewController.m */,
 			);
 			name = "Repository Detail View";
 			sourceTree = "<group>";
@@ -549,8 +539,6 @@
 				C302355D1721DE5400842687 /* M6ParallaxController.m in Sources */,
 				C302355F1721DE5400842687 /* UIViewController+M6ParallaxController.m in Sources */,
 				C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */,
-				C30235651721DECE00842687 /* DMParallaxedViewController.m in Sources */,
-				C30235681721DEE600842687 /* DMParallaxViewController.m in Sources */,
 				C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */,
 				C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */,
 			);
