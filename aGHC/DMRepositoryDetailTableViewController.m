@@ -33,7 +33,7 @@
     [[self tableView] registerNib:
      [UINib nibWithNibName:@"DMRepositoryDetailTableViewCell" bundle:[NSBundle mainBundle]]
            forCellReuseIdentifier:@"cell"];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -152,6 +152,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
+    // Create spinner to show im working
+    JSNotifier *notifier = [[JSNotifier alloc] initWithTitle:@"Loading..."];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activityIndicator startAnimating];
+    [notifier setAccessoryView:activityIndicator];
+    [notifier setTitle:@"Loading..." animated:YES];
+    [notifier show];
     NSLog(@"Selected Details : %@", [[self directoryContents] objectAtIndex:[indexPath row]]);
     DMRepositoryDetailTableViewController *subView = [[DMRepositoryDetailTableViewController alloc] init];
     NSDictionary *selected = [[self directoryContents] objectAtIndex:[indexPath row]];
@@ -174,6 +181,10 @@
     AFJSONRequestOperation *folderOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [subView setDirectoryContents:JSON];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [notifier setTitle:@"Complete" animated:YES];
+            [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+            [notifier hideIn:1.0];
             [[self navigationController] pushViewController:subView animated:YES];
         });
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
@@ -194,6 +205,11 @@
         [folderOperation start];
     } else if ([[[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"] isEqualToString:@"file"]) {
         NSLog(@"File : %@", [selected objectForKey:@"name"]);
+        NSLog(@"Selected File:  %@", selected);
+        [notifier setTitle:@"Complete" animated:YES];
+        [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+        [notifier hideIn:1.0];
+        
     }
 }
 
