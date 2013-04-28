@@ -13,4 +13,7 @@
 @property (nonatomic, strong) NSArray  *directoryContents;
 @property (nonatomic, strong) NSString *currentPath;
 
+@property (nonatomic, strong) NSString *owner;
+@property (nonatomic, strong) NSString *reponame;
+
 @end

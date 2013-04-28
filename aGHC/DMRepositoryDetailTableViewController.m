@@ -152,19 +152,48 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-    NSLog(@"Selected Item: %@", @"string");
-//    int row = [indexPath row];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"Selected Details : %@", [[self directoryContents] objectAtIndex:[indexPath row]]);
+    DMRepositoryDetailTableViewController *subView = [[DMRepositoryDetailTableViewController alloc] init];
+    NSDictionary *selected = [[self directoryContents] objectAtIndex:[indexPath row]];
+    NSString *token     = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken];
+    NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
     
+    NSString *path = [[[self directoryContents] objectAtIndex:[indexPath row]] objectForKey:@"path"];
+    // GET /repos/:owner/:repo/contents/:path
+
+    NSString *requestURL;
+    if (token && tokenType) {
+        requestURL = [NSString stringWithFormat:@"%@?%@=%@&%@=%@", [selected objectForKey:@"url"], kAccessToken, token, kTokenType, tokenType];
+    } else {
+        requestURL = [selected objectForKey:@"url"]; }
     
-    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-    NSLog(@"%@", [selectedCell textLabel]);
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestURL]];
+    
+    NSLog(@"Request URL %@", [request URL]);
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [subView setDirectoryContents:JSON];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [[self navigationController] pushViewController:subView animated:YES];
+        });
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"Error : %@", error);
+    }];
+    [operation start];
+    /*@property (nonatomic, strong) NSArray  *directoryContents;
+     @property (nonatomic, strong) NSString *currentPath;
+     
+     @property (nonatomic, strong) NSString *owner;
+     @property (nonatomic, strong) NSString *reponame;*/
+    
+    NSLog(@"%@", [[self directoryContents] objectAtIndex:[indexPath row]]);
+    if ([[[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"] isEqualToString:@"dir"]) {
+        [subView setTitle:path];
+        [subView setOwner:[self owner]];
+        [subView setReponame:[self reponame]];
+    } else if ([[[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"] isEqualToString:@"file"]) {
+        NSLog(@"File");
+    }
 }
 
 

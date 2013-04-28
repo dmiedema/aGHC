@@ -415,6 +415,8 @@
     [tableView setCurrentPath:@"/"];
     [tableView setTitle:@"/"];
     [tableView setDirectoryContents:jsonArray];
+    [tableView setReponame:[[self repo] objectForKey:@"name"]];
+    [tableView setOwner:[[self repo] objectForKey:@"owner"]];
     [[self navigationController] pushViewController:tableView animated:YES];
 }
 @end
