@@ -45,8 +45,8 @@ int selectedIndex;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMe:)]; 
+//    [[self navigationController] setTitle:@"Repositories"];
+    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMe:)];
     self.navigationItem.leftBarButtonItem = homeButton;
     
     [self setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:kUsername]];
@@ -266,7 +266,7 @@ int selectedIndex;
     [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
     [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     [viewController setRepo:selectedRepo];
-
+    [viewController setTitle:@"Details"];
 //    [[self navigationController] presentViewController:viewController animated:YES completion:nil];
     [[self navigationController] pushViewController:viewController animated:YES];
 //    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RepositoryViewStoryboard_iPhone" bundle:[NSBundle mainBundle]];

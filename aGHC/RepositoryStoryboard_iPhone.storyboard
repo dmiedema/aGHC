@@ -25,7 +25,7 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Respoistories" id="fkJ-dr-adJ">
-                        <barButtonItem key="backBarButtonItem" title="Home" width="44" id="OU6-1j-arg"/>
+                        <barButtonItem key="backBarButtonItem" title="Repositories" width="44" id="OU6-1j-arg"/>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Ng-2s-xNn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -51,14 +51,6 @@
             <point key="canvasLocation" x="78" y="67"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DMRepositoryViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMRepositoryViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dismissMe:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
