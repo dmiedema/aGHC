@@ -196,7 +196,7 @@
     [viewController setOwnerName:[selectedRepo objectForKey:@"owner"]];
     [viewController setRepoName:[selectedRepo objectForKey:@"name"]];
     
-    [[self navigationController] presentViewController:viewController animated:YES completion:nil];
+    [[self navigationController] pushViewController:viewController animated:YES];
 }
 
 @end
