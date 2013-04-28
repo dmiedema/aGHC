@@ -84,8 +84,7 @@
         [[cell smallLabel] setText:@"Directory"];
     else 
         [[cell smallLabel] setText:@"File"];
-//    [[cell LargeLabel ][currentItem objectForKey:@"name"]];
-//    [[cell SmallLabel ][currentItem objectForKey:@"type"]];
+
     
     return cell;
 }
