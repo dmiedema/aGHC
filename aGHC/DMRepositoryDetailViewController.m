@@ -81,6 +81,11 @@
             NSLog(@"Operation to get information run");
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
             NSLog(@"Failure to load details - %@", error);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self dismissViewControllerAnimated:YES completion:^{
+                    NSLog(@"Error loading details, Dismissed view controller");
+                }];
+            });
         }];
         [operation start];
     } else
