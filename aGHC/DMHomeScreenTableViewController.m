@@ -139,6 +139,7 @@
         UIViewController *viewController = [[UIViewController alloc] init];
         [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
         [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        [viewController setTitle:@"Repositories"];
         viewController = [storyboard instantiateInitialViewController];
         [self presentViewController:viewController animated:YES completion:nil];
     } else if ([itemSelected isEqualToString:@"Explore"]) {
