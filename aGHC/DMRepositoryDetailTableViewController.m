@@ -209,7 +209,6 @@
         [notifier setTitle:@"Complete" animated:YES];
         [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
         [notifier hideIn:1.0];
-        
     }
 }
 
