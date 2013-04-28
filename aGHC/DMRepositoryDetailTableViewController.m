@@ -7,14 +7,11 @@
 //
 
 #import "DMRepositoryDetailTableViewController.h"
-#import "M6ParallaxController.h"
+#import "DMRepositoryDetailTableViewCell.h"
 //#import "MBProgressHUD.h"
 #import "JSNotifier.h"
 
 @interface DMRepositoryDetailTableViewController ()
-
-//- (IBAction)dismissMe:(id)sender;
-- (void)loadDetailsOfRepository;
 
 @end
 
@@ -43,7 +40,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    [self loadDetailsOfRepository];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,40 +49,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-// parallax stuff
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [self.parallaxController tableViewControllerDidScroll:self];
-}
-// incase i need to dismiss
-//- (void)dismissMe:(id)sender {
-//    [self dismissViewControllerAnimated:YES completion:nil];
-//}
 
-// is this for the view controller? this seems more 'model' code...
-- (void)loadDetailsOfRepository{
-    UIFont *defaultFont = [UIFont fontWithName:@"Avenir" size:20.0];
-    
-    // set up label/button fonts
-    [[self username] setFont:defaultFont];
-    [[self description] setFont:defaultFont];
-    [[self forks] setFont:defaultFont];
-    [[self stargazers] setFont:defaultFont];
-    [[self openIssues] setFont:defaultFont];
-    [[self size] setFont:defaultFont];
-    
-    // put the crap in the labels
-    [[self description] setText:[[self repo] objectForKey:@"description"]];
-    [[self forks]       setText:[NSString stringWithFormat:@"Forks - %@", [[self repo] objectForKey:@"forks"]]];
-    [[self stargazers]  setText:[NSString stringWithFormat:@"Stars - %@", [[self repo] objectForKey:@"watchers_count"]]];
-    [[self openIssues]  setText:[NSString stringWithFormat:@"Current Issues - %@", [[self repo] objectForKey:@"open_issues_count"]]];
-    [[self size]        setText:[NSString stringWithFormat:@"Size - %@", [[self repo] objectForKey:@"size"]]];
-    
-    // set up description cell size
-    CGSize constraintSize = CGSizeMake(280.0f, MAXFLOAT);
-    CGSize labelSize = [[[self repo] objectForKey:@"description"] sizeWithFont:defaultFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
-    [[self description] setFrame:CGRectMake(0, 0, labelSize.width, labelSize.height)];
-    
-}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -97,44 +62,53 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 9;
+    return [[self directoryContents] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"cell";
+    DMRepositoryDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if (!cell) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        DMRepositoryDetailTableViewCell *cell = [[DMRepositoryDetailTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
     }
-    [[cell textLabel] setText:@"Derpy"];
+    
     // Configure the cell...
+    NSDictionary *currentItem = [[self directoryContents] objectAtIndex:[indexPath row]];
+    NSLog(@"currentItem: %@", currentItem);
+    
+    [[cell largeLabel] setText:[currentItem objectForKey:@"name"]];
+    NSString *type = [currentItem objectForKey:@"type"];
+    if ([type isEqualToString:@"dir"]) 
+        [[cell smallLabel] setText:@"Directory"];
+    else 
+        [[cell smallLabel] setText:@"File"];
+//    [[cell LargeLabel ][currentItem objectForKey:@"name"]];
+//    [[cell SmallLabel ][currentItem objectForKey:@"type"]];
     
     return cell;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (section == 0) { // first section
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
-        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 54)];
-        [headerLabel setText:[[self repo] objectForKey:@"name"]];
-        [headerLabel setFont:[UIFont fontWithName:@"Avenir" size:24.0]];
-        [headerView addSubview:headerLabel];
-        return headerView;
-    }
-    return nil;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 54.0f;
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    if (section == 0) { // first section
+//        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 54)];
+//        UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 54)];
+//        [headerLabel setText:[self currentPath]];
+//        [headerLabel setFont:[UIFont fontWithName:@"Avenir" size:24.0]];
+//        [headerView addSubview:headerLabel];
+//        return headerView;
+//    }
+//    return nil;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    return 54.0f;
+//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60.0f;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([indexPath row] == 0) {
-        return 74.0f;
-    }
-    return 54.0f;
-}
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -194,8 +168,5 @@
     NSLog(@"%@", [selectedCell textLabel]);
 }
 
-- (IBAction)buttonPressed:(UIButton *)sender {
-    NSLog(@"Button Press: %@", [sender currentTitle]);
-}
 
 @end

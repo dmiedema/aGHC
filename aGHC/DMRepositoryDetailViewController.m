@@ -7,6 +7,7 @@
 //
 
 #import "DMRepositoryDetailViewController.h"
+#import "DMRepositoryDetailTableViewController.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import "MMMarkdown.h"
 #import "MF_Base64Additions.h"
@@ -57,6 +58,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[self navigationController] setTitle:@"Details"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setLabelInformation) name:@"aGHC-RepoDetailsLoaded" object:nil];
 //    [[self scrollView] setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
 //    [[self scrollView] setBackgroundColor:[UIColor blueColor]];
@@ -485,7 +487,7 @@
     [scrollView addSubview:watchersLabel];
     [scrollView addSubview:issuesLabel];
     [scrollView addSubview:exploreCode];
-    [scrollView addSubview:dismissButton];
+//    [scrollView addSubview:dismissButton];
     [scrollView addSubview:readmeView];
     
     // add the scroll view into the view
@@ -604,6 +606,9 @@
         
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
             NSLog(@"JSON : %@", JSON);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTheCode:JSON];
+            });
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
             NSLog(@"Error : %@", error);
         }];
@@ -611,5 +616,13 @@
     } else {
         NSLog(@"Unknown button pressed");
     }
+}
+
+- (void) showTheCode:(NSArray *)jsonArray {
+    DMRepositoryDetailTableViewController *tableView = [[DMRepositoryDetailTableViewController alloc] init];
+    [tableView setCurrentPath:@"/"];
+    [tableView setTitle:@"/"];
+    [tableView setDirectoryContents:jsonArray];
+    [[self navigationController] pushViewController:tableView animated:YES];
 }
 @end

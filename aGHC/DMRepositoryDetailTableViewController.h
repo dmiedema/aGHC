@@ -10,25 +10,7 @@
 
 @interface DMRepositoryDetailTableViewController : UITableViewController
 
-@property (nonatomic, strong) NSDictionary *repo;
+@property (nonatomic, strong) NSArray  *directoryContents;
+@property (nonatomic, strong) NSString *currentPath;
 
-// @property (nonatomic, strong) IBOutlet UILabel *repositoryName;
-
-// labels
-@property (nonatomic, strong) IBOutlet UILabel *username;
-@property (nonatomic, strong) IBOutlet UILabel *description;
-@property (nonatomic, strong) IBOutlet UILabel *forks;
-@property (nonatomic, strong) IBOutlet UILabel *stargazers;
-@property (nonatomic, strong) IBOutlet UILabel *openIssues;
-@property (nonatomic, strong) IBOutlet UILabel *size;
-
-//@property (nonatomic, strong) IBOutlet UIButton *forkButton;
-//@property (nonatomic, strong) IBOutlet UIButton *watchButton;
-//@property (nonatomic, strong) IBOutlet UIButton *starButton;
-//@property (nonatomic, strong) IBOutlet UIButton *exploreCode;
-
-//- (IBAction)buttonPressed:(UIButton *)sender;
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 @end
