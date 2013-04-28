@@ -171,7 +171,7 @@
     
     NSLog(@"Request URL %@", [request URL]);
     
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+    AFJSONRequestOperation *folderOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [subView setDirectoryContents:JSON];
         dispatch_async(dispatch_get_main_queue(), ^{
             [[self navigationController] pushViewController:subView animated:YES];
@@ -179,7 +179,7 @@
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error : %@", error);
     }];
-    [operation start];
+
     /*@property (nonatomic, strong) NSArray  *directoryContents;
      @property (nonatomic, strong) NSString *currentPath;
      
@@ -191,8 +191,9 @@
         [subView setTitle:path];
         [subView setOwner:[self owner]];
         [subView setReponame:[self reponame]];
+        [folderOperation start];
     } else if ([[[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"] isEqualToString:@"file"]) {
-        NSLog(@"File");
+        NSLog(@"File : %@", [selected objectForKey:@"name"]);
     }
 }
 
