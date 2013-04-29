@@ -166,6 +166,11 @@
     NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
     
     NSString *path = [[[self directoryContents] objectAtIndex:[indexPath row]] objectForKey:@"path"];
+    NSString *selectedType = [[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"];
+    
+    
+    
+    
     // GET /repos/:owner/:repo/contents/:path
 
     NSString *requestURL;
@@ -190,6 +195,7 @@
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error : %@", error);
     }];
+//    AFJSONRequestOperation
 
     /*@property (nonatomic, strong) NSArray  *directoryContents;
      @property (nonatomic, strong) NSString *currentPath;
@@ -198,14 +204,19 @@
      @property (nonatomic, strong) NSString *reponame;*/
     
     NSLog(@"%@", [[self directoryContents] objectAtIndex:[indexPath row]]);
-    if ([[[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"] isEqualToString:@"dir"]) {
+    if ([selectedType isEqualToString:@"dir"]) {
         [subView setTitle:path];
         [subView setOwner:[self owner]];
         [subView setReponame:[self reponame]];
         [folderOperation start];
-    } else if ([[[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"] isEqualToString:@"file"]) {
+    } else if ([selectedType isEqualToString:@"file"]) {
         NSLog(@"File : %@", [selected objectForKey:@"name"]);
         NSLog(@"Selected File:  %@", selected);
+        NSString *fileName = [selected objectForKey:@"name"];
+        NSRange range = [fileName rangeOfString:@"." options:NSBackwardsSearch];
+        NSString *extension = [fileName substringFromIndex:range.location];
+        NSLog(@"Range: %i", range.location);
+        NSLog(@"Extension : %@", extension);
         [notifier setTitle:@"Complete" animated:YES];
         [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
         [notifier hideIn:1.0];
