@@ -33,7 +33,7 @@
     [[self tableView] registerNib:
      [UINib nibWithNibName:@"DMRepositoryDetailTableViewCell" bundle:[NSBundle mainBundle]]
            forCellReuseIdentifier:@"cell"];
-
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -152,6 +152,13 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
+    // Create spinner to show im working
+    JSNotifier *notifier = [[JSNotifier alloc] initWithTitle:@"Loading..."];
+    UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    [activityIndicator startAnimating];
+    [notifier setAccessoryView:activityIndicator];
+    [notifier setTitle:@"Loading..." animated:YES];
+    [notifier show];
     NSLog(@"Selected Details : %@", [[self directoryContents] objectAtIndex:[indexPath row]]);
     DMRepositoryDetailTableViewController *subView = [[DMRepositoryDetailTableViewController alloc] init];
     NSDictionary *selected = [[self directoryContents] objectAtIndex:[indexPath row]];
@@ -159,6 +166,11 @@
     NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
     
     NSString *path = [[[self directoryContents] objectAtIndex:[indexPath row]] objectForKey:@"path"];
+    NSString *selectedType = [[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"];
+    
+    
+    
+    
     // GET /repos/:owner/:repo/contents/:path
 
     NSString *requestURL;
@@ -174,11 +186,16 @@
     AFJSONRequestOperation *folderOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [subView setDirectoryContents:JSON];
         dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [notifier setTitle:@"Complete" animated:YES];
+            [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+            [notifier hideIn:1.0];
             [[self navigationController] pushViewController:subView animated:YES];
         });
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error : %@", error);
     }];
+//    AFJSONRequestOperation
 
     /*@property (nonatomic, strong) NSArray  *directoryContents;
      @property (nonatomic, strong) NSString *currentPath;
@@ -187,13 +204,22 @@
      @property (nonatomic, strong) NSString *reponame;*/
     
     NSLog(@"%@", [[self directoryContents] objectAtIndex:[indexPath row]]);
-    if ([[[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"] isEqualToString:@"dir"]) {
+    if ([selectedType isEqualToString:@"dir"]) {
         [subView setTitle:path];
         [subView setOwner:[self owner]];
         [subView setReponame:[self reponame]];
         [folderOperation start];
-    } else if ([[[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"] isEqualToString:@"file"]) {
+    } else if ([selectedType isEqualToString:@"file"]) {
         NSLog(@"File : %@", [selected objectForKey:@"name"]);
+        NSLog(@"Selected File:  %@", selected);
+        NSString *fileName = [selected objectForKey:@"name"];
+        NSRange range = [fileName rangeOfString:@"." options:NSBackwardsSearch];
+        NSString *extension = [fileName substringFromIndex:range.location];
+        NSLog(@"Range: %i", range.location);
+        NSLog(@"Extension : %@", extension);
+        [notifier setTitle:@"Complete" animated:YES];
+        [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+        [notifier hideIn:1.0];
     }
 }
 

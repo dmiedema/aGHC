@@ -35,15 +35,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    UIButton *dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(10, 10, 44, 44)];
+    [dismissButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [dismissButton setTitle:@"X" forState:UIControlStateNormal];
+    [dismissButton setBackgroundColor:[UIColor grayColor]];
+    [dismissButton addTarget:self action:@selector(dismissMe:) forControlEvents:UIControlEventTouchUpInside];
     UIWebView *webView = [[UIWebView alloc] init];
     [webView setDelegate:self];
     [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?client_id=%@&scope=%@", kGitHubAuthenticationURL, kClientID, kScope]] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:120]];
     [webView setOpaque:YES];
     self.view = webView;
+    [webView addSubview:dismissButton];
 
     // TODO: Add forward/back buttons to WebView in case user navigates so they can get back to authorization page.
 	////
     // Do any additional setup after loading the view.
+}
+
+- (void)dismissMe:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {

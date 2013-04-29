@@ -40,6 +40,8 @@
 		C3767CA2171696E300BC593B /* DMHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767CA1171696E300BC593B /* DMHomeScreenViewController.m */; };
 		C3767CA4171696FF00BC593B /* HomeScreenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3767CA3171696FF00BC593B /* HomeScreenView.xib */; };
 		C3767CAA1716994B00BC593B /* DMHomeScreenTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767CA91716994B00BC593B /* DMHomeScreenTableViewController.m */; };
+		C378940D172DFCE300F5E78E /* DMRepositoryFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C378940C172DFCE300F5E78E /* DMRepositoryFileViewController.m */; };
+		C378940F172DFD6D00F5E78E /* gravatar-user-420.png in Resources */ = {isa = PBXBuildFile; fileRef = C378940E172DFD6D00F5E78E /* gravatar-user-420.png */; };
 		C37D72AC171FC66C00AB948C /* DMSearchResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C37D72AB171FC66C00AB948C /* DMSearchResultsTableViewController.m */; };
 		C37F7029171CB5D3003D385E /* RepositoryStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C37F7028171CB5D3003D385E /* RepositoryStoryboard_iPhone.storyboard */; };
 		C381C8041723F15500D29F01 /* libMMMarkdown-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C381C8031723F15500D29F01 /* libMMMarkdown-iOS.a */; };
@@ -119,6 +121,9 @@
 		C3767CA3171696FF00BC593B /* HomeScreenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenView.xib; sourceTree = "<group>"; };
 		C3767CA81716994B00BC593B /* DMHomeScreenTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenTableViewController.h; sourceTree = "<group>"; };
 		C3767CA91716994B00BC593B /* DMHomeScreenTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMHomeScreenTableViewController.m; sourceTree = "<group>"; };
+		C378940B172DFCE300F5E78E /* DMRepositoryFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryFileViewController.h; sourceTree = "<group>"; };
+		C378940C172DFCE300F5E78E /* DMRepositoryFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryFileViewController.m; sourceTree = "<group>"; };
+		C378940E172DFD6D00F5E78E /* gravatar-user-420.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gravatar-user-420.png"; sourceTree = "<group>"; };
 		C37D72AA171FC66C00AB948C /* DMSearchResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSearchResultsTableViewController.h; sourceTree = "<group>"; };
 		C37D72AB171FC66C00AB948C /* DMSearchResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSearchResultsTableViewController.m; sourceTree = "<group>"; };
 		C37F7028171CB5D3003D385E /* RepositoryStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RepositoryStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
@@ -208,6 +213,8 @@
 				C302357717226B0500842687 /* DMRepositoryDetailViewController.m */,
 				C30235601721DEAF00842687 /* DMRepositoryDetailTableViewController.h */,
 				C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */,
+				C378940B172DFCE300F5E78E /* DMRepositoryFileViewController.h */,
+				C378940C172DFCE300F5E78E /* DMRepositoryFileViewController.m */,
 			);
 			name = "Repository Detail View";
 			sourceTree = "<group>";
@@ -277,6 +284,7 @@
 		C3690FD91718821C00E2EBCA /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C378940E172DFD6D00F5E78E /* gravatar-user-420.png */,
 				C31B5F65171E7F63006199AD /* Box.png */,
 				C31B5F66171E7F63006199AD /* lock@2x.png */,
 				C31B5F67171E7F63006199AD /* boxWithFork@2x.png */,
@@ -494,6 +502,7 @@
 				C302355E1721DE5400842687 /* README.md in Resources */,
 				C30235741722534300842687 /* DMRepositoryDetailTableViewCell.xib in Resources */,
 				C302357A17226B3B00842687 /* RepositoryDetailView.xib in Resources */,
+				C378940F172DFD6D00F5E78E /* gravatar-user-420.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +550,7 @@
 				C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */,
 				C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */,
 				C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */,
+				C378940D172DFCE300F5E78E /* DMRepositoryFileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

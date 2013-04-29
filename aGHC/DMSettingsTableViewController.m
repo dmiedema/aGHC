@@ -168,6 +168,7 @@
         [viewController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
         viewController = [[DMAccountViewController alloc] init];
         [self presentViewController:viewController animated:YES completion:nil];
+//        [[self navigationController] pushViewController:viewController animated:YES];
     }
     // licensing
     // follow on twitter
