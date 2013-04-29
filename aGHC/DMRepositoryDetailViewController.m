@@ -96,7 +96,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, y, 320, 320)];
     [imageView setFrame:CGRectMake(0, y, 320, 320)];
-    [imageView setImageWithURL:[NSURL URLWithString:[owner objectForKey:@"avatar_url"]] placeholderImage:[UIImage imageNamed:@"sL7cyZ5Oa7-2-1"]];
+    [imageView setImageWithURL:[NSURL URLWithString:[owner objectForKey:@"avatar_url"]] placeholderImage:[UIImage imageNamed:@"gravatar-user-420"]];
     //    [imageView setImage:[UIImage imageNamed:@"sL7cyZ5Oa7-2-1"]];
     // set up dismiss button
     /* // Not needed anymore, showing the view correctly.
