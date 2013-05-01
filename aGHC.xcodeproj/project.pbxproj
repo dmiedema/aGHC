@@ -66,6 +66,7 @@
 		C3A8EB81171F048C001C85DD /* ExploreStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3A8EB80171F048C001C85DD /* ExploreStoryboard_iPhone.storyboard */; };
 		C3A8EB84171F04CA001C85DD /* DMExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A8EB83171F04CA001C85DD /* DMExploreTableViewController.m */; };
 		C3AB55D2171CB16600D992C2 /* DMRepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AB55D1171CB16600D992C2 /* DMRepositoryViewController.m */; };
+		C3B56C801730E39C005A7CB8 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B56C7F1730E39C005A7CB8 /* QuickLook.framework */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
@@ -158,6 +159,7 @@
 		C3A8EB83171F04CA001C85DD /* DMExploreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMExploreTableViewController.m; sourceTree = "<group>"; };
 		C3AB55D0171CB16600D992C2 /* DMRepositoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryViewController.h; sourceTree = "<group>"; };
 		C3AB55D1171CB16600D992C2 /* DMRepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryViewController.m; sourceTree = "<group>"; };
+		C3B56C7F1730E39C005A7CB8 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
 		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3B56C801730E39C005A7CB8 /* QuickLook.framework in Frameworks */,
 				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C3ED621D16EC703B00311A72 /* MessageUI.framework in Frameworks */,
 				C3ED621B16EC702B00311A72 /* CFNetwork.framework in Frameworks */,
@@ -351,6 +354,7 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3B56C7F1730E39C005A7CB8 /* QuickLook.framework */,
 				C381C8031723F15500D29F01 /* libMMMarkdown-iOS.a */,
 				C3ED621C16EC703B00311A72 /* MessageUI.framework */,
 				C3ED621A16EC702B00311A72 /* CFNetwork.framework */,

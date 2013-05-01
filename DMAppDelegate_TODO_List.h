@@ -7,4 +7,4 @@
 //
 
 /*
-TODO: Migrate from JSNotifier to MBProgressHUD
+TODO: Migrate from JSNotifier to MBProgressHUD or SVProgressHUD.

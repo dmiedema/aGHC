@@ -10,8 +10,11 @@
 #import "DMRepositoryDetailTableViewCell.h"
 //#import "MBProgressHUD.h"
 #import "JSNotifier.h"
+#import <QuickLook/QuickLook.h>
 
-@interface DMRepositoryDetailTableViewController ()
+@interface DMRepositoryDetailTableViewController () <QLPreviewControllerDataSource>
+
+@property (nonatomic, strong) NSURL *urlOfFile;
 
 @end
 
@@ -175,7 +178,7 @@
 
     NSString *requestURL;
     if (token && tokenType) {
-        requestURL = [NSString stringWithFormat:@"%@?%@=%@&%@=%@", [selected objectForKey:@"url"], kAccessToken, token, kTokenType, tokenType];
+        requestURL = [NSString stringWithFormat:@"%@&%@=%@&%@=%@", [selected objectForKey:@"url"], kAccessToken, token, kTokenType, tokenType];
     } else {
         requestURL = [selected objectForKey:@"url"]; }
     
@@ -194,6 +197,9 @@
         });
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error : %@", error);
+        [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyX"]]];
+        [notifier setTitle:@"Error" animated:YES];
+        [notifier hideIn:1.0];
     }];
 //    AFJSONRequestOperation
 
@@ -212,16 +218,42 @@
     } else if ([selectedType isEqualToString:@"file"]) {
         NSLog(@"File : %@", [selected objectForKey:@"name"]);
         NSLog(@"Selected File:  %@", selected);
-        NSString *fileName = [selected objectForKey:@"name"];
-        NSRange range = [fileName rangeOfString:@"." options:NSBackwardsSearch];
-        NSString *extension = [fileName substringFromIndex:range.location];
-        NSLog(@"Range: %i", range.location);
-        NSLog(@"Extension : %@", extension);
+        
+        
+        
+//        NSString *fileName = [selected objectForKey:@"name"];
+//        NSRange range = [fileName rangeOfString:@"." options:NSBackwardsSearch];
+//        NSString *extension = [fileName substringFromIndex:range.location];
+//        NSLog(@"Range: %i", range.location);
+//        NSLog(@"Extension : %@", extension);
         [notifier setTitle:@"Complete" animated:YES];
         [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
         [notifier hideIn:1.0];
+        
+        _urlOfFile = [NSURL URLWithString:[selected objectForKey:@"html_url"]];
+        
+        NSLog(@"url of fuel %@", _urlOfFile);
+        
+        QLPreviewController *quickLook = [[QLPreviewController alloc] init];
+        [quickLook setDataSource:self];
+        [quickLook setModalPresentationStyle:UIModalPresentationPageSheet];
+        [quickLook setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+//        [quickLook refreshCurrentPreviewItem];
+        
+        [self presentViewController:quickLook animated:YES completion:nil];
     }
 }
 
+
+#pragma mark - QuicklookPreviewControllerDataSource Methods
+
+- (NSInteger) numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
+    // ~this is a bad idea.~
+    // Create an NSAray with the contents of urlOfDropboxFile and just return the count.
+    return [[NSArray arrayWithContentsOfURL:_urlOfFile] count];
+}
+- (id<QLPreviewItem>) previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
+    return _urlOfFile;
+}
 
 @end
