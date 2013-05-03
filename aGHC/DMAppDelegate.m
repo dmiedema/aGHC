@@ -8,7 +8,6 @@
 
 #import "DMAppDelegate.h"
 #import "TestFlight.h"
-#import <NXOAuth2Client/NXOAuth2.h>
 
 @implementation DMAppDelegate
 
