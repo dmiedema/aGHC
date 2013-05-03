@@ -171,7 +171,7 @@ int selectedIndex;
         [notifier hideIn:2.0];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         NSLog(@"Error: %@", error);        
-        DDLogError(@"Error loading repositores!");
+//        DDLogError(@"Error loading repositores!");
         NSLog(@"JSON: %@", JSON);
         
         // Change notifier to error

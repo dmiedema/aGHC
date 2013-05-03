@@ -82,9 +82,6 @@
 }
 
 - (void)setLabelInformation {
-//    while ([self repo] == NULL) {
-//        // noop
-//    }
     NSLog(@"\n\nInformation to load: %@", [self repo]);
     NSDictionary *owner = [[self repo] objectForKey:@"owner"];
     // Custom initialization
@@ -98,18 +95,7 @@
     [imageView setFrame:CGRectMake(0, y, 320, 320)];
     [imageView setImageWithURL:[NSURL URLWithString:[owner objectForKey:@"avatar_url"]] placeholderImage:[UIImage imageNamed:@"gravatar-user-420"]];
     //    [imageView setImage:[UIImage imageNamed:@"sL7cyZ5Oa7-2-1"]];
-    // set up dismiss button
-    /* // Not needed anymore, showing the view correctly.
-    UIButton *dismissButton = [[UIButton alloc] init];
-    [dismissButton setBackgroundColor:[UIColor colorWithRed:200 green:200 blue:200 alpha:0.7]];
-    //    [dismissButton setImage:[UIImage imageNamed:@"NotifyX"] forState:UIControlStateNormal];
-    [dismissButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [dismissButton setTitle:@"X" forState:UIControlStateNormal];
-    [dismissButton setTitle:@":(" forState:UIControlStateHighlighted];
-    [dismissButton setTag:0];
-    [dismissButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [dismissButton setFrame:CGRectMake(10, 10, 44, 44)];
-    */
+
     // currently 320 down after image
     y+=320;
     NSLog(@"%f", y);
@@ -373,7 +359,7 @@
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
-                [notifier setTitle:@"Stared" animated:YES];
+                [notifier setTitle:@"Starred" animated:YES];
                 [notifier hideIn:2.0];
             });
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
