@@ -67,6 +67,12 @@
 		C3A8EB84171F04CA001C85DD /* DMExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3A8EB83171F04CA001C85DD /* DMExploreTableViewController.m */; };
 		C3AB55D2171CB16600D992C2 /* DMRepositoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3AB55D1171CB16600D992C2 /* DMRepositoryViewController.m */; };
 		C3B56C801730E39C005A7CB8 /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B56C7F1730E39C005A7CB8 /* QuickLook.framework */; };
+		C3B99368173461F90060A336 /* DMAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B99367173461F90060A336 /* DMAboutViewController.m */; };
+		C3B9936B173462730060A336 /* DMLicensingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B9936A173462730060A336 /* DMLicensingViewController.m */; };
+		C3B9936D173466280060A336 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B9936C173466280060A336 /* Accounts.framework */; };
+		C3B9936F173469D50060A336 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B9936E173469D50060A336 /* Twitter.framework */; };
+		C3B9937117346A070060A336 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B9937017346A070060A336 /* Social.framework */; };
+		C3B99373173470500060A336 /* Pods-Acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
@@ -160,6 +166,14 @@
 		C3AB55D0171CB16600D992C2 /* DMRepositoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryViewController.h; sourceTree = "<group>"; };
 		C3AB55D1171CB16600D992C2 /* DMRepositoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryViewController.m; sourceTree = "<group>"; };
 		C3B56C7F1730E39C005A7CB8 /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		C3B99366173461F90060A336 /* DMAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAboutViewController.h; sourceTree = "<group>"; };
+		C3B99367173461F90060A336 /* DMAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAboutViewController.m; sourceTree = "<group>"; };
+		C3B99369173462730060A336 /* DMLicensingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMLicensingViewController.h; sourceTree = "<group>"; };
+		C3B9936A173462730060A336 /* DMLicensingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMLicensingViewController.m; sourceTree = "<group>"; };
+		C3B9936C173466280060A336 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		C3B9936E173469D50060A336 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		C3B9937017346A070060A336 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Pods-Acknowledgements.markdown"; sourceTree = "<group>"; };
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
 		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -176,6 +190,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3B9937117346A070060A336 /* Social.framework in Frameworks */,
+				C3B9936F173469D50060A336 /* Twitter.framework in Frameworks */,
+				C3B9936D173466280060A336 /* Accounts.framework in Frameworks */,
 				C3B56C801730E39C005A7CB8 /* QuickLook.framework in Frameworks */,
 				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C3ED621D16EC703B00311A72 /* MessageUI.framework in Frameworks */,
@@ -271,6 +288,10 @@
 				C3ED621F16EC765F00311A72 /* DMAccountViewController.m */,
 				C3767C9B17168ECB00BC593B /* DMSettingsTableViewController.h */,
 				C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */,
+				C3B99366173461F90060A336 /* DMAboutViewController.h */,
+				C3B99367173461F90060A336 /* DMAboutViewController.m */,
+				C3B99369173462730060A336 /* DMLicensingViewController.h */,
+				C3B9936A173462730060A336 /* DMLicensingViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -354,6 +375,9 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3B9937017346A070060A336 /* Social.framework */,
+				C3B9936E173469D50060A336 /* Twitter.framework */,
+				C3B9936C173466280060A336 /* Accounts.framework */,
 				C3B56C7F1730E39C005A7CB8 /* QuickLook.framework */,
 				C381C8031723F15500D29F01 /* libMMMarkdown-iOS.a */,
 				C3ED621C16EC703B00311A72 /* MessageUI.framework */,
@@ -393,6 +417,7 @@
 			isa = PBXGroup;
 			children = (
 				C329908D1712165500176E3A /* Avenir.ttc */,
+				C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */,
 				C3ED621716EC6FA700311A72 /* aGHCConstants.h */,
 				C384C74716EAA024009434D5 /* aGHC.entitlements */,
 				C39840E516EA9AD100B2ADB1 /* aGHC-Info.plist */,
@@ -507,6 +532,7 @@
 				C30235741722534300842687 /* DMRepositoryDetailTableViewCell.xib in Resources */,
 				C302357A17226B3B00842687 /* RepositoryDetailView.xib in Resources */,
 				C378940F172DFD6D00F5E78E /* gravatar-user-420.png in Resources */,
+				C3B99373173470500060A336 /* Pods-Acknowledgements.markdown in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -555,6 +581,8 @@
 				C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */,
 				C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */,
 				C378940D172DFCE300F5E78E /* DMRepositoryFileViewController.m in Sources */,
+				C3B99368173461F90060A336 /* DMAboutViewController.m in Sources */,
+				C3B9936B173462730060A336 /* DMLicensingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

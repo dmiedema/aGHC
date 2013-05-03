@@ -8,9 +8,15 @@
 
 #import "DMSettingsTableViewController.h"
 #import "DMAccountViewController.h"
+#import "DMLicensingViewController.h"
+#import "DMAboutViewController.h"
+#import <MessageUI/MessageUI.h>
+#import <Accounts/Accounts.h>
+#import <Twitter/Twitter.h>
+#import <Social/Social.h>
 
-@interface DMSettingsTableViewController ()
-#define SETTINGS_OPTIONS_ARRAY @[@"About", @"Account", @"Licensing", @"Follow on Twitter", @"Contact Support", @"Done"]
+@interface DMSettingsTableViewController () <MFMailComposeViewControllerDelegate>
+#define SETTINGS_OPTIONS_ARRAY @[@"About", @"Account", @"Acknowledgements", @"Follow on Twitter", @"Contact Support", @"Done"]
 
 - (void)deleteCookies;
 @end
@@ -162,43 +168,112 @@
     NSString *selected = [SETTINGS_OPTIONS_ARRAY objectAtIndex:[indexPath row]];
     
     // about
-    if ([selected isEqualToString:@"Account"]) { // acount
-        UIViewController *viewController = [[UIViewController alloc] init];
-        [viewController setModalPresentationStyle:UIModalPresentationFullScreen];
-        [viewController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-        viewController = [[DMAccountViewController alloc] init];
-        [self presentViewController:viewController animated:YES completion:nil];
-//        [[self navigationController] pushViewController:viewController animated:YES];
-    }
     // licensing
     // follow on twitter
     // contact support
     // done
     
     switch ([indexPath row]) {
-        case 0: // about
+        case 0: { // about
             NSLog(@"index 0");
-            break;
-        case 1: // account
-            NSLog(@"index 1");            
-            break;
-        case 2: // licensing
+        }
+        break;
+        
+        case 1: { // account
+            NSLog(@"index 1");
+            UIViewController *viewController = [[UIViewController alloc] init];
+            [viewController setModalPresentationStyle:UIModalPresentationFullScreen];
+            [viewController setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+            viewController = [[DMAccountViewController alloc] init];
+            [self presentViewController:viewController animated:YES completion:nil];
+        }
+        break;
+        
+        case 2: {// acknowledgements
             NSLog(@"index 2");
-            break;
-        case 3: // follow on twitter
+            DMLicensingViewController *acknowledgeView = [[DMLicensingViewController alloc] init];
+            [acknowledgeView setModalPresentationStyle:UIModalPresentationCurrentContext];
+            [acknowledgeView setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+            [self presentViewController:acknowledgeView animated:YES completion:nil];
+        }
+        break;
+        
+        case 3: {// follow on twitter
             NSLog(@"index 3");
-            break;
-        case 4: // contact support
+            ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+            ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierTwitter];
+            [accountStore requestAccessToAccountsWithType:accountType options:nil completion:^(BOOL granted, NSError *error) {
+                if (granted) {
+                    NSArray *accountsArray = [accountStore accountsWithAccountType:accountType];
+                    
+                    if ([accountsArray count] > 0) {
+                        ACAccount *account = [accountsArray objectAtIndex:0];
+                        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+                        [dict setValue:@"somewhores" forKey:@"screen_name"];
+                        [dict setValue:@"true" forKey:@"follow"];
+                        
+                        SLRequest *postRequest = [SLRequest requestForServiceType:SLServiceTypeTwitter requestMethod:SLRequestMethodPOST URL:[NSURL URLWithString:@"https://api.twitter.com/1.1/friendships/create.json"] parameters:dict];
+                        [postRequest setAccount:account];
+                        [postRequest performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
+                            NSLog(@"\n --- Request Handler ---\n Response: %@\nurlResponse: %ld\nError: %ld\n",
+                                  responseData, (long)[urlResponse statusCode], (long)error.code);
+                        }]; // end postRequest completion block.  
+                    } // end if theres an account
+                } // end if granted
+            }]; // end completion block
+        }
+        break;
+        
+        case 4: {// contact support
             NSLog(@"index 4");
-            break;
-        case 5: // done
+            if ([MFMailComposeViewController canSendMail]) {
+                MFMailComposeViewController *mailer = [[MFMailComposeViewController alloc] init];
+                [mailer setMailComposeDelegate:self];
+                NSArray *recipients = [NSArray arrayWithObjects:@"daniel@danielmiedema.com", nil];
+                [mailer setToRecipients:recipients];
+                [mailer setSubject:@"aGHC - Question/Bug Report/Feedback"];
+//                [mailer setMessageBody:@"I have a question/bug to report" isHTML:NO];
+                [self presentViewController:mailer animated:YES completion:nil];
+            } else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Whoops" message:@"Looks like you can't send an email this way." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
+                [alert show];
+            }
+        }
+        break;
+        
+        case 5: {// done
             NSLog(@"index 5");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"DMSettingViewControllerDismissSettings" object:self];
+        }
             break;
+        
         default: // le nope
             NSLog(@"unknown option");
             break;
     }
+}
+
+
+#pragma mark MFMailComposeViewController Delegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    switch (result) {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail failed");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved for later");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        default:
+            break;
+    }
+    [controller dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
