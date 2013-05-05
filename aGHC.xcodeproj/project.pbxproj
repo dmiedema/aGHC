@@ -73,6 +73,7 @@
 		C3B9936F173469D50060A336 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B9936E173469D50060A336 /* Twitter.framework */; };
 		C3B9937117346A070060A336 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B9937017346A070060A336 /* Social.framework */; };
 		C3B99373173470500060A336 /* Pods-Acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */; };
+		C3C81DA517361EFD00E53AD5 /* DMTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DA417361EFD00E53AD5 /* DMTextEditor.m */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
@@ -174,6 +175,8 @@
 		C3B9936E173469D50060A336 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		C3B9937017346A070060A336 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Pods-Acknowledgements.markdown"; sourceTree = "<group>"; };
+		C3C81DA317361EFD00E53AD5 /* DMTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTextEditor.h; sourceTree = "<group>"; };
+		C3C81DA417361EFD00E53AD5 /* DMTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTextEditor.m; sourceTree = "<group>"; };
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
 		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -190,11 +193,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C3B9937117346A070060A336 /* Social.framework in Frameworks */,
 				C3B9936F173469D50060A336 /* Twitter.framework in Frameworks */,
 				C3B9936D173466280060A336 /* Accounts.framework in Frameworks */,
 				C3B56C801730E39C005A7CB8 /* QuickLook.framework in Frameworks */,
-				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C3ED621D16EC703B00311A72 /* MessageUI.framework in Frameworks */,
 				C3ED621B16EC702B00311A72 /* CFNetwork.framework in Frameworks */,
 				C3ED621916EC702000311A72 /* Security.framework in Frameworks */,
@@ -235,6 +238,8 @@
 				C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */,
 				C378940B172DFCE300F5E78E /* DMRepositoryFileViewController.h */,
 				C378940C172DFCE300F5E78E /* DMRepositoryFileViewController.m */,
+				C3C81DA317361EFD00E53AD5 /* DMTextEditor.h */,
+				C3C81DA417361EFD00E53AD5 /* DMTextEditor.m */,
 			);
 			name = "Repository Detail View";
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 				C378940D172DFCE300F5E78E /* DMRepositoryFileViewController.m in Sources */,
 				C3B99368173461F90060A336 /* DMAboutViewController.m in Sources */,
 				C3B9936B173462730060A336 /* DMLicensingViewController.m in Sources */,
+				C3C81DA517361EFD00E53AD5 /* DMTextEditor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
