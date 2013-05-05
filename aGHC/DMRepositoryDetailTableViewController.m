@@ -11,10 +11,14 @@
 //#import "MBProgressHUD.h"
 #import "JSNotifier.h"
 #import <QuickLook/QuickLook.h>
+#import "MF_Base64Additions.h"
 
 @interface DMRepositoryDetailTableViewController () <QLPreviewControllerDataSource>
 
 @property (nonatomic, strong) NSURL *urlOfFile;
+@property (nonatomic, strong) NSData *itemToLoad;
+
+- (void)loadFile:(NSDictionary *)contentsToLoad;
 
 @end
 
@@ -36,6 +40,7 @@
     [[self tableView] registerNib:
      [UINib nibWithNibName:@"DMRepositoryDetailTableViewCell" bundle:[NSBundle mainBundle]]
            forCellReuseIdentifier:@"cell"];
+    
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -171,21 +176,20 @@
     NSString *path = [[[self directoryContents] objectAtIndex:[indexPath row]] objectForKey:@"path"];
     NSString *selectedType = [[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"];
     
-    
-    
-    
+    NSString *url = [selected objectForKey:@"url"];
+    [url stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy];
     // GET /repos/:owner/:repo/contents/:path
 
     NSString *requestURL;
     if (token && tokenType) {
-        requestURL = [NSString stringWithFormat:@"%@&%@=%@&%@=%@", [selected objectForKey:@"url"], kAccessToken, token, kTokenType, tokenType];
+        requestURL = [NSString stringWithFormat:@"%@&%@=%@&%@=%@", url, kAccessToken, token, kTokenType, tokenType];
     } else {
-        requestURL = [selected objectForKey:@"url"]; }
+        requestURL = url; }
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestURL]];
     
     NSLog(@"Request URL %@", [request URL]);
-    
+    // its a folder
     AFJSONRequestOperation *folderOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [subView setDirectoryContents:JSON];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -201,7 +205,21 @@
         [notifier setTitle:@"Error" animated:YES];
         [notifier hideIn:1.0];
     }];
-//    AFJSONRequestOperation
+    // Its a file
+    AFJSONRequestOperation *fileOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [self loadFile:JSON];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [activityIndicator stopAnimating];
+            [notifier setTitle:@"Complete" animated:YES];
+            [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+            [notifier hideIn:1.0];
+        });
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        NSLog(@"Error: %@", error);
+        [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyX"]]];
+        [notifier setTitle:@"Error" animated:YES];
+        [notifier hideIn:1.0];
+    }];
 
     /*@property (nonatomic, strong) NSArray  *directoryContents;
      @property (nonatomic, strong) NSString *currentPath;
@@ -210,38 +228,22 @@
      @property (nonatomic, strong) NSString *reponame;*/
     
     NSLog(@"%@", [[self directoryContents] objectAtIndex:[indexPath row]]);
+
+    // Directory?
     if ([selectedType isEqualToString:@"dir"]) {
         [subView setTitle:path];
         [subView setOwner:[self owner]];
         [subView setReponame:[self reponame]];
         [folderOperation start];
-    } else if ([selectedType isEqualToString:@"file"]) {
-        NSLog(@"File : %@", [selected objectForKey:@"name"]);
-        NSLog(@"Selected File:  %@", selected);
-        
-        
-        
-//        NSString *fileName = [selected objectForKey:@"name"];
-//        NSRange range = [fileName rangeOfString:@"." options:NSBackwardsSearch];
-//        NSString *extension = [fileName substringFromIndex:range.location];
-//        NSLog(@"Range: %i", range.location);
-//        NSLog(@"Extension : %@", extension);
-        [notifier setTitle:@"Complete" animated:YES];
-        [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
-        [notifier hideIn:1.0];
-        
-        _urlOfFile = [NSURL URLWithString:[selected objectForKey:@"html_url"]];
-        
-        NSLog(@"url of fuel %@", _urlOfFile);
-        
-        QLPreviewController *quickLook = [[QLPreviewController alloc] init];
-        [quickLook setDataSource:self];
-        [quickLook setModalPresentationStyle:UIModalPresentationPageSheet];
-        [quickLook setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
-//        [quickLook refreshCurrentPreviewItem];
-        
-        [self presentViewController:quickLook animated:YES completion:nil];
     }
+    // File?
+    else if ([selectedType isEqualToString:@"file"]) {
+        // This is all that's needed actually, it does the magic of loading files.
+        [fileOperation start];
+    }
+    // Invalid - ESSPLODE-O
+    else {
+    } 
 }
 
 
@@ -254,6 +256,57 @@
 }
 - (id<QLPreviewItem>) previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
     return _urlOfFile;
+}
+
+# pragma mark loadFile
+
+-(void)loadFile:(NSDictionary *)contentsToLoad {
+    NSLog(@"File : %@", [contentsToLoad objectForKey:@"name"]);
+    NSLog(@"Selected File:  %@", contentsToLoad);
+    
+    // get the file extension
+    NSString *fileName = [contentsToLoad objectForKey:@"name"];
+    NSRange range = [fileName rangeOfString:@"." options:NSBackwardsSearch];
+    NSString *extension = [fileName substringFromIndex:range.location];
+    NSLog(@"Range: %i", range.location);
+    NSLog(@"Extension : %@", extension);
+    
+    // get item from url
+//    _urlOfFile = [NSURL URLWithString:[contentsToLoad objectForKey:@"html_url"]];
+    NSData *itemToLoad = [NSData dataWithBase64String:[contentsToLoad objectForKey:@"content"]];
+    NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
+    [path stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy];
+    NSLog(@"Path : %@", path);
+    NSURL *urlToLoad = [NSURL fileURLWithPath:path];  //:[NSString stringWithFormat:@"file://%@", path]];
+    NSError *error = nil;
+    
+    NSLog(@"urlToLoad : %@", [urlToLoad absoluteString]);
+    
+    BOOL success = [itemToLoad writeToURL:urlToLoad options:NSAtomicWrite error:&error];
+    if (success) {
+        _urlOfFile = urlToLoad;
+        NSLog(@"SUCCESS :)");
+    } else {
+        NSLog(@"ERROR :( -- : %@", error);
+    }
+    // array of image extensions.
+    NSArray *imageExtensions = [NSArray arrayWithObjects:@".png", @".jpg", @".jpeg", @".bmp", nil];
+    
+    // you an image?
+    if ([imageExtensions containsObject:extension]) {
+        NSLog(@"url of fuel %@", _urlOfFile);
+        
+        QLPreviewController *quickLook = [[QLPreviewController alloc] init];
+        [quickLook setDataSource:self];
+        [quickLook setModalPresentationStyle:UIModalPresentationPageSheet];
+        [quickLook setModalTransitionStyle:UIModalTransitionStyleCoverVertical];
+        [[self navigationController] pushViewController:quickLook animated:YES];
+    }
+    // Nope, must be code
+    else {
+        NSLog(@"Not an image, big surprise");
+    }
+
 }
 
 @end
