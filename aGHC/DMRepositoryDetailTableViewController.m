@@ -305,6 +305,15 @@
     // Nope, must be code
     else {
         NSLog(@"Not an image, big surprise");
+        // its not encoded, i haz raw content. oooooo special
+        NSString *decodedString = [NSString stringFromBase64String:[contentsToLoad objectForKey:@"content"]];
+        NSLog(@"Striiing : %@", decodedString);
+        NSLog(@"Base64 Striiiing: %@", [contentsToLoad objectForKey:@"content"]);
+        UITextField *textfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+        [textfield setText:decodedString];
+        UIViewController *viewController = [[UIViewController alloc] init];
+        [[viewController view] addSubview:textfield];
+        [[self navigationController] pushViewController:viewController animated:YES];
     }
 
 }
