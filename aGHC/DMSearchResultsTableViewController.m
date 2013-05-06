@@ -154,6 +154,8 @@
     // Create search box
     self.searchTextBox = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, 199, 30)];
     [[self searchTextBox] setPlaceholder:@"Search..."];
+    [[self searchTextBox] setReturnKeyType:UIReturnKeyGo];
+    [[self searchTextBox] setAutocorrectionType:UITextAutocorrectionTypeNo];
     // create button to run search
     UIButton *runSearchButton = [[UIButton alloc] initWithFrame:CGRectMake(224, 13, 73, 44)];
     [runSearchButton setTitle:@"Search" forState:UIControlStateNormal];
