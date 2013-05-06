@@ -10,7 +10,6 @@
 #import "HMSegmentedControl.h"
 #import "DMRepositoryTableViewCell.h"
 #import "JSNotifier.h"
-#import "DMParallaxViewController.h"
 
 #import "DMRepositoryDetailViewController.h"
 
@@ -269,13 +268,6 @@ int selectedIndex;
     [viewController setTitle:@"Details"];
 //    [[self navigationController] presentViewController:viewController animated:YES completion:nil];
     [[self navigationController] pushViewController:viewController animated:YES];
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RepositoryViewStoryboard_iPhone" bundle:[NSBundle mainBundle]];
-//    DMParallaxViewController *viewController = [[DMParallaxViewController alloc] init];
-//    [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
-//    [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-//    viewController = [storyboard instantiateInitialViewController];
-//    [viewController setRepo:selectedRepo];
-//    [self presentViewController:viewController animated:YES completion:nil];
     
 }
 
