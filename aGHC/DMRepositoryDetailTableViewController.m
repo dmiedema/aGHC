@@ -8,8 +8,6 @@
 
 #import "DMRepositoryDetailTableViewController.h"
 #import "DMRepositoryDetailTableViewCell.h"
-#import "DMRepositoryFileViewController.h"
-#import "DMTextEditor.h"
 //#import "MBProgressHUD.h"
 #import "JSNotifier.h"
 #import <QuickLook/QuickLook.h>
