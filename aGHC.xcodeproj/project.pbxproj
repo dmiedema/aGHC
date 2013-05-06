@@ -9,10 +9,6 @@
 /* Begin PBXBuildFile section */
 		C241698F525B426D927F446D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 46FCC8B0DAE24806B36D18EB /* libPods.a */; };
 		C30235541721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30235531721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard */; };
-		C302355C1721DE5400842687 /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = C30235561721DE5400842687 /* LICENSE.md */; };
-		C302355D1721DE5400842687 /* M6ParallaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235581721DE5400842687 /* M6ParallaxController.m */; };
-		C302355E1721DE5400842687 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = C30235591721DE5400842687 /* README.md */; };
-		C302355F1721DE5400842687 /* UIViewController+M6ParallaxController.m in Sources */ = {isa = PBXBuildFile; fileRef = C302355B1721DE5400842687 /* UIViewController+M6ParallaxController.m */; };
 		C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */; };
 		C30235741722534300842687 /* DMRepositoryDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C30235711722534200842687 /* DMRepositoryDetailTableViewCell.xib */; };
 		C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235731722534300842687 /* DMRepositoryDetailTableViewCell.m */; };
@@ -74,6 +70,7 @@
 		C3B9937117346A070060A336 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B9937017346A070060A336 /* Social.framework */; };
 		C3B99373173470500060A336 /* Pods-Acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */; };
 		C3C81DA517361EFD00E53AD5 /* DMTextEditor.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DA417361EFD00E53AD5 /* DMTextEditor.m */; };
+		C3C81DE517376C9C00E53AD5 /* otherLicenses in Resources */ = {isa = PBXBuildFile; fileRef = C3C81DE417376C9C00E53AD5 /* otherLicenses */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
@@ -86,12 +83,6 @@
 		46FCC8B0DAE24806B36D18EB /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		48E35ED2D5A14F259D4DD291 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		C30235531721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RepositoryViewStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		C30235561721DE5400842687 /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.md; sourceTree = "<group>"; };
-		C30235571721DE5400842687 /* M6ParallaxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = M6ParallaxController.h; sourceTree = "<group>"; };
-		C30235581721DE5400842687 /* M6ParallaxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = M6ParallaxController.m; sourceTree = "<group>"; };
-		C30235591721DE5400842687 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		C302355A1721DE5400842687 /* UIViewController+M6ParallaxController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+M6ParallaxController.h"; sourceTree = "<group>"; };
-		C302355B1721DE5400842687 /* UIViewController+M6ParallaxController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+M6ParallaxController.m"; sourceTree = "<group>"; };
 		C30235601721DEAF00842687 /* DMRepositoryDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryDetailTableViewController.h; sourceTree = "<group>"; };
 		C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryDetailTableViewController.m; sourceTree = "<group>"; };
 		C30235701721E04900842687 /* DMAppDelegate_TODO_List.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMAppDelegate_TODO_List.h; sourceTree = "<group>"; };
@@ -177,6 +168,7 @@
 		C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Pods-Acknowledgements.markdown"; sourceTree = "<group>"; };
 		C3C81DA317361EFD00E53AD5 /* DMTextEditor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTextEditor.h; sourceTree = "<group>"; };
 		C3C81DA417361EFD00E53AD5 /* DMTextEditor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTextEditor.m; sourceTree = "<group>"; };
+		C3C81DE417376C9C00E53AD5 /* otherLicenses */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = otherLicenses; sourceTree = "<group>"; };
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
 		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -216,19 +208,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C30235551721DE4300842687 /* M6ParallaxController */ = {
-			isa = PBXGroup;
-			children = (
-				C30235561721DE5400842687 /* LICENSE.md */,
-				C30235571721DE5400842687 /* M6ParallaxController.h */,
-				C30235581721DE5400842687 /* M6ParallaxController.m */,
-				C30235591721DE5400842687 /* README.md */,
-				C302355A1721DE5400842687 /* UIViewController+M6ParallaxController.h */,
-				C302355B1721DE5400842687 /* UIViewController+M6ParallaxController.m */,
-			);
-			name = M6ParallaxController;
-			sourceTree = "<group>";
-		};
 		C30235691721DEEB00842687 /* Repository Detail View */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,7 +383,6 @@
 		C39840E316EA9AD100B2ADB1 /* aGHC */ = {
 			isa = PBXGroup;
 			children = (
-				C30235551721DE4300842687 /* M6ParallaxController */,
 				C3690FD91718821C00E2EBCA /* Images */,
 				C39840EC16EA9AD100B2ADB1 /* DMAppDelegate.h */,
 				C39840ED16EA9AD100B2ADB1 /* DMAppDelegate.m */,
@@ -432,6 +410,7 @@
 				C39840EF16EA9AD100B2ADB1 /* Default.png */,
 				C39840F116EA9AD100B2ADB1 /* Default@2x.png */,
 				C39840F316EA9AD100B2ADB1 /* Default-568h@2x.png */,
+				C3C81DE417376C9C00E53AD5 /* otherLicenses */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -532,12 +511,11 @@
 				C3A8EB7C171F02E3001C85DD /* SearchStoryboard_iPhone.storyboard in Resources */,
 				C3A8EB81171F048C001C85DD /* ExploreStoryboard_iPhone.storyboard in Resources */,
 				C30235541721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard in Resources */,
-				C302355C1721DE5400842687 /* LICENSE.md in Resources */,
-				C302355E1721DE5400842687 /* README.md in Resources */,
 				C30235741722534300842687 /* DMRepositoryDetailTableViewCell.xib in Resources */,
 				C302357A17226B3B00842687 /* RepositoryDetailView.xib in Resources */,
 				C378940F172DFD6D00F5E78E /* gravatar-user-420.png in Resources */,
 				C3B99373173470500060A336 /* Pods-Acknowledgements.markdown in Resources */,
+				C3C81DE517376C9C00E53AD5 /* otherLicenses in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,8 +558,6 @@
 				C3A8EB7F171F0332001C85DD /* DMSearchResultsViewController.m in Sources */,
 				C3A8EB84171F04CA001C85DD /* DMExploreTableViewController.m in Sources */,
 				C37D72AC171FC66C00AB948C /* DMSearchResultsTableViewController.m in Sources */,
-				C302355D1721DE5400842687 /* M6ParallaxController.m in Sources */,
-				C302355F1721DE5400842687 /* UIViewController+M6ParallaxController.m in Sources */,
 				C30235621721DEAF00842687 /* DMRepositoryDetailTableViewController.m in Sources */,
 				C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */,
 				C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */,
