@@ -8,6 +8,8 @@
 
 #import "DMRepositoryDetailTableViewController.h"
 #import "DMRepositoryDetailTableViewCell.h"
+#import "DMRepositoryFileViewController.h"
+#import "DMTextEditor.h"
 //#import "MBProgressHUD.h"
 #import "JSNotifier.h"
 #import <QuickLook/QuickLook.h>
@@ -177,7 +179,8 @@
     NSString *selectedType = [[[self directoryContents] objectAtIndex:[indexPath row]] valueForKey:@"type"];
     
     NSString *url = [selected objectForKey:@"url"];
-    [url stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy];
+    url = [url stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy];
+    NSLog(@"url : %@", url);
     // GET /repos/:owner/:repo/contents/:path
 
     NSString *requestURL;
@@ -272,7 +275,6 @@
     NSLog(@"Extension : %@", extension);
     
     // get item from url
-//    _urlOfFile = [NSURL URLWithString:[contentsToLoad objectForKey:@"html_url"]];
     NSData *itemToLoad = [NSData dataWithBase64String:[contentsToLoad objectForKey:@"content"]];
     NSString *path = [NSTemporaryDirectory() stringByAppendingPathComponent:fileName];
     [path stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy];
@@ -305,15 +307,21 @@
     // Nope, must be code
     else {
         NSLog(@"Not an image, big surprise");
-        // its not encoded, i haz raw content. oooooo special
         NSString *decodedString = [NSString stringFromBase64String:[contentsToLoad objectForKey:@"content"]];
         NSLog(@"Striiing : %@", decodedString);
         NSLog(@"Base64 Striiiing: %@", [contentsToLoad objectForKey:@"content"]);
-        UITextField *textfield = [[UITextField alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-        [textfield setText:decodedString];
+        
         UIViewController *viewController = [[UIViewController alloc] init];
-        [[viewController view] addSubview:textfield];
+        UITextView *textField = [[UITextView alloc] init];
+        [textField setText:decodedString];
+        [textField setBackgroundColor:[UIColor grayColor]];
+        [textField setFont:[UIFont fontWithName:@"Courier New" size:16.0f]];
+        [textField setTextColor:[UIColor whiteColor]];
+        [textField setFrame:[[viewController view] bounds]];
+        [viewController setView:textField];
+        
         [[self navigationController] pushViewController:viewController animated:YES];
+
     }
 
 }
