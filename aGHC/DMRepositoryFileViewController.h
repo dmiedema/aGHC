@@ -10,4 +10,6 @@
 
 @interface DMRepositoryFileViewController : UIViewController
 
+@property (nonatomic, strong) NSString *fileContents;
+
 @end

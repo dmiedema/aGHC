@@ -7,6 +7,7 @@
 //
 
 #import "DMRepositoryFileViewController.h"
+#import "DMTextEditor.h"
 
 @interface DMRepositoryFileViewController ()
 
@@ -27,6 +28,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    DMTextEditor *textEditor = [[DMTextEditor alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
+    [textEditor setTextContent:[self fileContents]];
+    [self setView:textEditor];
+    
 }
 
 - (void)didReceiveMemoryWarning

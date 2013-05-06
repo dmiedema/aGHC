@@ -10,4 +10,6 @@
 
 @interface DMTextEditor : UIView
 
+@property (nonatomic, strong) NSString *textContent;
+
 @end
