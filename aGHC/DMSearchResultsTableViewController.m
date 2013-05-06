@@ -55,6 +55,7 @@
 - (void)runSearch:(id)sender {
     [[self searchTextBox] resignFirstResponder];
     NSString *searchString = [[self searchTextBox] text];
+    searchString = [searchString stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy]; // remove spaces and put in escapes == no-crash
     JSNotifier *notifier = [[JSNotifier alloc] initWithTitle:@"Loading..."];
     UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     [activityIndicator startAnimating];
