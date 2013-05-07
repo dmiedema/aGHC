@@ -8,3 +8,9 @@
 
 /*
 TODO: Migrate from JSNotifier to MBProgressHUD or SVProgressHUD.
+
+Get all commits evar and show in awesome list
+GET /repos/:owner/:repo/commits
+
+Get single commit
+GET /repos/:owner/:repo/git/commits/:sha
