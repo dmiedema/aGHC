@@ -104,20 +104,19 @@
 }
 
 - (void)toggleKeyboard {
-    if ([[self textView] isFirstResponder]) {
+    if ([[self textView] isFirstResponder]) // keyboard is visible.
         [[self textView] resignFirstResponder];
-    }
     else [[self textView] becomeFirstResponder];
 }
 
-//- (void)dismissKeyboard {
-//    if ([self isFirstResponder])
-//        [self resignFirstResponder];
-//    else [self becomeFirstResponder];
-//}
-
 - (void)userIsDoneEditing:(id)sender {
     NSLog(@"Differences --");
+    
+    NSString *currentSHA = [_fileDictionary objectForKey:@"sha"];
+    
+    // Create new object, get latest commit, pull SHA from latest commit to use tree SHA and parent SHA.
+    // if the files are different, then POST a commit back with the tree and previous commit SHA for references.
+    
     if (![[_textView text] isEqualToString:_initialText]) {
         // text change. lets commit
         NSLog(@"Change occured in text;");
@@ -125,22 +124,7 @@
         // no text differences.
         NSLog(@"No change in text value");
     }
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        NSLog(@"Completion block, dismissing DMRepositoryFileViewController");
-        
-    }];
+    [[self navigationController] popViewControllerAnimated:YES];
 }
-
-
-
-
-/*
-
- 
-[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textViewTextDidChange:) name:UITextViewTextDidChangeNotification object:_textView];
-- (void)textViewTextDidChange:(id)sender;
-- (void)textViewTextDidChange:(id)sender{}
- */
 
 @end
