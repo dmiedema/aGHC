@@ -8,6 +8,7 @@
 
 #import "DMRepositoryDetailTableViewController.h"
 #import "DMRepositoryDetailTableViewCell.h"
+#import "DMRepositoryFileViewController.h"
 //#import "MBProgressHUD.h"
 #import "JSNotifier.h"
 #import <QuickLook/QuickLook.h>
@@ -309,16 +310,21 @@
         NSLog(@"Striiing : %@", decodedString);
         NSLog(@"Base64 Striiiing: %@", [contentsToLoad objectForKey:@"content"]);
         
-        UIViewController *viewController = [[UIViewController alloc] init];
-        UITextView *textField = [[UITextView alloc] init];
-        [textField setText:decodedString];
-        [textField setBackgroundColor:[UIColor grayColor]];
-        [textField setFont:[UIFont fontWithName:@"Courier New" size:16.0f]];
-        [textField setTextColor:[UIColor whiteColor]];
-        [textField setFrame:[[viewController view] bounds]];
-        [viewController setView:textField];
+//        UIViewController *viewController = [[UIViewController alloc] init];
         
-        [[self navigationController] pushViewController:viewController animated:YES];
+        DMRepositoryFileViewController *fileViewController = [[DMRepositoryFileViewController alloc] init];
+        [fileViewController setInitialText:decodedString];
+        [[self navigationController] pushViewController:fileViewController animated:YES];
+        
+//        UITextView *textField = [[UITextView alloc] init];
+//        [textField setText:decodedString];
+//        [textField setBackgroundColor:[UIColor grayColor]];
+//        [textField setFont:[UIFont fontWithName:@"Courier New" size:16.0f]];
+//        [textField setTextColor:[UIColor whiteColor]];
+//        [textField setFrame:[[viewController view] bounds]];
+//        [viewController setView:textField];
+//        [[self navigationController] pushViewController:viewController animated:YES];
+        
 
     }
 

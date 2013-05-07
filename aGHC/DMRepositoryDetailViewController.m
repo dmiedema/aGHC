@@ -12,6 +12,7 @@
 #import "MMMarkdown.h"
 #import "MF_Base64Additions.h"
 #import "JSNotifier.h"
+#import "DTCoreText.h"
 
 @interface DMRepositoryDetailViewController ()
 @property (nonatomic, strong) NSString *rawHTML;

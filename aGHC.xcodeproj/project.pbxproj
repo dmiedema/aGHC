@@ -68,6 +68,8 @@
 		C3B9936F173469D50060A336 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B9936E173469D50060A336 /* Twitter.framework */; };
 		C3B9937117346A070060A336 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B9937017346A070060A336 /* Social.framework */; };
 		C3B99373173470500060A336 /* Pods-Acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */; };
+		C3C81DFD173871E700E53AD5 /* DMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFC173871E700E53AD5 /* DMTextView.m */; };
+		C3C81E001738722500E53AD5 /* DMRepositoryFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
@@ -161,6 +163,10 @@
 		C3B9936E173469D50060A336 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		C3B9937017346A070060A336 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Pods-Acknowledgements.markdown"; sourceTree = "<group>"; };
+		C3C81DFB173871E700E53AD5 /* DMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTextView.h; sourceTree = "<group>"; };
+		C3C81DFC173871E700E53AD5 /* DMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTextView.m; sourceTree = "<group>"; };
+		C3C81DFE1738722500E53AD5 /* DMRepositoryFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryFileViewController.h; sourceTree = "<group>"; };
+		C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryFileViewController.m; sourceTree = "<group>"; };
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
 		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -207,6 +213,10 @@
 				C302357717226B0500842687 /* DMRepositoryDetailViewController.m */,
 				C30235601721DEAF00842687 /* DMRepositoryDetailTableViewController.h */,
 				C30235611721DEAF00842687 /* DMRepositoryDetailTableViewController.m */,
+				C3C81DFB173871E700E53AD5 /* DMTextView.h */,
+				C3C81DFC173871E700E53AD5 /* DMTextView.m */,
+				C3C81DFE1738722500E53AD5 /* DMRepositoryFileViewController.h */,
+				C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */,
 			);
 			name = "Repository Detail View";
 			sourceTree = "<group>";
@@ -549,6 +559,8 @@
 				C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */,
 				C3B99368173461F90060A336 /* DMAboutViewController.m in Sources */,
 				C3B9936B173462730060A336 /* DMLicensingViewController.m in Sources */,
+				C3C81DFD173871E700E53AD5 /* DMTextView.m in Sources */,
+				C3C81E001738722500E53AD5 /* DMRepositoryFileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
