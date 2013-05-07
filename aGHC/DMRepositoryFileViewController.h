@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong) NSString *initialText;
 
+@property (nonatomic, strong) NSDictionary *fileDictionary;
+
 @end

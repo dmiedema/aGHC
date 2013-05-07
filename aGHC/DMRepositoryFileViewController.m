@@ -12,6 +12,8 @@
 @interface DMRepositoryFileViewController () <UITextViewDelegate>
 
 @property BOOL keyboardVisible;
+@property (nonatomic, strong) UIButton *dismisskeyboard;
+
 
 - (void)userIsDoneEditing:(id)sender;
 
@@ -40,7 +42,22 @@
     [_textView setTextColor:[UIColor whiteColor]];
     [_textView setFrame:[[self view] bounds]];
     [self setView:_textView];
+    
+//    _dismisskeyboard = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-54, self.view.frame.size.height-44, 44, 44)];
+//    [_dismisskeyboard setTitle:@"V" forState:UIControlStateNormal];
+//    [_dismisskeyboard addTarget:self action:@selector(dismissKeyboard) forControlEvents:UIControlEventTouchUpInside];
+//    [_dismisskeyboard setBackgroundColor:[UIColor colorWithRed:250 green:250 blue:250 alpha:0.7]];
+//    [_dismisskeyboard setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [[self view] addSubview:_dismisskeyboard];
+//    [_dismisskeyboard setHidden:![self keyboardVisible]];
 //    [[self view] addSubview:[self textView]];
+    
+    UIBarButtonItem *hideKeyboard = [[UIBarButtonItem alloc] initWithTitle:@"toggle keyboard" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleKeyboard)];
+    NSMutableArray *rightItems = [NSMutableArray arrayWithArray:[[self navigationItem] rightBarButtonItems]];
+    [rightItems addObject:hideKeyboard];
+    self.navigationItem.rightBarButtonItems = rightItems;
+    
+    
     
      NSLog(@"Registering for keyboard events");
      
@@ -70,14 +87,35 @@
 // #pragma mark UITextView Delegate
 
 - (void)keyboardDidShow:(NSNotification *)notification {
+    NSLog(@"Keyboard did SHOW notification");
     NSDictionary *info = [notification userInfo];
     CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
     self.textView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - keyboardSize.height);
+    // add button to dismiss keyboard
+    NSLog(@"button state %c", _dismisskeyboard.hidden);
+    NSLog(@"Buttttttton %@", _dismisskeyboard);
+    
 }
 - (void)keyboardDidHide:(NSNotification *)notification {
-    self.textView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    NSLog(@"Keyboard did hide notification");
+    NSDictionary *info = [notification userInfo];
+    CGSize keyboardSize = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    self.textView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height + keyboardSize.height);
 }
-                                                 
+
+- (void)toggleKeyboard {
+    if ([[self textView] isFirstResponder]) {
+        [[self textView] resignFirstResponder];
+    }
+    else [[self textView] becomeFirstResponder];
+}
+
+//- (void)dismissKeyboard {
+//    if ([self isFirstResponder])
+//        [self resignFirstResponder];
+//    else [self becomeFirstResponder];
+//}
+
 - (void)userIsDoneEditing:(id)sender {
     NSLog(@"Differences --");
     if (![[_textView text] isEqualToString:_initialText]) {
