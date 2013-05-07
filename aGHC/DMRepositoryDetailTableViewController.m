@@ -309,23 +309,12 @@
         NSString *decodedString = [NSString stringFromBase64String:[contentsToLoad objectForKey:@"content"]];
         NSLog(@"Striiing : %@", decodedString);
         NSLog(@"Base64 Striiiing: %@", [contentsToLoad objectForKey:@"content"]);
-        
-//        UIViewController *viewController = [[UIViewController alloc] init];
-        
+                
         DMRepositoryFileViewController *fileViewController = [[DMRepositoryFileViewController alloc] init];
         [fileViewController setInitialText:decodedString];
+        [fileViewController setFileDictionary:contentsToLoad];
         [[self navigationController] pushViewController:fileViewController animated:YES];
         
-//        UITextView *textField = [[UITextView alloc] init];
-//        [textField setText:decodedString];
-//        [textField setBackgroundColor:[UIColor grayColor]];
-//        [textField setFont:[UIFont fontWithName:@"Courier New" size:16.0f]];
-//        [textField setTextColor:[UIColor whiteColor]];
-//        [textField setFrame:[[viewController view] bounds]];
-//        [viewController setView:textField];
-//        [[self navigationController] pushViewController:viewController animated:YES];
-        
-
     }
 
 }
