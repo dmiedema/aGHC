@@ -70,6 +70,7 @@
 		C3B99373173470500060A336 /* Pods-Acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */; };
 		C3C81DFD173871E700E53AD5 /* DMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFC173871E700E53AD5 /* DMTextView.m */; };
 		C3C81E001738722500E53AD5 /* DMRepositoryFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */; };
+		C3C81E021739D8B600E53AD5 /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C81E011739D8B600E53AD5 /* SparkInspector.framework */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
@@ -167,6 +168,7 @@
 		C3C81DFC173871E700E53AD5 /* DMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTextView.m; sourceTree = "<group>"; };
 		C3C81DFE1738722500E53AD5 /* DMRepositoryFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryFileViewController.h; sourceTree = "<group>"; };
 		C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryFileViewController.m; sourceTree = "<group>"; };
+		C3C81E011739D8B600E53AD5 /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SparkInspector.framework; sourceTree = "<group>"; };
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
 		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 		C3ED621C16EC703B00311A72 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C3ED621E16EC765F00311A72 /* DMAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAccountViewController.h; sourceTree = "<group>"; };
 		C3ED621F16EC765F00311A72 /* DMAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAccountViewController.m; sourceTree = "<group>"; };
+		HYXIFWTDXJPPRRMDCEPMDTJH /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SparkInspector.framework; path = "/Users/SomeWhores/Library/Application Support/Spark Inspector/SparkInspector.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +203,7 @@
 				C39840E016EA9AD100B2ADB1 /* Foundation.framework in Frameworks */,
 				C241698F525B426D927F446D /* libPods.a in Frameworks */,
 				C381C8041723F15500D29F01 /* libMMMarkdown-iOS.a in Frameworks */,
+				C3C81E021739D8B600E53AD5 /* SparkInspector.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +361,7 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3C81E011739D8B600E53AD5 /* SparkInspector.framework */,
 				C3B9937017346A070060A336 /* Social.framework */,
 				C3B9936E173469D50060A336 /* Twitter.framework */,
 				C3B9936C173466280060A336 /* Accounts.framework */,
@@ -374,6 +379,7 @@
 				C39840DF16EA9AD100B2ADB1 /* Foundation.framework */,
 				C39840E116EA9AD100B2ADB1 /* CoreGraphics.framework */,
 				46FCC8B0DAE24806B36D18EB /* libPods.a */,
+				HYXIFWTDXJPPRRMDCEPMDTJH /* SparkInspector.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -600,6 +606,9 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"/Users/SomeWhores/Library/Application Support/Spark Inspector\"",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -613,6 +622,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -651,6 +661,11 @@
 				CODE_SIGN_ENTITLEMENTS = aGHC/aGHC.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"/Users/SomeWhores/Library/Application Support/Spark Inspector\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aGHC/aGHC-Prefix.pch";
 				INFOPLIST_FILE = "aGHC/aGHC-Info.plist";
@@ -658,6 +673,32 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.2\"",
 					"\"$(SRCROOT)\"",
+				);
+				OTHER_LDFLAGS = "-ObjC";
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lxml2",
+					"-lz",
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					ImageIO,
+					"-framework",
+					MediaPlayer,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -673,6 +714,10 @@
 				CODE_SIGN_ENTITLEMENTS = aGHC/aGHC.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aGHC/aGHC-Prefix.pch";
 				INFOPLIST_FILE = "aGHC/aGHC-Info.plist";
@@ -680,6 +725,31 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/TestFlightSDK1.2\"",
 					"\"$(SRCROOT)\"",
+				);
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-ObjC",
+					"-lTestFlight",
+					"-licucore",
+					"-lxml2",
+					"-lz",
+					"-framework",
+					CoreGraphics,
+					"-framework",
+					CoreText,
+					"-framework",
+					Foundation,
+					"-framework",
+					ImageIO,
+					"-framework",
+					MediaPlayer,
+					"-framework",
+					MobileCoreServices,
+					"-framework",
+					QuartzCore,
+					"-framework",
+					SystemConfiguration,
+					"-framework",
+					UIKit,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

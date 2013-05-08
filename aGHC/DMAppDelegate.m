@@ -9,6 +9,10 @@
 #import "DMAppDelegate.h"
 #import "TestFlight.h"
 
+#if TESTING
+#import <SparkInspector/SparkInspector.h>
+#endif
+
 @implementation DMAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,6 +26,9 @@
     NSString *string = [NSString string];
     string = (__bridge_transfer NSString *)UIDstring;
      */
+    
+    [SparkInspector enableObservation];
+    
     NSString *id;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     id = [defaults objectForKey:kUUID];
