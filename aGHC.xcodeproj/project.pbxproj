@@ -71,6 +71,7 @@
 		C3C81DFD173871E700E53AD5 /* DMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFC173871E700E53AD5 /* DMTextView.m */; };
 		C3C81E001738722500E53AD5 /* DMRepositoryFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */; };
 		C3C81E021739D8B600E53AD5 /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C81E011739D8B600E53AD5 /* SparkInspector.framework */; };
+		C3C81E051739E85000E53AD5 /* DMCommitObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81E041739E84F00E53AD5 /* DMCommitObject.m */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
 		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
@@ -169,6 +170,8 @@
 		C3C81DFE1738722500E53AD5 /* DMRepositoryFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryFileViewController.h; sourceTree = "<group>"; };
 		C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryFileViewController.m; sourceTree = "<group>"; };
 		C3C81E011739D8B600E53AD5 /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SparkInspector.framework; sourceTree = "<group>"; };
+		C3C81E031739E84F00E53AD5 /* DMCommitObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCommitObject.h; sourceTree = "<group>"; };
+		C3C81E041739E84F00E53AD5 /* DMCommitObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCommitObject.m; sourceTree = "<group>"; };
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
 		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -221,6 +224,8 @@
 				C3C81DFC173871E700E53AD5 /* DMTextView.m */,
 				C3C81DFE1738722500E53AD5 /* DMRepositoryFileViewController.h */,
 				C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */,
+				C3C81E031739E84F00E53AD5 /* DMCommitObject.h */,
+				C3C81E041739E84F00E53AD5 /* DMCommitObject.m */,
 			);
 			name = "Repository Detail View";
 			sourceTree = "<group>";
@@ -567,6 +572,7 @@
 				C3B9936B173462730060A336 /* DMLicensingViewController.m in Sources */,
 				C3C81DFD173871E700E53AD5 /* DMTextView.m in Sources */,
 				C3C81E001738722500E53AD5 /* DMRepositoryFileViewController.m in Sources */,
+				C3C81E051739E85000E53AD5 /* DMCommitObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

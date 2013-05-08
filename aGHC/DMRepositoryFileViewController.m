@@ -7,6 +7,7 @@
 //
 
 #import "DMRepositoryFileViewController.h"
+#import "DMCommitObject.h"
 
 
 @interface DMRepositoryFileViewController () <UITextViewDelegate>
@@ -110,9 +111,9 @@
 }
 
 - (void)userIsDoneEditing:(id)sender {
-    NSLog(@"Differences --");
+    NSLog(@"\n -- Differences Found --\n");
     
-    NSString *currentSHA = [_fileDictionary objectForKey:@"sha"];
+    //    NSString *currentSHA = [_fileDictionary objectForKey:@"sha"];
     
     // Create new object, get latest commit, pull SHA from latest commit to use tree SHA and parent SHA.
     // if the files are different, then POST a commit back with the tree and previous commit SHA for references.
@@ -120,6 +121,7 @@
     if (![[_textView text] isEqualToString:_initialText]) {
         // text change. lets commit
         NSLog(@"Change occured in text;");
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"aGHC-ChangesMadeToFile" object:self];
     } else {
         // no text differences.
         NSLog(@"No change in text value");
