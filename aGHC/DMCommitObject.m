@@ -51,9 +51,16 @@
                                    withCommitMessage:(NSString *)commitMessage {
     __block BOOL success = NO;
     __block NSArray *commitsForRepo;
-    __block NSDictionary *repoInformation;
+//    __block NSDictionary *repoInformation;
     __block NSDictionary *commitPostInformation;
     __block NSError *blockError;
+    NSLog(@"Attempting to post commit");
+    NSLog(@"Data: \nfile: %@\nrepo: %@\nowner: %@\nmessage: %@", fileContents, repo, owner, commitMessage);
+
+#if TESTING
+    NSLog(@"Attempting to post commit");
+    NSLog(@"Data: \nfile: %@\nrepo: %@\nowner: %@\nmessage: %@", fileContents, repo, owner, commitMessage);
+#endif
     
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken];
     NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
