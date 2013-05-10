@@ -8,6 +8,7 @@
 
 #import "DMRepositoryFileViewController.h"
 #import "DMCommitObject.h"
+#import "RNBlurModalView.h"
 
 
 @interface DMRepositoryFileViewController () <UITextViewDelegate>
@@ -34,6 +35,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // set up NSNotificationCenter Listening
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postCommit:) name:kCommitMessagePostedNotification object:nil];
+     
+     NSLog(@"File Contents %@", _fileDictionary);
+     
 	// Do any additional setup after loading the view.
     [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(userIsDoneEditing:)]];
     _textView = [[UITextView alloc] init];
@@ -127,6 +133,16 @@
         NSLog(@"No change in text value");
     }
     [[self navigationController] popViewControllerAnimated:YES];
+}
+
+
+- (void)postCommit:(NSNotification *)notification {
+    NSString *commitMessage = [notification object];
+    NSDictionary *ownerData = [_fileDictionary objectForKey:@"owner"];
+    BOOL commitPosted = [DMCommitObject withLatestsCommitTreeAndParentHashCommitFile:[_textView text] toRepo:[_fileDictionary objectForKey:@"repoName"] withOwner:[ownerData objectForKey:@"login"] withCommitMessage:commitMessage];
+    if (commitPosted) {
+        NSLog(@"Commit posted sucessfully.");
+    }
 }
 
 @end

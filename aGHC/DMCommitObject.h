@@ -16,8 +16,13 @@
             toRepo:(NSString *)repo
          withOwner:(NSString *)owner
     withParentTree:(NSString *)parentSHA
-        andSHAHash:(NSString *)SHAHash
-       withMessage:(NSString *)commitMessage;
+  andParentSHAHash:(NSString *)SHAHash
+ withCommitMessage:(NSString *)commitMessage;
+
++ (BOOL)withLatestsCommitTreeAndParentHashCommitFile:(NSString *)fileContents
+                                              toRepo:(NSString *)repo
+                                           withOwner:(NSString *)owner
+                                   withCommitMessage:(NSString *)commitMessage;
 
 + (NSArray *)getAllCommitsForRepository:(NSString *)repo andOwner:(NSString *)owner;
 + (NSDictionary *)getSingleCommitForRepository:(NSString *)repo andOwner:(NSString *)owner withHash:(NSString *)SHAHash;

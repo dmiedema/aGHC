@@ -312,7 +312,10 @@
                 
         DMRepositoryFileViewController *fileViewController = [[DMRepositoryFileViewController alloc] init];
         [fileViewController setInitialText:decodedString];
-        [fileViewController setFileDictionary:contentsToLoad];
+        NSMutableDictionary *fileDictionary = [NSMutableDictionary dictionaryWithDictionary:contentsToLoad];
+        [fileDictionary setValue:_reponame forKeyPath:@"repoName"];
+        [fileDictionary setValue:_owner forKeyPath:@"owner"];
+        [fileViewController setFileDictionary:fileDictionary];
         [[self navigationController] pushViewController:fileViewController animated:YES];
         
     }
