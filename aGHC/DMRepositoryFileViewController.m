@@ -12,7 +12,7 @@
 #import "DMCommitMessageView.h"
 
 
-@interface DMRepositoryFileViewController () <UITextViewDelegate>
+@interface DMRepositoryFileViewController () <UITextViewDelegate, UIAlertViewDelegate>
 
 @property BOOL keyboardVisible;
 @property (nonatomic, strong) UIButton *dismisskeyboard;
@@ -124,19 +124,28 @@
     
     // Create new object, get latest commit, pull SHA from latest commit to use tree SHA and parent SHA.
     // if the files are different, then POST a commit back with the tree and previous commit SHA for references.
-    
     if (![[_textView text] isEqualToString:_initialText]) {
         // text change. lets commit
         NSLog(@"Change occured in text;");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"aGHC-ChangesMadeToFile" object:self];
-        DMCommitMessageView *commitMessageView = [[DMCommitMessageView alloc] init];
-        RNBlurModalView *commitMessageModalView = [[RNBlurModalView alloc] initWithView:commitMessageView];
-        [commitMessageModalView show];
+//        DMCommitMessageView *commitMessageView = [[DMCommitMessageView alloc] init];
+//        RNBlurModalView *commitMessageModalView = [[RNBlurModalView alloc] initWithView:commitMessageView];
+//        RNBlurModalView *secondaryView = [[RNBlurModalView alloc] initWithTitle:@"Whoa test it" message:@"Super test, Messages and things and what nots"];
+//        [commitMessageModalView show];
+//        [secondaryView show];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Commit Message"
+                                                            message:nil
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Post Commit",nil];
+        [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
+        [alertView show];
     } else {
         // no text differences.
         NSLog(@"No change in text value");
     }
-    [[self navigationController] popViewControllerAnimated:YES];
+    
+//    [[self navigationController] popViewControllerAnimated:YES];
 }
 
 
@@ -147,6 +156,21 @@
     if (commitPosted) {
         NSLog(@"Commit posted sucessfully.");
     }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"Har har button pressed durr");
+    NSLog(@"Button presssed %ld", (long)buttonIndex);
+//    if (buttonIndex == 1) {
+//        NSDictionary *ownerData = [_fileDictionary objectForKey:@"owner"];
+//        
+//        NSString *commitMessage = [[alertView textFieldAtIndex:0] text];
+//        BOOL commitPosted = [DMCommitObject withLatestsCommitTreeAndParentHashCommitFile:[_textView text] toRepo:[_fileDictionary objectForKey:@"repoName"] withOwner:[ownerData objectForKey:@"login"] withCommitMessage:commitMessage];
+//        
+//        if (commitPosted) {
+//            NSLog(@"Commit posted successfully");
+//        }
+//    }
 }
 
 @end
