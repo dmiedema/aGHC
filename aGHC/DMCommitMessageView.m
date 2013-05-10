@@ -15,6 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        NSLog(@"DMCommitMessageView was Initialized");
         
     }
     return self;
