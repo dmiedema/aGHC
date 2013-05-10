@@ -24,6 +24,8 @@
 #define kTokenType    @"token_type"
 #define kUsername     @"username"
 
+#define kCommitCancelledNotification @"aGHC-Commit-Cancelled-Notification"
+#define kCommitMessagePostedNotification @"aGHC-Commit-Posted-Notification"
 
 
 /***************
