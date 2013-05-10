@@ -360,7 +360,6 @@
 		C39840D116EA9AD100B2ADB1 = {
 			isa = PBXGroup;
 			children = (
-				C3E8DF86173C7DA600604115 /* Accelerate.framework */,
 				C30235701721E04900842687 /* DMAppDelegate_TODO_List.h */,
 				C39840E316EA9AD100B2ADB1 /* aGHC */,
 				C39840DC16EA9AD100B2ADB1 /* Frameworks */,
@@ -380,6 +379,7 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C3E8DF86173C7DA600604115 /* Accelerate.framework */,
 				C3C81E011739D8B600E53AD5 /* SparkInspector.framework */,
 				C3B9937017346A070060A336 /* Social.framework */,
 				C3B9936E173469D50060A336 /* Twitter.framework */,

@@ -9,6 +9,7 @@
 #import "DMRepositoryFileViewController.h"
 #import "DMCommitObject.h"
 #import "RNBlurModalView.h"
+#import "DMCommitMessageView.h"
 
 
 @interface DMRepositoryFileViewController () <UITextViewDelegate>
@@ -128,6 +129,9 @@
         // text change. lets commit
         NSLog(@"Change occured in text;");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"aGHC-ChangesMadeToFile" object:self];
+        DMCommitMessageView *commitMessageView = [[DMCommitMessageView alloc] init];
+        RNBlurModalView *commitMessageModalView = [[RNBlurModalView alloc] initWithView:commitMessageView];
+        [commitMessageModalView show];
     } else {
         // no text differences.
         NSLog(@"No change in text value");
