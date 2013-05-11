@@ -19,7 +19,8 @@
   andParentSHAHash:(NSString *)SHAHash
  withCommitMessage:(NSString *)commitMessage;
 
-+ (BOOL)withLatestsCommitTreeAndParentHashCommitFile:(NSString *)fileContents
++ (BOOL)withLatestsCommitTreeAndParentHashCommitFile:(NSString *)fileName
+                                        withContents:(NSString *)fileContents
                                               toRepo:(NSString *)repo
                                            withOwner:(NSString *)owner
                                    withCommitMessage:(NSString *)commitMessage;
