@@ -45,7 +45,8 @@
     return successful;
 }
 
-+ (BOOL)withLatestsCommitTreeAndParentHashCommitFile:(NSString *)fileContents
++ (BOOL)withLatestsCommitTreeAndParentHashCommitFile:(NSString *)fileName
+                                        withContents:(NSString *)fileContents
                                               toRepo:(NSString *)repo
                                            withOwner:(NSString *)owner
                                    withCommitMessage:(NSString *)commitMessage {
@@ -53,6 +54,10 @@
     __block NSArray *commitsForRepo;
 //    __block NSDictionary *repoInformation;
     __block NSDictionary *commitPostInformation;
+    __block NSDictionary *createdTree;
+    __block NSString *createdBlobSHA;
+    __block NSDictionary *referenceUpdate;
+    __block NSDictionary *createdCommit;
     __block NSError *blockError;
     NSLog(@"Attempting to post commit");
     NSLog(@"Data: \nfile: %@\nrepo: %@\nowner: %@\nmessage: %@", fileContents, repo, owner, commitMessage);
@@ -87,39 +92,105 @@
     NSString *shaForLatestCommit = [latestCommmit objectForKey:@"sha"];
     NSString *treeSHAForLatestCommit = [[latestCommmit objectForKey:@"tree"] objectForKey:@"sha"];
     
-    // reset urlRequest to get a single commit object
-//    urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/commits/%@?%@=%@&%@=%@", kGitHubApiURL, owner, repo, shaForLatestCommit, kAccessToken, token, kTokenType, tokenType];
+    // Create blob
+    //    POST /repos/:owner/:repo/git/blobs
+    urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/blobs", kGitHubApiURL, owner, repo];
+    
+    [request setURL:[NSURL URLWithString:urlRequest]];
+    [request setHTTPMethod:@"POST"];
+    NSString *postBody = [NSString stringWithFormat:@"content=%@&encoding=%@", fileContents, @"utf-8"];
+    [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFJSONRequestOperation *createBlobOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        createdBlobSHA = [JSON objectForKey:@"sha"];
+        NSLog(@"Blob created successfully = %@", JSON);
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        error = error;
+        NSLog(@"Error created blob %@", error);
+    }];
+    [createBlobOperation start];
+    
+    
+    // Create tree
+    //    POST /repos/:owner/:repo/git/trees
+    urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/trees", kGitHubApiURL, owner, repo];
+    
+    [request setURL:[NSURL URLWithString:urlRequest]];
+    [request setHTTPMethod:@"POST"];
+    postBody = [NSString stringWithFormat:@"base_tree=%@&tree.path=%@&tree.mode=100644&tree.type=blob&tree.sha=%@", treeSHAForLatestCommit, fileName, createdBlobSHA];
+    [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFJSONRequestOperation *createTreeOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        createdTree = JSON;
+        NSLog(@"Tree created %@", JSON);
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        error = error;
+        NSLog(@"Error creating Tree %@", error);
+    }];
+    [createTreeOperation addDependency:createBlobOperation];
+    [createBlobOperation start];
+    
+    // Create commit
+    //    POST /repos/:owner/:repo/git/commits
+    urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/commits", kGitHubApiURL, owner, repo];
+
+    [request setURL:[NSURL URLWithString:urlRequest]];
+    [request setHTTPMethod:@"POST"];
+    postBody = [NSString stringWithFormat:@"message=%@&tree=%@&parents=%@", commitMessage, [createdTree objectForKey:@"sha"], shaForLatestCommit];
+    [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFJSONRequestOperation *createCommitOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        createdCommit = JSON;
+        NSLog(@"Commit created successfully %@", JSON);
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        error = error;
+        NSLog(@"ERror creating commit %@", error);
+    }];
+    [createCommitOperation addDependency:createTreeOperation];
+    [createCommitOperation start];
+    
+    // Update refs
+    //    PATCH /repos/:owner/:repo/git/refs/:ref
+    urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/refs/%@", kGitHubApiURL, owner, repo, @"refs/heads/master"]; // master branch, for now. 
+    
+    [request setURL:[NSURL URLWithString:urlRequest]];
+    [request setHTTPMethod:@"POST"];
+    postBody = [NSString stringWithFormat:@"sha=%@&force=false", [createdCommit objectForKey:@"sha"]];
+    [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    AFJSONRequestOperation *referenceUpdateOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        referenceUpdate = JSON;
+        NSLog(@"Reference successfully updated %@", JSON);
+        success = YES;
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        error = error;
+        NSLog(@"Reference update failed %@", JSON);
+        success = NO;
+    }];
+    [referenceUpdateOperation addDependency:createCommitOperation];
+    [referenceUpdateOperation start];
+    
+    // reset urlRequest to POST the commit
+//    urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/commits?%@=%@&%@=%@", kGitHubApiURL, owner, repo, kAccessToken, token, kTokenType, tokenType];
 //    
 //    [request setURL:[NSURL URLWithString:urlRequest]];
 //    
-//    AFJSONRequestOperation *singleCommitOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-//        repoInformation = JSON;
+//    [request setHTTPMethod:@"POST"];
+//    postBody = [NSString stringWithFormat:@"message=%@&tree=%@&parents=%@", commitMessage, treeSHAForLatestCommit, shaForLatestCommit];
+//    [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
+//    
+//    AFJSONRequestOperation *postCommitOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+//        commitPostInformation = JSON;
+//        NSLog(@"Commit posted successfully %@", JSON);
+//        success = YES;
 //    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+//        blockError = error;
 //        success = NO;
-//        error = error;
+//        NSLog(@"error posting commit %@", error);
 //    }];
-    
-    // reset urlRequest to POST the commit
-    urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/commits?%@=%@&%@=%@", kGitHubApiURL, owner, repo, kAccessToken, token, kTokenType, tokenType];
-    
-    [request setURL:[NSURL URLWithString:urlRequest]];
-    
-    [request setHTTPMethod:@"POST"];
-    NSString *postBody = [NSString stringWithFormat:@"message=%@&tree=%@&parents=%@", commitMessage, treeSHAForLatestCommit, shaForLatestCommit];
-    [request setHTTPBody:[postBody dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    AFJSONRequestOperation *postCommitOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        commitPostInformation = JSON;
-        NSLog(@"Commit posted successfully %@", JSON);
-        success = YES;
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        blockError = error;
-        success = NO;
-        NSLog(@"error posting commit %@", error);
-    }];
-    
-    [postCommitOperation addDependency:commitsOperation];
-    [postCommitOperation start];
+//    
+//    [postCommitOperation addDependency:commitsOperation];
+//    [postCommitOperation start];
     
     return success;
 }
