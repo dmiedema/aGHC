@@ -152,7 +152,7 @@
 - (void)postCommit:(NSNotification *)notification {
     NSString *commitMessage = [notification object];
     NSDictionary *ownerData = [_fileDictionary objectForKey:@"owner"];
-    BOOL commitPosted = [DMCommitObject withLatestsCommitTreeAndParentHashCommitFile:[_textView text] toRepo:[_fileDictionary objectForKey:@"repoName"] withOwner:[ownerData objectForKey:@"login"] withCommitMessage:commitMessage];
+    BOOL commitPosted = [DMCommitObject withLatestsCommitTreeAndParentHashCommitFile:[_fileDictionary objectForKey:@"path"] withContents:[_textView text] toRepo:[_fileDictionary objectForKey:@"repoName"] withOwner:[ownerData objectForKey:@"login"] withCommitMessage:commitMessage];
     if (commitPosted) {
         NSLog(@"Commit posted sucessfully.");
     }
