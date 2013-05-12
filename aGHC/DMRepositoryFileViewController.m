@@ -143,6 +143,7 @@
     } else {
         // no text differences.
         NSLog(@"No change in text value");
+        [[self navigationController] popViewControllerAnimated:YES];
     }
     
 //    [[self navigationController] popViewControllerAnimated:YES];
@@ -161,16 +162,18 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"Har har button pressed durr");
     NSLog(@"Button presssed %ld", (long)buttonIndex);
-//    if (buttonIndex == 1) {
-//        NSDictionary *ownerData = [_fileDictionary objectForKey:@"owner"];
-//        
-//        NSString *commitMessage = [[alertView textFieldAtIndex:0] text];
-//        BOOL commitPosted = [DMCommitObject withLatestsCommitTreeAndParentHashCommitFile:[_textView text] toRepo:[_fileDictionary objectForKey:@"repoName"] withOwner:[ownerData objectForKey:@"login"] withCommitMessage:commitMessage];
-//        
-//        if (commitPosted) {
-//            NSLog(@"Commit posted successfully");
-//        }
-//    }
+    if (buttonIndex == 1) {
+        
+        NSDictionary *ownerData = [_fileDictionary objectForKey:@"owner"];
+        
+        NSString *commitMessage = [[alertView textFieldAtIndex:0] text];
+        BOOL commitPosted = [DMCommitObject withLatestsCommitTreeAndParentHashCommitFile:[_fileDictionary objectForKey:@"path"] withContents:commitMessage toRepo:[_fileDictionary objectForKey:@"repoName"] withOwner:[ownerData objectForKey:@"login"] withCommitMessage:commitMessage];
+        
+        if (commitPosted) {
+            NSLog(@"Commit posted successfully");
+            [[self navigationController] popViewControllerAnimated:YES];
+        }
+    }
 }
 
 @end
