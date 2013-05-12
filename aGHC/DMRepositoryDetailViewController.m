@@ -52,9 +52,12 @@
         NSString *token     = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken];
         NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
         NSString *requestString;
+        
         // repos/:user/:repo
-        if (!token || !tokenType) requestString = [NSString stringWithFormat:@"%@repos/%@/%@", kGitHubApiURL, [self ownerName], [self repoName]];
-        else requestString = [NSString stringWithFormat:[NSString stringWithFormat:@"%@repos/%@/%@?%@=%@&%@=%@", kGitHubApiURL, [self ownerName], [self repoName], kAccessToken, token, kTokenType, tokenType]];
+        if (token && tokenType) requestString = requestString = [NSString stringWithFormat:@"%@repos/%@/%@?%@=%@&%@=%@", kGitHubApiURL, [self ownerName], [self repoName], kAccessToken, token, kTokenType, tokenType];
+            
+        else [NSString stringWithFormat:@"%@repos/%@/%@", kGitHubApiURL, [self ownerName], [self repoName]];
+         
         
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
         [request setValue:kResourceContentTypeDefault forHTTPHeaderField:@"Accept"];
