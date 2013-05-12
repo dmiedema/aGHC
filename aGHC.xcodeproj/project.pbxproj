@@ -29,6 +29,8 @@
 		C31B5F74171E7F63006199AD /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F6C171E7F63006199AD /* lock.png */; };
 		C329908E1712165500176E3A /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C329908D1712165500176E3A /* Avenir.ttc */; };
 		C3690FD81718821900E2EBCA /* sL7cyZ5Oa7-2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */; };
+		C36F88B7173F0E3200458B6A /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36F88B6173F0E3200458B6A /* SparkInspector.framework */; };
+		C36F88C9174009AD00458B6A /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C36F88C8174009AD00458B6A /* libReactiveCocoa-iOS.a */; };
 		C3767C9417168E2900BC593B /* DMInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9317168E2900BC593B /* DMInitialViewController.m */; };
 		C3767C9717168E7C00BC593B /* DMHomeScreenCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9617168E7C00BC593B /* DMHomeScreenCollectionViewController.m */; };
 		C3767C9D17168ECB00BC593B /* DMSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */; };
@@ -70,7 +72,6 @@
 		C3B99373173470500060A336 /* Pods-Acknowledgements.markdown in Resources */ = {isa = PBXBuildFile; fileRef = C3B99372173470500060A336 /* Pods-Acknowledgements.markdown */; };
 		C3C81DFD173871E700E53AD5 /* DMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFC173871E700E53AD5 /* DMTextView.m */; };
 		C3C81E001738722500E53AD5 /* DMRepositoryFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */; };
-		C3C81E021739D8B600E53AD5 /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3C81E011739D8B600E53AD5 /* SparkInspector.framework */; };
 		C3C81E051739E85000E53AD5 /* DMCommitObject.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81E041739E84F00E53AD5 /* DMCommitObject.m */; };
 		C3C81E09173A3DFD00E53AD5 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3C81E08173A3DFD00E53AD5 /* fontawesome-webfont.ttf */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
@@ -114,6 +115,8 @@
 		C31B5F6C171E7F63006199AD /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		C329908D1712165500176E3A /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
 		C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sL7cyZ5Oa7-2-1.png"; sourceTree = "<group>"; };
+		C36F88B6173F0E3200458B6A /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SparkInspector.framework; sourceTree = "<group>"; };
+		C36F88C8174009AD00458B6A /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Release-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
 		C3767C9217168E2900BC593B /* DMInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInitialViewController.h; sourceTree = "<group>"; };
 		C3767C9317168E2900BC593B /* DMInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMInitialViewController.m; sourceTree = "<group>"; };
 		C3767C9517168E7C00BC593B /* DMHomeScreenCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenCollectionViewController.h; sourceTree = "<group>"; };
@@ -174,7 +177,6 @@
 		C3C81DFC173871E700E53AD5 /* DMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTextView.m; sourceTree = "<group>"; };
 		C3C81DFE1738722500E53AD5 /* DMRepositoryFileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryFileViewController.h; sourceTree = "<group>"; };
 		C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryFileViewController.m; sourceTree = "<group>"; };
-		C3C81E011739D8B600E53AD5 /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SparkInspector.framework; sourceTree = "<group>"; };
 		C3C81E031739E84F00E53AD5 /* DMCommitObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCommitObject.h; sourceTree = "<group>"; };
 		C3C81E041739E84F00E53AD5 /* DMCommitObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCommitObject.m; sourceTree = "<group>"; };
 		C3C81E08173A3DFD00E53AD5 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
@@ -193,7 +195,6 @@
 		C3ED621C16EC703B00311A72 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C3ED621E16EC765F00311A72 /* DMAccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAccountViewController.h; sourceTree = "<group>"; };
 		C3ED621F16EC765F00311A72 /* DMAccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAccountViewController.m; sourceTree = "<group>"; };
-		HYXIFWTDXJPPRRMDCEPMDTJH /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SparkInspector.framework; path = "/Users/SomeWhores/Library/Application Support/Spark Inspector/SparkInspector.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C36F88C9174009AD00458B6A /* libReactiveCocoa-iOS.a in Frameworks */,
 				C3E8DF87173C7DA600604115 /* Accelerate.framework in Frameworks */,
 				C384C74516EA9FE9009434D5 /* CoreText.framework in Frameworks */,
 				C3B9937117346A070060A336 /* Social.framework in Frameworks */,
@@ -219,7 +221,7 @@
 				C39840E016EA9AD100B2ADB1 /* Foundation.framework in Frameworks */,
 				C241698F525B426D927F446D /* libPods.a in Frameworks */,
 				C381C8041723F15500D29F01 /* libMMMarkdown-iOS.a in Frameworks */,
-				C3C81E021739D8B600E53AD5 /* SparkInspector.framework in Frameworks */,
+				C36F88B7173F0E3200458B6A /* SparkInspector.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,8 +381,9 @@
 		C39840DC16EA9AD100B2ADB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C36F88C8174009AD00458B6A /* libReactiveCocoa-iOS.a */,
+				C36F88B6173F0E3200458B6A /* SparkInspector.framework */,
 				C3E8DF86173C7DA600604115 /* Accelerate.framework */,
-				C3C81E011739D8B600E53AD5 /* SparkInspector.framework */,
 				C3B9937017346A070060A336 /* Social.framework */,
 				C3B9936E173469D50060A336 /* Twitter.framework */,
 				C3B9936C173466280060A336 /* Accounts.framework */,
@@ -398,7 +401,6 @@
 				C39840DF16EA9AD100B2ADB1 /* Foundation.framework */,
 				C39840E116EA9AD100B2ADB1 /* CoreGraphics.framework */,
 				46FCC8B0DAE24806B36D18EB /* libPods.a */,
-				HYXIFWTDXJPPRRMDCEPMDTJH /* SparkInspector.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -706,6 +708,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aGHC/aGHC-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"${PODS_HEADERS_SEARCH_PATHS}",
+					"\"$(SDKROOT)/usr/include/libxml2\"",
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "aGHC/aGHC-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -758,6 +767,13 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "aGHC/aGHC-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"${PODS_HEADERS_SEARCH_PATHS}",
+					"\"$(SDKROOT)/usr/include/libxml2\"",
+					"$(SDKROOT)/usr/include/libxml2",
+					"$(BUILD_ROOT)/../IntermediateBuildFilesPath/UninstalledProducts/include",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = "aGHC/aGHC-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
