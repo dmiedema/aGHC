@@ -31,6 +31,7 @@
 		C3690FD81718821900E2EBCA /* sL7cyZ5Oa7-2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */; };
 		C36F88B7173F0E3200458B6A /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36F88B6173F0E3200458B6A /* SparkInspector.framework */; };
 		C36F88C9174009AD00458B6A /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C36F88C8174009AD00458B6A /* libReactiveCocoa-iOS.a */; };
+		C36F88D0174035E400458B6A /* DMReactiveCommit.m in Sources */ = {isa = PBXBuildFile; fileRef = C36F88CF174035E400458B6A /* DMReactiveCommit.m */; };
 		C3767C9417168E2900BC593B /* DMInitialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9317168E2900BC593B /* DMInitialViewController.m */; };
 		C3767C9717168E7C00BC593B /* DMHomeScreenCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9617168E7C00BC593B /* DMHomeScreenCollectionViewController.m */; };
 		C3767C9D17168ECB00BC593B /* DMSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3767C9C17168ECB00BC593B /* DMSettingsTableViewController.m */; };
@@ -117,6 +118,8 @@
 		C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sL7cyZ5Oa7-2-1.png"; sourceTree = "<group>"; };
 		C36F88B6173F0E3200458B6A /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SparkInspector.framework; sourceTree = "<group>"; };
 		C36F88C8174009AD00458B6A /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Release-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
+		C36F88CE174035E400458B6A /* DMReactiveCommit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMReactiveCommit.h; sourceTree = "<group>"; };
+		C36F88CF174035E400458B6A /* DMReactiveCommit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMReactiveCommit.m; sourceTree = "<group>"; };
 		C3767C9217168E2900BC593B /* DMInitialViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMInitialViewController.h; sourceTree = "<group>"; };
 		C3767C9317168E2900BC593B /* DMInitialViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMInitialViewController.m; sourceTree = "<group>"; };
 		C3767C9517168E7C00BC593B /* DMHomeScreenCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMHomeScreenCollectionViewController.h; sourceTree = "<group>"; };
@@ -241,6 +244,8 @@
 				C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */,
 				C3C81E031739E84F00E53AD5 /* DMCommitObject.h */,
 				C3C81E041739E84F00E53AD5 /* DMCommitObject.m */,
+				C36F88CE174035E400458B6A /* DMReactiveCommit.h */,
+				C36F88CF174035E400458B6A /* DMReactiveCommit.m */,
 			);
 			name = "Repository Detail View";
 			sourceTree = "<group>";
@@ -607,6 +612,7 @@
 				C3C81E051739E85000E53AD5 /* DMCommitObject.m in Sources */,
 				C3E8DF84173C7D7500604115 /* RNBlurModalView.m in Sources */,
 				C3E8DF8A173C8BD200604115 /* DMCommitMessageView.m in Sources */,
+				C36F88D0174035E400458B6A /* DMReactiveCommit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
