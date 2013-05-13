@@ -327,21 +327,28 @@
     NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:info];
     NSMutableURLRequest *request;
     NSDictionary *ownerData = [info objectForKey:@"owner"];
-    NSString *urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/commits?%@",
-                            kGitHubApiURL, [ownerData objectForKey:@"login"], [info objectForKey:@"repoName"], _httpHeaderTokenString];
+    
+    NSString *fullurl = [info objectForKey:@"url"];
+    NSRange range = [fullurl rangeOfString:@"?ref=" options:NSBackwardsSearch];
+    NSString *branch = [fullurl substringFromIndex:range.location + 5]; // offset '?ref=' value and just get branch name
+    NSString *ref = [NSString stringWithFormat:@"/refs/heads/%@", branch];
+    
+    NSString *urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/%@?%@", kGitHubApiURL, [ownerData valueForKey:@"login"], [info valueForKey:@"repoName"], ref, _httpHeaderTokenString];
+    
     NSMutableDictionary *postInformation;
-    [postInformation setValue:[info objectForKey:@"commit_message"] forKey:@"message"];
-    [postInformation setValue:[[info objectForKey:@"new_tree"] objectForKey:@"sha"] forKey:@"tree"];
-    [postInformation setValue:[NSArray arrayWithObjects:[[info objectForKey:@"last_commit"] objectForKey:@"sha"], nil] forKey:@"parents"];
+    [postInformation setValue:[[info objectForKey:@"new_commit"] valueForKey:@"sha"] forKey:@"sha"];
+    [postInformation setValue:@"false" forKey:@"force"];
     
     [request setURL:[NSURL URLWithString:urlRequest]];
     [request setHTTPMethod:@"PATCH"];
     [request setHTTPBody:[NSJSONSerialization JSONObjectWithData:[NSDictionary dictionaryWithDictionary:postInformation] options:0 error:nil]];
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        [jsonInformation setValue:JSON forKey:@"new_commit"];
+        [jsonInformation setValue:JSON forKey:@"updated_ref"];
+        _success = YES;
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         _error = error;
+        _success = NO;
     }];
     [operation start];
     /* TODO : this.
