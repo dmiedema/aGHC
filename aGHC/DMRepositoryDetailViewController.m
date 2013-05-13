@@ -54,9 +54,8 @@
         NSString *requestString;
         
         // repos/:user/:repo
-        if (token && tokenType) requestString = requestString = [NSString stringWithFormat:@"%@repos/%@/%@?%@=%@&%@=%@", kGitHubApiURL, [self ownerName], [self repoName], kAccessToken, token, kTokenType, tokenType];
-            
-        else [NSString stringWithFormat:@"%@repos/%@/%@", kGitHubApiURL, [self ownerName], [self repoName]];
+        if (token && tokenType) requestString = [NSString stringWithFormat:@"%@repos/%@/%@?%@=%@&%@=%@", kGitHubApiURL, [self ownerName], [self repoName], kAccessToken, token, kTokenType, tokenType];
+        else requestString = [NSString stringWithFormat:@"%@repos/%@/%@", kGitHubApiURL, [self ownerName], [self repoName]];
          
         
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
@@ -221,10 +220,12 @@
     NSString *login     = [owner objectForKey:@"login"];
     NSString *reponame  = [[self repo] objectForKey:@"name"];
     
-    if (token || tokenType == NULL)
-        requestString = [NSString stringWithFormat:@"%@repos/%@/%@/readme", kGitHubApiURL, login, reponame];
-    else
+    if (token && tokenType)
         requestString = [NSString stringWithFormat:@"%@repos/%@/%@/readme?%@=%@&%@=%@", kGitHubApiURL, login, reponame, kAccessToken, token, kTokenType, tokenType];
+    else
+        requestString = [NSString stringWithFormat:@"%@repos/%@/%@/readme", kGitHubApiURL, login, reponame];
+
+        
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     
@@ -376,6 +377,7 @@
         }];
         [operation start];
     } else if ([[[sender titleLabel] text] isEqualToString:@"Explore Code"]) {
+        [notifier setTitle:@"Exploring Code"];
         // Code View.
         //        /repos/:owner/:repo/contents/:path
         NSString *baseURL = [NSString stringWithFormat:@"%@repos/%@/%@/contents/", kGitHubApiURL, ownername, reponame];
