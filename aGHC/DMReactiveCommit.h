@@ -10,9 +10,10 @@
 
 @interface DMReactiveCommit : NSObject
 
+@property BOOL success;
 @property (nonatomic, strong) NSDictionary *fileInformation;
 
-- (BOOL)createCommitForFile:(NSDictionary *)fileInformation;
+- (void)createCommitForFile:(NSDictionary *)fileInformation;
 
 - (BOOL)createCommitUsingAllPreviousCommitInformationAsHistoryForFile:(NSDictionary *)fileInformation;
 

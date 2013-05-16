@@ -23,8 +23,6 @@
 @property (nonatomic, copy) NSString *httpHeaderTokenString;
 @property (nonatomic, copy) NSString *urlRequest;
 
-@property BOOL success;
-
 @end
 
 @implementation DMReactiveCommit
@@ -49,11 +47,6 @@
 - (BOOL)createCommitUsingAllPreviousCommitInformationAsHistoryForFile:(NSDictionary *)fileInformation {
     
 //    RACSignal *createCommit = [self.fileInformation rac_sig]
-    return NO;
-}
-
-
-- (BOOL)createCommitForFile:(NSDictionary *)fileInformation {
     return NO;
 }
 
@@ -230,8 +223,16 @@
     return success;
 }
 
+- (void)createCommitForFile:(NSDictionary *)info {
+    
+    NSLog(@"\n\nInfo : \n%@\n\n", info);
+    
+    [self getAllCommitsForRepo:info];
+}
+
 
 - (void)getAllCommitsForRepo:(NSDictionary *)repo {
+    NSLog(@"Getting Commits");
     NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:repo];
     NSMutableURLRequest *request;
     NSDictionary *ownerData = [repo objectForKey:@"owner"];
@@ -242,14 +243,18 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [jsonInformation setValue:[JSON objectAtIndex:0] forKey:@"latest_commit"];
+        NSLog(@"Commits recieved %@", JSON);
         [self createBlobForFile:jsonInformation];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         _error = error;
+        NSLog(@"Recieve commits failed %@", error);
     }];
     [operation start];
+    NSLog(@"Starting Operation");
 }
 
 - (void)createBlobForFile:(NSDictionary *)fileDictionary {
+    NSLog(@"Creating Blob");
     NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:fileDictionary];
     NSMutableURLRequest *request;
     NSDictionary *ownerData = [fileDictionary objectForKey:@"owner"];
@@ -266,14 +271,17 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [jsonInformation setValue:[JSON objectForKey:@"sha"] forKey:@"new_blob"];
+        NSLog(@"Created Blob: %@", JSON);
         [self createTreeWithInfo:jsonInformation];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         _error = error;
+        NSLog(@"Error creating blob %@", error);
     }];
     [operation start];
 }
 
 - (void)createTreeWithInfo:(NSDictionary *)info {
+    NSLog(@"Creating tree");
     NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:info];
     NSMutableURLRequest *request;
     NSDictionary *ownerData = [info objectForKey:@"owner"];
@@ -292,14 +300,17 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [jsonInformation setValue:JSON forKey:@"new_tree"];
+        NSLog(@"Tree Created %@", JSON);
         [self createTreeWithInfo:jsonInformation];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         _error = error;
+        NSLog(@"Failed creating tree %@", error);
     }];
     [operation start];
 }
 
 - (void)createCommitWithInfo:(NSDictionary *)info {
+    NSLog(@"Creating Commit");
     NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:info];
     NSMutableURLRequest *request;
     NSDictionary *ownerData = [info objectForKey:@"owner"];
@@ -316,14 +327,17 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [jsonInformation setValue:JSON forKey:@"new_commit"];
+        NSLog(@"Commit created %@", JSON);
         [self updateReferenceWithInfo:jsonInformation];
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         _error = error;
+        NSLog(@"Error creating commit %@", error);
     }];
     [operation start];
 }
 
 - (void)updateReferenceWithInfo:(NSDictionary *)info {
+    NSLog(@"Updating reference");
     NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:info];
     NSMutableURLRequest *request;
     NSDictionary *ownerData = [info objectForKey:@"owner"];
@@ -345,9 +359,11 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [jsonInformation setValue:JSON forKey:@"updated_ref"];
+        NSLog(@"Reference Updated %@", JSON);
         _success = YES;
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         _error = error;
+        NSLog(@"Error updated ref %@", error);
         _success = NO;
     }];
     [operation start];
