@@ -32,6 +32,8 @@
 #define BUTTON_WIDTH  73
 #define BUTTON_HEIGHT 44
 
+#define PADDING 10
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -205,7 +207,7 @@
     [exploreCode setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [exploreCode addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [exploreCode setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
-    y += BUTTON_HEIGHT;
+    y += BUTTON_HEIGHT + PADDING;
     NSLog(@"%f", y);
     // check out commits button
     UIButton *checkCommits = [[UIButton alloc] init];
@@ -213,7 +215,7 @@
     [checkCommits setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [checkCommits addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [checkCommits setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
-    y += BUTTON_HEIGHT;
+    y += BUTTON_HEIGHT + PADDING;
     
     // create readme markdown view
     UIWebView *readmeView = [[UIWebView alloc] init];
@@ -296,6 +298,7 @@
     JSNotifier *notifier = [[JSNotifier alloc] initWithTitle:[NSString stringWithFormat:@"%@ing", [[sender titleLabel] text]]];
     // set accessory view
     [notifier setAccessoryView:activityIndicator];
+    [notifier show];
     // animate and show once i need to
     
     NSDictionary *owner = [[self repo] objectForKey:@"owner"];
