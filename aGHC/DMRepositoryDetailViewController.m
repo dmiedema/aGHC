@@ -403,9 +403,15 @@
             NSLog(@"JSON : %@", JSON);
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showTheCode:JSON];
+                [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+                [notifier setTitle:@"Loaded" animated:YES];
+                [notifier hideIn:2.0];
             });
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
             NSLog(@"Error : %@", error);
+            [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyX"]]];
+            [notifier setTitle:@"Error" animated:YES];
+            [notifier hideIn:2.0];
         }];
         [operation start];
     } else if ([[[sender titleLabel] text] isEqualToString:@"Check Commits"]) {
@@ -422,10 +428,16 @@
         AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showTheCommits:JSON];
+                [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyCheck"]]];
+                [notifier setTitle:@"Loaded" animated:YES];
+                [notifier hideIn:2.0];
             });
             NSLog(@"JSON : %@", JSON);
         } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
             NSLog(@"Error : %@", error);
+            [notifier setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NotifyX"]]];
+            [notifier setTitle:@"Error" animated:YES];
+            [notifier hideIn:2.0];
         }];
         [operation start];
     } else {
