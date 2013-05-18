@@ -28,6 +28,7 @@
 		C31B5F73171E7F63006199AD /* Box@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F6B171E7F63006199AD /* Box@2x.png */; };
 		C31B5F74171E7F63006199AD /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = C31B5F6C171E7F63006199AD /* lock.png */; };
 		C329908E1712165500176E3A /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C329908D1712165500176E3A /* Avenir.ttc */; };
+		C34A007F17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34A007E17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m */; };
 		C3690FD81718821900E2EBCA /* sL7cyZ5Oa7-2-1.png in Resources */ = {isa = PBXBuildFile; fileRef = C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */; };
 		C36F88B7173F0E3200458B6A /* SparkInspector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C36F88B6173F0E3200458B6A /* SparkInspector.framework */; };
 		C36F88C9174009AD00458B6A /* libReactiveCocoa-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C36F88C8174009AD00458B6A /* libReactiveCocoa-iOS.a */; };
@@ -113,6 +114,8 @@
 		C31B5F6B171E7F63006199AD /* Box@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Box@2x.png"; sourceTree = "<group>"; };
 		C31B5F6C171E7F63006199AD /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		C329908D1712165500176E3A /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
+		C34A007D17469D0D00828A92 /* DMRepositoryCommitsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryCommitsTableViewController.h; sourceTree = "<group>"; };
+		C34A007E17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryCommitsTableViewController.m; sourceTree = "<group>"; };
 		C3690FD71718821900E2EBCA /* sL7cyZ5Oa7-2-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sL7cyZ5Oa7-2-1.png"; sourceTree = "<group>"; };
 		C36F88B6173F0E3200458B6A /* SparkInspector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SparkInspector.framework; sourceTree = "<group>"; };
 		C36F88C8174009AD00458B6A /* libReactiveCocoa-iOS.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libReactiveCocoa-iOS.a"; path = "ReactiveCocoa/ReactiveCocoaFramework/build/Release-iphoneos/libReactiveCocoa-iOS.a"; sourceTree = "<group>"; };
@@ -236,6 +239,8 @@
 				C3C81DFC173871E700E53AD5 /* DMTextView.m */,
 				C3C81DFE1738722500E53AD5 /* DMRepositoryFileViewController.h */,
 				C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */,
+				C34A007D17469D0D00828A92 /* DMRepositoryCommitsTableViewController.h */,
+				C34A007E17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m */,
 			);
 			name = "Repository Detail View";
 			sourceTree = "<group>";
@@ -601,6 +606,7 @@
 				C3C81E001738722500E53AD5 /* DMRepositoryFileViewController.m in Sources */,
 				C3E8DF84173C7D7500604115 /* RNBlurModalView.m in Sources */,
 				C3E8DF8A173C8BD200604115 /* DMCommitMessageView.m in Sources */,
+				C34A007F17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
