@@ -8,6 +8,7 @@
 
 #import "DMRepositoryDetailViewController.h"
 #import "DMRepositoryDetailTableViewController.h"
+#import "DMRepositoryCommitsTableViewController.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import "MMMarkdown.h"
 #import "MF_Base64Additions.h"
@@ -206,6 +207,13 @@
     [exploreCode setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
     y += BUTTON_HEIGHT;
     NSLog(@"%f", y);
+    // check out commits button
+    UIButton *checkCommits = [[UIButton alloc] init];
+    [checkCommits setTitle:@"Check Commits" forState:UIControlStateNormal];
+    [checkCommits setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [checkCommits addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    [checkCommits setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
+    y += BUTTON_HEIGHT;
     
     // create readme markdown view
     UIWebView *readmeView = [[UIWebView alloc] init];
@@ -270,7 +278,7 @@
     [scrollView addSubview:watchersLabel];
     [scrollView addSubview:issuesLabel];
     [scrollView addSubview:exploreCode];
-//    [scrollView addSubview:dismissButton];
+    [scrollView addSubview:checkCommits];
     [scrollView addSubview:readmeView];
     
     // add the scroll view into the view
@@ -397,6 +405,26 @@
             NSLog(@"Error : %@", error);
         }];
         [operation start];
+    } else if ([[[sender titleLabel] text] isEqualToString:@"Check Commits"]) {
+        [notifier setTitle:@"Checking Commits"];
+        // GET /repos/:owner/:repo/commits
+        NSString *baseURL = [NSString stringWithFormat:@"%@repos/%@/%@/commits", kGitHubApiURL, ownername, reponame];
+        NSString *requestURL;
+        if (token && tokenType) 
+            requestURL = [NSString stringWithFormat:@"%@?%@=%@&%@=%@", baseURL, kAccessToken, token, kTokenType, tokenType];
+        else requestURL = baseURL;
+        
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestURL]];
+        
+        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showTheCommits:JSON];
+            });
+            NSLog(@"JSON : %@", JSON);
+        } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+            NSLog(@"Error : %@", error);
+        }];
+        [operation start];
     } else {
         NSLog(@"Unknown button pressed");
     }
@@ -410,6 +438,13 @@
     [tableView setReponame:[[self repo] objectForKey:@"name"]];
     [tableView setOwner:[[self repo] objectForKey:@"owner"]];
     [[self navigationController] pushViewController:tableView animated:YES];
+}
+
+- (void)showTheCommits:(NSArray *)commits {
+    DMRepositoryCommitsTableViewController *commitsTableView = [[DMRepositoryCommitsTableViewController alloc] init];
+    [commitsTableView setTitle:@"Commits"];
+    [commitsTableView setCommits:commits];
+    [[self navigationController] pushViewController:commitsTableView animated:YES];
 }
 
 @end
