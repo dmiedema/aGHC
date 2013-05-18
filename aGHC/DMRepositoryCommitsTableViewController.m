@@ -86,6 +86,7 @@
     
     // setup committer label
     [committerLabel setAlpha:0.7];
+    [committerLabel setTextColor:[UIColor darkGrayColor]];
     [committerLabel setFont:font];
     [committerLabel setText:committer];
     [committerLabel setBackgroundColor:[UIColor clearColor]];
@@ -104,6 +105,7 @@
     y += messageSize.height + PADDING * 2;
     // setup date label
     [dateLabel setAlpha:0.7];
+    [dateLabel setTextColor:[UIColor darkGrayColor]];
     [dateLabel setFont:font];
     [dateLabel setText:dateString];
     [dateLabel setBackgroundColor:[UIColor clearColor]];
