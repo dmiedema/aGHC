@@ -155,24 +155,35 @@
     // set up forks button
     UIButton *forksButton = [[UIButton alloc] init];
     [forksButton setTitle:@"Fork" forState:UIControlStateNormal];
-    [forksButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [forksButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [forksButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-    // [forksButton setBackgroundImage:[UIColor grayColor] forState:UIControlStateHighlighted];
+    [forksButton setImage:[UIImage imageNamed:@"ForkButtonNormal"] forState:UIControlStateNormal];
+    [forksButton setImage:[UIImage imageNamed:@"ForkButtonHighlighted"] forState:UIControlStateHighlighted];
+//    [forksButton setImage:[UIImage imageNamed:@"SmallButtonNormal"] forState:UIControlStateNormal];
+//    [forksButton setImage:[UIImage imageNamed:@"SmallButtonHighlighted"] forState:UIControlStateHighlighted];
+    [forksButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [forksButton setFrame:CGRectMake(x+10, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     // Set up watch button
     UIButton *watchButton = [[UIButton alloc] init];
     [watchButton setTitle:@"Watch" forState:UIControlStateNormal];
     [watchButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [watchButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [watchButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [watchButton setImage:[UIImage imageNamed:@"WatchButtonNormal"] forState:UIControlStateNormal];
+    [watchButton setImage:[UIImage imageNamed:@"WatchButtonHighlighted"] forState:UIControlStateHighlighted];
+//    [watchButton setImage: [UIImage imageNamed:@"SmallButtonNormal"] forState:UIControlStateNormal];
+//    [watchButton setImage:[UIImage imageNamed:@"SmallButtonHighlighted"] forState:UIControlStateHighlighted];
+    [watchButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [watchButton setFrame:CGRectMake((x+(10*3)) + BUTTON_WIDTH, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     // set up star button
     UIButton *starButton = [[UIButton alloc] init];
     [starButton setTitle:@"Star" forState:UIControlStateNormal];
     [starButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [starButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [starButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+    [starButton setImage:[UIImage imageNamed:@"StarButtonNormal"] forState:UIControlStateNormal];
+    [starButton setImage:[UIImage imageNamed:@"StarButtonHighlighted"] forState:UIControlStateHighlighted];
+//    [starButton setImage:[UIImage imageNamed:@"SmallButtonNormal"] forState:UIControlStateNormal];
+//    [starButton setImage:[UIImage imageNamed:@"SmallButtonHighlighted"] forState:UIControlStateHighlighted];
+    [starButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [starButton setFrame:CGRectMake((x+(10*5)) + (BUTTON_WIDTH * 2), y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     //
     y += BUTTON_HEIGHT;
@@ -204,7 +215,9 @@
     // explore code button
     UIButton *exploreCode = [[UIButton alloc] init];
     [exploreCode setTitle:@"Explore Code" forState:UIControlStateNormal];
-    [exploreCode setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [exploreCode setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+    [exploreCode setImage:[UIImage imageNamed:@"ExploreCodeNormal"] forState:UIControlStateNormal];
+    [exploreCode setImage:[UIImage imageNamed:@"ExploreCodeHighlighted"] forState:UIControlStateHighlighted];
     [exploreCode addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [exploreCode setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
     y += BUTTON_HEIGHT + PADDING;
@@ -212,7 +225,9 @@
     // check out commits button
     UIButton *checkCommits = [[UIButton alloc] init];
     [checkCommits setTitle:@"Check Commits" forState:UIControlStateNormal];
-    [checkCommits setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [checkCommits setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
+    [checkCommits setImage:[UIImage imageNamed:@"CheckCommitsNormal"] forState:UIControlStateNormal];
+    [checkCommits setImage:[UIImage imageNamed:@"CheckCommitsHighlighted"] forState:UIControlStateHighlighted];
     [checkCommits addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [checkCommits setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
     y += BUTTON_HEIGHT + PADDING;

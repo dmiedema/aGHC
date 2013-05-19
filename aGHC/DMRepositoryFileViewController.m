@@ -49,7 +49,8 @@
      NSLog(@"File Contents %@", _fileDictionary);
      
 	// Do any additional setup after loading the view.
-    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(userIsDoneEditing:)]];
+    
+    
     _textView = [[UITextView alloc] init];
     [_textView setText:[self initialText]];
     [_textView setBackgroundColor:[UIColor grayColor]];
@@ -66,9 +67,18 @@
 //    [[self view] addSubview:_dismisskeyboard];
 //    [_dismisskeyboard setHidden:![self keyboardVisible]];
 //    [[self view] addSubview:[self textView]];
+//    
+    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(userIsDoneEditing:)]];
+//    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"DoneButton"] style:UIBarButtonItemStylePlain target:self action:@selector(userIsDoneEditing:)];
     
     UIBarButtonItem *hideKeyboard = [[UIBarButtonItem alloc] initWithTitle:@"toggle keyboard" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleKeyboard)];
+                                     
+                                     //initWithImage:[UIImage imageNamed:@"keyboardToggle"] style:UIBarButtonItemStylePlain target:self action:@selector(toggleKeyboard)];
+    
+     // initWithTitle:@"toggle keyboard" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleKeyboard)];
+    
     NSMutableArray *rightItems = [NSMutableArray arrayWithArray:[[self navigationItem] rightBarButtonItems]];
+//    [rightItems addObject:doneButton];
     [rightItems addObject:hideKeyboard];
     self.navigationItem.rightBarButtonItems = rightItems;
     
