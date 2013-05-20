@@ -135,7 +135,6 @@
 		C3C81E001738722500E53AD5 /* DMRepositoryFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3C81DFF1738722500E53AD5 /* DMRepositoryFileViewController.m */; };
 		C3C81E09173A3DFD00E53AD5 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3C81E08173A3DFD00E53AD5 /* fontawesome-webfont.ttf */; };
 		C3DAEC2F16EC06BE00C51F73 /* DMRepositoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */; };
-		C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */; };
 		C3E8DF84173C7D7500604115 /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E8DF83173C7D7500604115 /* RNBlurModalView.m */; };
 		C3E8DF87173C7DA600604115 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E8DF86173C7DA600604115 /* Accelerate.framework */; };
 		C3E8DF8A173C8BD200604115 /* DMCommitMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E8DF89173C8BD200604115 /* DMCommitMessageView.m */; };
@@ -302,7 +301,6 @@
 		C3C81E08173A3DFD00E53AD5 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryTableViewCell.h; sourceTree = "<group>"; };
 		C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryTableViewCell.m; sourceTree = "<group>"; };
-		C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryTableViewCell.xib; sourceTree = "<group>"; };
 		C3E8DF82173C7D7500604115 /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
 		C3E8DF83173C7D7500604115 /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
 		C3E8DF86173C7DA600604115 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
@@ -632,7 +630,6 @@
 				C30FB3C817121D64002D6C69 /* DMCustomLabel.m */,
 				C3DAEC2C16EC06BE00C51F73 /* DMRepositoryTableViewCell.h */,
 				C3DAEC2D16EC06BE00C51F73 /* DMRepositoryTableViewCell.m */,
-				C3DAEC2E16EC06BE00C51F73 /* RepositoryTableViewCell.xib */,
 				C3767CA3171696FF00BC593B /* HomeScreenView.xib */,
 				C302357917226B3B00842687 /* RepositoryDetailView.xib */,
 				C3E8DF88173C8BD200604115 /* DMCommitMessageView.h */,
@@ -709,7 +706,6 @@
 				C39840F216EA9AD100B2ADB1 /* Default@2x.png in Resources */,
 				C39840F416EA9AD100B2ADB1 /* Default-568h@2x.png in Resources */,
 				C39840F716EA9AD100B2ADB1 /* MainStoryboard_iPhone.storyboard in Resources */,
-				C3DAEC3016EC06BE00C51F73 /* RepositoryTableViewCell.xib in Resources */,
 				C329908E1712165500176E3A /* Avenir.ttc in Resources */,
 				C3767C9F17168EEA00BC593B /* InitialStoryboard_iPhone.storyboard in Resources */,
 				C3767CA4171696FF00BC593B /* HomeScreenView.xib in Resources */,
