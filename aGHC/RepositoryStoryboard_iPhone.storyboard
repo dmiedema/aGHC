@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Repository View Controller - Respoistories-->
+        <!--Repository View Controller - Respositories-->
         <scene sceneID="cbh-XB-yEV">
             <objects>
                 <tableViewController id="1N6-0G-rNm" customClass="DMRepositoryViewController" sceneMemberID="viewController">
@@ -24,7 +24,7 @@
                             </tableViewCell>
                         </prototypes>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Respoistories" id="fkJ-dr-adJ">
+                    <navigationItem key="navigationItem" title="Respositories" id="fkJ-dr-adJ">
                         <barButtonItem key="backBarButtonItem" title="Repositories" width="44" id="OU6-1j-arg"/>
                     </navigationItem>
                 </tableViewController>
