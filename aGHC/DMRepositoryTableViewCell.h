@@ -1,20 +1,15 @@
 //
 //  DMRepositoryTableViewCell.h
-//  JSONTesting
+//  aGHC
 //
-//  Created by Daniel Miedema on 2/18/13.
+//  Created by Daniel Miedema on 5/20/13.
 //  Copyright (c) 2013 Daniel Miedema. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface DMRepositoryTableViewCell : UITableViewCell
+@interface DMRepositoryTableViewCell : NSObject
 
-@property (nonatomic, weak) IBOutlet UILabel *repositoryName;
-@property (nonatomic, weak) IBOutlet UILabel *repositoryDetailInfo;
-
-@property (nonatomic, weak) IBOutlet UIImageView *typeImage;
-@property (nonatomic, weak) IBOutlet UIImageView *privateRepo;
-
+- (UIView *)createTableViewCellWithDictionary: (NSDictionary *)currentRepo;
 
 @end
