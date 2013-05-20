@@ -10,6 +10,8 @@
 #import "DMRepositoryTableViewCell.h"
 #import "JSNotifier.h"
 #import "DMRepositoryDetailViewController.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 @interface DMSearchResultsTableViewController ()
 
@@ -37,14 +39,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMe:)];
+//    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMe:)];
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+
+    UIBarButtonItem *homeButton = [UIBarButtonItem new];
+    [homeButton setImage:[factory createImageForIcon:NIKFontAwesomeIconHome]];
+    [homeButton setAction:@selector(dismissMe:)];
+    [homeButton setTarget:self];
+    [homeButton setEnabled:YES];
+    [homeButton setStyle:UIBarButtonItemStyleBordered];
+    
     self.navigationItem.leftBarButtonItem = homeButton;
     
     [[self tableView] registerNib:[UINib nibWithNibName:@"RepositoryTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Repository Cell"];
@@ -149,18 +161,21 @@
     return 64.0f;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory buttonIconFactory];
     // create view to hold it all
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 64)];
     // Create search box
-    self.searchTextBox = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, 199, 30)];
+    self.searchTextBox = [[UITextField alloc] initWithFrame:CGRectMake(20, 20, 192, 30)];
     [[self searchTextBox] setPlaceholder:@"Search..."];
     [[self searchTextBox] setReturnKeyType:UIReturnKeyGo];
     [[self searchTextBox] setAutocorrectionType:UITextAutocorrectionTypeNo];
     // create button to run search
-    UIButton *runSearchButton = [[UIButton alloc] initWithFrame:CGRectMake(224, 13, 73, 44)];
+    UIButton *runSearchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [runSearchButton setFrame:CGRectMake(224, 13, 88, 44)];
     [runSearchButton setTitle:@"Search" forState:UIControlStateNormal];
-    [runSearchButton setTitle:@"GO!" forState:UIControlStateHighlighted];
-    [runSearchButton setBackgroundColor:[UIColor grayColor]];
+    [runSearchButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [runSearchButton setImage:[factory createImageForIcon:NIKFontAwesomeIconSearch] forState:UIControlStateNormal];
+//    [runSearchButton setBackgroundColor:[UIColor grayColor]];
     [runSearchButton addTarget:self action:@selector(runSearch:) forControlEvents:UIControlEventAllTouchEvents];
     // add textbox and button to view
     [view addSubview:[self searchTextBox]];

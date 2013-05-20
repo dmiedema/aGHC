@@ -29,9 +29,9 @@
                             <navigationBar contentMode="scaleToFill" barStyle="blackOpaque" translatesAutoresizingMaskIntoConstraints="NO" id="cVl-bE-zsL">
                                 <items>
                                     <navigationItem id="m3C-xU-ehd">
-                                        <barButtonItem key="leftBarButtonItem" title="Settings" id="RzO-ln-8K7">
+                                        <barButtonItem key="leftBarButtonItem" title=" " id="aUb-al-du7">
                                             <connections>
-                                                <action selector="revealSettings:" destination="yEm-vk-eUl" id="M5S-tH-5vA"/>
+                                                <action selector="revealSettings:" destination="yEm-vk-eUl" id="zjK-v4-IWv"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -57,6 +57,9 @@
                     </view>
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="navbar" destination="m3C-xU-ehd" id="YUZ-uQ-l4L"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j5Q-Li-t5S" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -121,30 +124,6 @@
             <point key="canvasLocation" x="526" y="825"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="DMHomeScreenTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMHomeScreenTableViewController.h"/>
-        </class>
-        <class className="DMHomeScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMHomeScreenViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="dismissSettings:"/>
-                <relationship kind="action" name="revealSettings:"/>
-            </relationships>
-        </class>
-        <class className="DMInitialViewController" superclassName="ECSlidingViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMInitialViewController.h"/>
-        </class>
-        <class className="DMSettingsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DMSettingsTableViewController.h"/>
-        </class>
-        <class className="ECSlidingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ECSlidingViewController.h"/>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -10,6 +10,8 @@
 #import "DMRepositoryTableViewCell.h"
 #import "JSNotifier.h"
 #import "DMRepositoryDetailViewController.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 @interface DMExploreTableViewController ()
 
@@ -34,8 +36,16 @@
 {
     [super viewDidLoad];
     
-    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMe:)];
-    self.navigationItem.leftBarButtonItem = homeButton;
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    
+    UIBarButtonItem *homeButton = [UIBarButtonItem new];
+    [homeButton setImage:[factory createImageForIcon:NIKFontAwesomeIconHome]];
+    [homeButton setAction:@selector(dismissMe:)];
+    [homeButton setTarget:self];
+    [homeButton setEnabled:YES];
+    [homeButton setStyle:UIBarButtonItemStyleBordered];
+    
+    [[self navigationItem] setLeftBarButtonItem:homeButton];
     
     [[self tableView] registerNib:[UINib nibWithNibName:@"RepositoryTableViewCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:@"Repository Cell"];
     

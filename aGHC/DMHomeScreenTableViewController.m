@@ -7,6 +7,8 @@
 //
 
 #import "DMHomeScreenTableViewController.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 @interface DMHomeScreenTableViewController ()
 #define HOME_SCREEN_OPTIONS @[@"Notifications", @"Repositories", @"Explore", @"Gists", @"News Feed", @"Search"]
@@ -32,6 +34,16 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    UIBarButtonItem *leftItem = [UIBarButtonItem new];
+    leftItem.image = [factory createImageForIcon:NIKFontAwesomeIconCog];
+    leftItem.action = @selector(revealSettings:);
+    leftItem.target = self;
+    leftItem.enabled = YES;
+    leftItem.style = UIBarButtonItemStyleBordered;
+    
+    [[self navigationItem] setLeftBarButtonItem:leftItem];
+    
 }
 
 - (void)didReceiveMemoryWarning

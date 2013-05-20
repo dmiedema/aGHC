@@ -33,6 +33,7 @@
     storyboard = [UIStoryboard storyboardWithName:@"InitialStoryboard_iPhone" bundle:[NSBundle mainBundle]];
     
     [self setTopViewController:[storyboard instantiateViewControllerWithIdentifier:@"Home Screen"]];
+    
 }
 
 - (void)didReceiveMemoryWarning

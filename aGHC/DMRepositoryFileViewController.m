@@ -10,6 +10,9 @@
 #import "RNBlurModalView.h"
 #import "DMCommitMessageView.h"
 #import "DerpKit.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
+
 
 @interface DMRepositoryFileViewController () <UITextViewDelegate, UIAlertViewDelegate>
 
@@ -38,6 +41,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // Font awesome
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    
     // set up NSNotificationCenter Listening
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postCommit:) name:kCommitMessagePostedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kickoff:) name:@"PostCommit" object:nil];
@@ -67,18 +73,36 @@
 //    [[self view] addSubview:_dismisskeyboard];
 //    [_dismisskeyboard setHidden:![self keyboardVisible]];
 //    [[self view] addSubview:[self textView]];
-//    
-    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(userIsDoneEditing:)]];
-//    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"DoneButton"] style:UIBarButtonItemStylePlain target:self action:@selector(userIsDoneEditing:)];
+//
     
-    UIBarButtonItem *hideKeyboard = [[UIBarButtonItem alloc] initWithTitle:@"toggle keyboard" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleKeyboard)];
-                                     
+    // get right bar button array
+    NSMutableArray *rightItems = [NSMutableArray arrayWithArray:[[self navigationItem] rightBarButtonItems]];
+    
+//    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(userIsDoneEditing:)]];
+//    Create done button
+    UIBarButtonItem *doneButton = [UIBarButtonItem new];
+    [doneButton setImage:[factory createImageForIcon:NIKFontAwesomeIconCheck]];
+    [doneButton setAction:@selector(userIsDoneEditing:)];
+    [doneButton setTarget:self];
+    [doneButton setEnabled:YES];
+    [doneButton setStyle:UIBarButtonItemStyleDone];
+    
+    UIBarButtonItem *hideKeyboard = [UIBarButtonItem new];
+    [hideKeyboard setImage:[factory createImageForIcon:NIKFontAwesomeIconKeyboard]];
+    [hideKeyboard setAction:@selector(toggleKeyboard)];
+    [hideKeyboard setTarget:self];
+    [hideKeyboard setEnabled:YES];
+    [hideKeyboard setStyle:UIBarButtonItemStyleBordered];
+    
+//    [[UIBarButtonItem alloc] initWithTitle:@"toggle keyboard" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleKeyboard)];
+    
                                      //initWithImage:[UIImage imageNamed:@"keyboardToggle"] style:UIBarButtonItemStylePlain target:self action:@selector(toggleKeyboard)];
     
      // initWithTitle:@"toggle keyboard" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleKeyboard)];
     
-    NSMutableArray *rightItems = [NSMutableArray arrayWithArray:[[self navigationItem] rightBarButtonItems]];
+    
 //    [rightItems addObject:doneButton];
+    [rightItems addObject:doneButton];
     [rightItems addObject:hideKeyboard];
     self.navigationItem.rightBarButtonItems = rightItems;
     

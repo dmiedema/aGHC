@@ -9,8 +9,12 @@
 #import "DMHomeScreenViewController.h"
 #import "ECSlidingViewController.h"
 #import "DMSettingsTableViewController.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 @interface DMHomeScreenViewController ()
+
+@property (nonatomic, strong) IBOutlet UINavigationItem *navbar;
 
 @end
 
@@ -51,6 +55,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    [[_navbar leftBarButtonItem] setImage:[factory createImageForIcon:NIKFontAwesomeIconCog]];
+    [[_navbar leftBarButtonItem] setTitle:@""];
+//    UIBarButtonItem *leftItem = [UIBarButtonItem new];
+//    leftItem.image = [factory createImageForIcon:NIKFontAwesomeIconCog];
+//    leftItem.action = @selector(revealSettings:);
+//    leftItem.target = self;
+//    leftItem.enabled = YES;
+//    leftItem.style = UIBarButtonItemStyleBordered;
+//    [[self navigationItem] setLeftBarButtonItem:leftItem];
+
+    NSLog(@"viewDidLoad HomeScreenVieController");
 	// Do any additional setup after loading the view.
 }
 

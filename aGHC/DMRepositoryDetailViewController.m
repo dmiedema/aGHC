@@ -14,6 +14,9 @@
 #import "MF_Base64Additions.h"
 #import "JSNotifier.h"
 #import "DTCoreText.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
+
 
 @interface DMRepositoryDetailViewController ()
 @property (nonatomic, strong) NSString *rawHTML;
@@ -88,6 +91,9 @@
 }
 
 - (void)setLabelInformation {
+    // create icon factory
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory buttonIconFactory];
+
     NSLog(@"\n\nInformation to load: %@", [self repo]);
     NSDictionary *owner = [[self repo] objectForKey:@"owner"];
     // Custom initialization
@@ -153,39 +159,34 @@
     y += LABEL_HEIGHT;
     NSLog(@"%f", y);
     // set up forks button
-    UIButton *forksButton = [[UIButton alloc] init];
+    UIButton *forksButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [forksButton setTitle:@"Fork" forState:UIControlStateNormal];
     [forksButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [forksButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-    [forksButton setImage:[UIImage imageNamed:@"ForkButtonNormal"] forState:UIControlStateNormal];
-    [forksButton setImage:[UIImage imageNamed:@"ForkButtonHighlighted"] forState:UIControlStateHighlighted];
-//    [forksButton setImage:[UIImage imageNamed:@"SmallButtonNormal"] forState:UIControlStateNormal];
-//    [forksButton setImage:[UIImage imageNamed:@"SmallButtonHighlighted"] forState:UIControlStateHighlighted];
+    [forksButton setImage:[factory createImageForIcon:NIKFontAwesomeIconCodeFork] forState:UIControlStateNormal];
     [forksButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [forksButton setFrame:CGRectMake(x+10, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
     // Set up watch button
-    UIButton *watchButton = [[UIButton alloc] init];
+    UIButton *watchButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [watchButton setTitle:@"Watch" forState:UIControlStateNormal];
     [watchButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [watchButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-    [watchButton setImage:[UIImage imageNamed:@"WatchButtonNormal"] forState:UIControlStateNormal];
-    [watchButton setImage:[UIImage imageNamed:@"WatchButtonHighlighted"] forState:UIControlStateHighlighted];
-//    [watchButton setImage: [UIImage imageNamed:@"SmallButtonNormal"] forState:UIControlStateNormal];
-//    [watchButton setImage:[UIImage imageNamed:@"SmallButtonHighlighted"] forState:UIControlStateHighlighted];
+    [watchButton setImage:[factory createImageForIcon:NIKFontAwesomeIconEyeOpen] forState:UIControlStateNormal];
     [watchButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [watchButton setFrame:CGRectMake((x+(10*3)) + BUTTON_WIDTH, y, BUTTON_WIDTH, BUTTON_HEIGHT)];
+    [watchButton setFrame:CGRectMake((x+(10*2.5)) + BUTTON_WIDTH, y, BUTTON_WIDTH+10, BUTTON_HEIGHT)];
     // set up star button
-    UIButton *starButton = [[UIButton alloc] init];
+    UIButton *starButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [starButton setTitle:@"Star" forState:UIControlStateNormal];
     [starButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-    [starButton setTitleShadowColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-    [starButton setImage:[UIImage imageNamed:@"StarButtonNormal"] forState:UIControlStateNormal];
-    [starButton setImage:[UIImage imageNamed:@"StarButtonHighlighted"] forState:UIControlStateHighlighted];
-//    [starButton setImage:[UIImage imageNamed:@"SmallButtonNormal"] forState:UIControlStateNormal];
-//    [starButton setImage:[UIImage imageNamed:@"SmallButtonHighlighted"] forState:UIControlStateHighlighted];
+    [starButton setImage:[factory createImageForIcon:NIKFontAwesomeIconStar] forState:UIControlStateNormal];
     [starButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [starButton setFrame:CGRectMake((x+(10*5)) + (BUTTON_WIDTH * 2), y, BUTTON_WIDTH, BUTTON_HEIGHT)];
-    //
+/*
+     Incase I want it again, image setting code
+     [starButton setImage:[UIImage imageNamed:@"StarButtonNormal"] forState:UIControlStateNormal];
+     [starButton setImage:[UIImage imageNamed:@"StarButtonHighlighted"] forState:UIControlStateHighlighted];
+     //    [starButton setImage:[UIImage imageNamed:@"SmallButtonNormal"] forState:UIControlStateNormal];
+     //    [starButton setImage:[UIImage imageNamed:@"SmallButtonHighlighted"] forState:UIControlStateHighlighted];
+*/
+    // increase y, again.
     y += BUTTON_HEIGHT;
     NSLog(@"%f", y);
     // set up labels below buttons
@@ -213,21 +214,23 @@
     y += LABEL_HEIGHT;
     NSLog(@"%f", y);
     // explore code button
-    UIButton *exploreCode = [[UIButton alloc] init];
+    UIButton *exploreCode = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [exploreCode setTitle:@"Explore Code" forState:UIControlStateNormal];
-    [exploreCode setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
-    [exploreCode setImage:[UIImage imageNamed:@"ExploreCodeNormal"] forState:UIControlStateNormal];
-    [exploreCode setImage:[UIImage imageNamed:@"ExploreCodeHighlighted"] forState:UIControlStateHighlighted];
+    [exploreCode setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [exploreCode setImage:[factory createImageForIcon:NIKFontAwesomeIconCode] forState:UIControlStateNormal];
+//    [exploreCode setImage:[UIImage imageNamed:@"ExploreCodeNormal"] forState:UIControlStateNormal];
+//    [exploreCode setImage:[UIImage imageNamed:@"ExploreCodeHighlighted"] forState:UIControlStateHighlighted];
     [exploreCode addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [exploreCode setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
     y += BUTTON_HEIGHT + PADDING;
     NSLog(@"%f", y);
     // check out commits button
-    UIButton *checkCommits = [[UIButton alloc] init];
+    UIButton *checkCommits = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [checkCommits setTitle:@"Check Commits" forState:UIControlStateNormal];
-    [checkCommits setTitleColor:[UIColor clearColor] forState:UIControlStateNormal];
-    [checkCommits setImage:[UIImage imageNamed:@"CheckCommitsNormal"] forState:UIControlStateNormal];
-    [checkCommits setImage:[UIImage imageNamed:@"CheckCommitsHighlighted"] forState:UIControlStateHighlighted];
+    [checkCommits setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [checkCommits setImage:[factory createImageForIcon:NIKFontAwesomeIconComment] forState:UIControlStateNormal];
+//    [checkCommits setImage:[UIImage imageNamed:@"CheckCommitsNormal"] forState:UIControlStateNormal];
+//    [checkCommits setImage:[UIImage imageNamed:@"CheckCommitsHighlighted"] forState:UIControlStateHighlighted];
     [checkCommits addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [checkCommits setFrame:CGRectMake(x, y, LABEL_WIDTH, BUTTON_HEIGHT)];
     y += BUTTON_HEIGHT + PADDING;

@@ -12,6 +12,8 @@
 #import "JSNotifier.h"
 
 #import "DMRepositoryDetailViewController.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
 
 //static NSString *const kResourceContentTypeDefault = @"application/json";
 
@@ -45,8 +47,16 @@ int selectedIndex;
 {
     [super viewDidLoad];
 //    [[self navigationController] setTitle:@"Repositories"];
-    UIBarButtonItem *homeButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:self action:@selector(dismissMe:)];
-    self.navigationItem.leftBarButtonItem = homeButton;
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+    
+    UIBarButtonItem *homeButton = [UIBarButtonItem new];
+    [homeButton setImage:[factory createImageForIcon:NIKFontAwesomeIconHome]];
+    [homeButton setAction:@selector(dismissMe:)];
+    [homeButton setTarget:self];
+    [homeButton setEnabled:YES];
+    [homeButton setStyle:UIBarButtonItemStyleBordered];
+    
+    [[self navigationItem] setLeftBarButtonItem:homeButton];
     
     [self setUsername:[[NSUserDefaults standardUserDefaults] stringForKey:kUsername]];
     [self setAccess_token:[[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken]];
