@@ -78,7 +78,7 @@
     // Configure the cell...
     UILabel *label = [[UILabel alloc] init];
     
-    [label setFont:[UIFont fontWithName:@"Avenir" size:24.0]];
+    [label setFont:[UIFont fontWithName:kFontName size:24.0]];
     [label setText:[NSString stringWithFormat:@"%@", [HOME_SCREEN_OPTIONS objectAtIndex:[indexPath row]]]];
     
     [label setFrame:CGRectMake(HOME_LABEL_CELL_FRAME_X, HOME_LABEL_CELL_FRAME_Y, HOME_LABEL_CELL_WIDTH, HOME_LABEL_CELL_HEIGHT)];

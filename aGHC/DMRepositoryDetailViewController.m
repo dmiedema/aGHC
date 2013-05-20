@@ -101,7 +101,7 @@
     float x = 20.0;
     float y = 0.0;
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
-    UIFont *defaultFont = [UIFont fontWithName:@"Avenir" size:20.0];
+    UIFont *defaultFont = [UIFont fontWithName:kFontName size:20.0];
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, y, 320, 320)];
     [imageView setFrame:CGRectMake(0, y, 320, 320)];
@@ -121,7 +121,7 @@
     [[repositoryNameLabel layer] setShadowOffset:CGSizeZero];
     [[repositoryNameLabel layer] setMasksToBounds:NO];
     // set it up
-    [repositoryNameLabel setFont:[UIFont fontWithName:@"Avenir" size:32.0]];
+    [repositoryNameLabel setFont:[UIFont fontWithName:kFontName size:32.0]];
     [repositoryNameLabel setAdjustsFontSizeToFitWidth:YES];
     [repositoryNameLabel setMinimumScaleFactor:.1];
     [repositoryNameLabel setNumberOfLines:1];

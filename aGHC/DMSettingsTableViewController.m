@@ -90,7 +90,7 @@
     
     UILabel *label = [[UILabel alloc] init];
     
-    [label setFont:[UIFont fontWithName:@"Avenir" size:24.0]];
+    [label setFont:[UIFont fontWithName:kFontName size:24.0]];
     [label setText:[NSString stringWithFormat:@"%@", [SETTINGS_OPTIONS_ARRAY objectAtIndex:[indexPath row]]]];
     
     [label setFrame:CGRectMake(SETTINGS_LABEL_CELL_FRAME_X, SETTINGS_LABEL_CELL_FRAME_Y, SETTINGS_LABEL_CELL_WIDTH, SETTINGS_LABEL_CELL_HEIGHT)];
