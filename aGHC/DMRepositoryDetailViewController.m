@@ -130,6 +130,7 @@
     [repositoryNameLabel setBackgroundColor:[UIColor clearColor]];
     [repositoryNameLabel setTextColor:[UIColor whiteColor]];
     [repositoryNameLabel setFrame:CGRectMake((self.view.frame.size.width / 2)-45, 220, LABEL_WIDTH-75, LABEL_HEIGHT)];
+    NSLog(@"%f", y);
     
     // set up description label
     UILabel *descriptionLabel = [[UILabel alloc] init];
@@ -138,7 +139,8 @@
     [descriptionLabel setNumberOfLines:0];
     [descriptionLabel setBackgroundColor:[UIColor clearColor]];
     [descriptionLabel setTextColor:[UIColor darkGrayColor]];
-    NSString *descrption = ([[self repo] objectForKey:@"description"] != NULL) ? [[self repo] objectForKey:@"description"] : @"" ;
+    NSString *descrption = [[self repo] objectForKey:@"description"];
+    if ((NSNull *)descrption == [NSNull null]) descrption = @"";
     CGSize constraintSize = CGSizeMake(LABEL_WIDTH, MAXFLOAT);
     CGSize labelSize = [descrption sizeWithFont:defaultFont constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
     [descriptionLabel setFrame:CGRectMake(x, y, labelSize.width, labelSize.height)];

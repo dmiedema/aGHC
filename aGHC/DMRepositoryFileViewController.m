@@ -80,11 +80,14 @@
     
 //    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(userIsDoneEditing:)]];
 //    Create done button
+    
+    NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:kUsername];
+    
     UIBarButtonItem *doneButton = [UIBarButtonItem new];
     [doneButton setImage:[factory createImageForIcon:NIKFontAwesomeIconCheck]];
     [doneButton setAction:@selector(userIsDoneEditing:)];
     [doneButton setTarget:self];
-    [doneButton setEnabled:YES];
+    [doneButton setEnabled:([username isEqualToString:[[_fileDictionary objectForKey:@"owner"] objectForKey:@"login"]])];
     [doneButton setStyle:UIBarButtonItemStyleDone];
     
     UIBarButtonItem *hideKeyboard = [UIBarButtonItem new];
@@ -221,6 +224,9 @@
 //            [[self navigationController] popViewControllerAnimated:YES];
 //        }
     }
+}
+- (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
+    return ![[[alertView textFieldAtIndex:0] text] isEqualToString:@""];
 }
 
 - (void)kickoff:(NSNotification *)notification {
