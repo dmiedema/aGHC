@@ -7,7 +7,7 @@
 //
 
 #import "DMAppDelegate.h"
-#import "TestFlight.h"
+//#import "TestFlight.h"
 
 #if TESTING
 #import <SparkInspector/SparkInspector.h>
@@ -50,6 +50,8 @@
     NSString *accessToken = [[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken];
     if (accessToken) {
         NSLog(@"Account_Token: %@", [[NSUserDefaults standardUserDefaults] stringForKey:kAccessToken]);
+        NSLog(@"Token_Type: %@", [[NSUserDefaults standardUserDefaults] stringForKey:kTokenType]);
+        NSLog(@"Username: %@", [[NSUserDefaults standardUserDefaults] stringForKey:kUsername]);
     } else {
         NSLog(@"No Access Token Found, will need to log in");
     }
