@@ -24,6 +24,8 @@
 #define kTokenType    @"token_type"
 #define kUsername     @"username"
 
+#define kFontName    @"Avenir-Light"
+
 #define kCommitCancelledNotification @"aGHC-Commit-Cancelled-Notification"
 #define kCommitMessagePostedNotification @"aGHC-Commit-Posted-Notification"
 
