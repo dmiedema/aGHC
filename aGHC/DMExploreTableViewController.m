@@ -112,27 +112,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Repository Cell";
-    // custom cell, gotta love that custom cell
-    DMRepositoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    NSDictionary *currentRepo = [[self repositories] objectAtIndex:[indexPath row]];
-    cell.repositoryName.text = [currentRepo objectForKey:@"name"];
-    
-    
-    // repo private?
-    if ([[currentRepo objectForKey:@"private"] integerValue] == 1) {
-        [[cell privateRepo] setImage:[UIImage imageNamed:@"lock"]];
-    } else [[cell privateRepo] setImage:nil];
-    // repo fork?
-    if ([[currentRepo objectForKey:@"fork"] integerValue] == 1) {
-        [[cell typeImage] setImage:[UIImage imageNamed:@"boxWithFork"]];
-    } else [[cell typeImage] setImage:[UIImage imageNamed:@"Box"]];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    DMRepositoryTableViewCell *tableCellView = [[DMRepositoryTableViewCell alloc] init];
+    [cell addSubview:[tableCellView createTableViewCellWithDictionary:[_repositories objectAtIndex:[indexPath row]]]];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 64.0;
 }
 
 #pragma mark - Table view delegate

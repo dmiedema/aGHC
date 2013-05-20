@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) NSDictionary *fulldetails;
 
+@property (nonatomic, strong) NIKFontAwesomeIconFactory *factory;
+
 - (IBAction)dismissMe:(id)sender;
 - (IBAction)runSearch:(id)sender;
 
@@ -40,7 +42,7 @@
 {
     [super viewDidLoad];
     
-    
+        _factory = [NIKFontAwesomeIconFactory tabBarItemIconFactory];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -131,29 +133,12 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Repository Cell";
-    DMRepositoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
-    NSDictionary *currentRepo = [[self repositories] objectAtIndex:[indexPath row]];
-    cell.repositoryName.text = [currentRepo objectForKey:@"name"];
-    cell.repositoryDetailInfo.text = [NSString stringWithFormat:@"Forks: %@ - Issues: %@ - Watchers: %@",
-                                      [currentRepo objectForKey:@"forks"],
-                                      [currentRepo objectForKey:@"open_issues"],
-                                      [currentRepo objectForKey:@"watchers"]];
-    
-    
-    // repo private?
-//    if ([[currentRepo objectForKey:@"private"] integerValue] == 1) {
-//        [[cell privateRepo] setImage:[UIImage imageNamed:@"lock"]];
-//    } else [[cell privateRepo] setImage:nil];
-    // repo fork?
-//    if ([[currentRepo objectForKey:@"fork"] integerValue] == 1) {
-//        [[cell typeImage] setImage:[UIImage imageNamed:@"boxWithFork"]];
-//    } else [[cell typeImage] setImage:[UIImage imageNamed:@"Box"]];
-    
+{    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    DMRepositoryTableViewCell *tableCellView = [[DMRepositoryTableViewCell alloc] init];
+    [cell addSubview:[tableCellView createTableViewCellWithDictionary:[_repositories objectAtIndex:[indexPath row]]]];
     return cell;
+
 }
 
 
