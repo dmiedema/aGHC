@@ -12,6 +12,7 @@
 #import "DerpKit.h"
 #import "NIKFontAwesomeIconFactory.h"
 #import "NIKFontAwesomeIconFactory+iOS.h"
+#import "MBProgressHUD.h"
 
 
 @interface DMRepositoryFileViewController () <UITextViewDelegate, UIAlertViewDelegate>
@@ -206,6 +207,7 @@
 
 }
 
+#pragma mark UIAlertView Delegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSLog(@"Har har button pressed durr");
     NSLog(@"Button presssed %ld", (long)buttonIndex);
@@ -231,20 +233,18 @@
 
 - (void)kickoff:(NSNotification *)notification {
     NSLog(@"notification : %@", notification);
-    [self kickoffcommitcreation:_fileDictionary];
+    [self createCommitForFile:_fileDictionary];
 }
 
-- (void)kickoffcommitcreation:(NSDictionary *)fileDictionary {    
-    [self createCommitForFile:fileDictionary];
-}
 /*****/
-#pragma mark HolyCrap
+#pragma mark HolyCrap Commit Stuff
 - (void)createCommitForFile:(NSDictionary *)info {
     
     NSLog(@"\n\nInfo : \n%@\n\n", info);
     
 //    [self getAllCommitsForRepo:info];
-    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [hud setLabelText:@"Committing Changes..."];
     /* Get All Commits */
     NSMutableURLRequest *allCommitDataRequest = [[NSMutableURLRequest alloc] init];
     NSDictionary *ownerData = [info objectForKey:@"owner"];
@@ -386,173 +386,9 @@
     
     NSDictionary *updateRefJSON = [NSJSONSerialization JSONObjectWithData:updateRefData options:NSJSONReadingAllowFragments error:&updateRefErr];
     NSLog(@"Update Ref JSON : %@", updateRefJSON);
+    [hud setLabelText:@"Commit Complete"];
+    [hud hide:YES afterDelay:1.0];
 }
-
-
-- (void)getAllCommitsForRepo:(NSDictionary *)repo {
-    NSLog(@"Getting Commits");
-    NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:repo];
-    NSMutableURLRequest *request;
-    NSDictionary *ownerData = [repo objectForKey:@"owner"];
-    NSString *urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/commits?%@",
-                            kGitHubApiURL, [ownerData objectForKey:@"login"], [repo objectForKey:@"repoName"], _httpHeaderTokenString];
-    
-    [request setURL:[NSURL URLWithString:urlRequest]];
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        [jsonInformation setValue:[JSON objectAtIndex:0] forKey:@"latest_commit"];
-        NSLog(@"Commits recieved %@", JSON);
-        [self createBlobForFile:jsonInformation];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        _error = error;
-        NSLog(@"Recieve commits failed %@", error);
-    }];
-    [operation start];
-    NSLog(@"Starting Operation");
-}
-
-- (void)createBlobForFile:(NSDictionary *)fileDictionary {
-    NSLog(@"Creating Blob");
-    NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:fileDictionary];
-    NSMutableURLRequest *request;
-    NSDictionary *ownerData = [fileDictionary objectForKey:@"owner"];
-    NSString *urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/blobs?%@",
-                            kGitHubApiURL, [ownerData objectForKey:@"login"], [fileDictionary objectForKey:@"repoName"], _httpHeaderTokenString];
-    
-    NSMutableDictionary *postInformation;
-    [postInformation setValue:[fileDictionary objectForKey:@"newfilecontent"] forKey:@"content"];
-    [postInformation setValue:@"utf-8" forKey:@"encoding"];
-    
-    [request setURL:[NSURL URLWithString:urlRequest]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[NSJSONSerialization JSONObjectWithData:[NSDictionary dictionaryWithDictionary:postInformation] options:0 error:nil]];
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        [jsonInformation setValue:[JSON objectForKey:@"sha"] forKey:@"new_blob"];
-        NSLog(@"Created Blob: %@", JSON);
-        [self createTreeWithInfo:jsonInformation];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        _error = error;
-        NSLog(@"Error creating blob %@", error);
-    }];
-    [operation start];
-}
-
-- (void)createTreeWithInfo:(NSDictionary *)info {
-    NSLog(@"Creating tree");
-    NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:info];
-    NSMutableURLRequest *request;
-    NSDictionary *ownerData = [info objectForKey:@"owner"];
-    NSString *urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/trees?%@",
-                            kGitHubApiURL, [ownerData objectForKey:@"login"], [info objectForKey:@"repoName"], _httpHeaderTokenString];
-    // because look at that selection, fuck that. Get it as a string.
-    NSString *treeSHAForLatestCommit = [[[info objectForKey:@"lastest_commit"] objectForKey:@"tree"] objectForKey:@"sha"];
-    
-    NSMutableDictionary *postInformation;
-    [postInformation setValue:treeSHAForLatestCommit forKey:@"base_tree"];
-    [postInformation setValue:[NSDictionary dictionaryWithObjectsAndKeys:[info objectForKey:@"path"], @"path", @"100644", @"mode",@"blob", @"type", [info objectForKey:@"new_blob"], @"blob", nil] forKey:@"tree"];
-    
-    [request setURL:[NSURL URLWithString:urlRequest]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[NSJSONSerialization JSONObjectWithData:[NSDictionary dictionaryWithDictionary:postInformation] options:0 error:nil]];
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        [jsonInformation setValue:JSON forKey:@"new_tree"];
-        NSLog(@"Tree Created %@", JSON);
-        [self createTreeWithInfo:jsonInformation];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        _error = error;
-        NSLog(@"Failed creating tree %@", error);
-    }];
-    [operation start];
-}
-
-- (void)createCommitWithInfo:(NSDictionary *)info {
-    NSLog(@"Creating Commit");
-    NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:info];
-    NSMutableURLRequest *request;
-    NSDictionary *ownerData = [info objectForKey:@"owner"];
-    NSString *urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/commits?%@",
-                            kGitHubApiURL, [ownerData objectForKey:@"login"], [info objectForKey:@"repoName"], _httpHeaderTokenString];
-    NSMutableDictionary *postInformation;
-    [postInformation setValue:[info objectForKey:@"commit_message"] forKey:@"message"];
-    [postInformation setValue:[[info objectForKey:@"new_tree"] objectForKey:@"sha"] forKey:@"tree"];
-    [postInformation setValue:[NSArray arrayWithObjects:[[info objectForKey:@"last_commit"] objectForKey:@"sha"], nil] forKey:@"parents"];
-    
-    [request setURL:[NSURL URLWithString:urlRequest]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[NSJSONSerialization JSONObjectWithData:[NSDictionary dictionaryWithDictionary:postInformation] options:0 error:nil]];
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        [jsonInformation setValue:JSON forKey:@"new_commit"];
-        NSLog(@"Commit created %@", JSON);
-        [self updateReferenceWithInfo:jsonInformation];
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        _error = error;
-        NSLog(@"Error creating commit %@", error);
-    }];
-    [operation start];
-}
-
-- (void)updateReferenceWithInfo:(NSDictionary *)info {
-    NSLog(@"Updating reference");
-    NSMutableDictionary *jsonInformation = [NSMutableDictionary dictionaryWithDictionary:info];
-    NSMutableURLRequest *request;
-    NSDictionary *ownerData = [info objectForKey:@"owner"];
-    
-    NSString *fullurl = [info objectForKey:@"url"];
-    NSRange range = [fullurl rangeOfString:@"?ref=" options:NSBackwardsSearch];
-    NSString *branch = [fullurl substringFromIndex:range.location + 5]; // offset '?ref=' value and just get branch name
-    NSString *ref = [NSString stringWithFormat:@"/refs/heads/%@", branch];
-    
-    NSString *urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/%@?%@", kGitHubApiURL, [ownerData valueForKey:@"login"], [info valueForKey:@"repoName"], ref, _httpHeaderTokenString];
-    
-    NSMutableDictionary *postInformation;
-    [postInformation setValue:[[info objectForKey:@"new_commit"] valueForKey:@"sha"] forKey:@"sha"];
-    [postInformation setValue:@"false" forKey:@"force"];
-    
-    [request setURL:[NSURL URLWithString:urlRequest]];
-    [request setHTTPMethod:@"PATCH"];
-    [request setHTTPBody:[NSJSONSerialization JSONObjectWithData:[NSDictionary dictionaryWithDictionary:postInformation] options:0 error:nil]];
-    
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-        [jsonInformation setValue:JSON forKey:@"updated_ref"];
-        NSLog(@"Reference Updated %@", JSON);
-        _success = YES;
-    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-        _error = error;
-        NSLog(@"Error updated ref %@", error);
-        _success = NO;
-    }];
-    [operation start];
-    /* TODO : this.
-     // Update refs
-     //    PATCH /repos/:owner/:repo/git/refs/:ref
-     NSString *ref = @"refs/heads/master";
-     urlRequest = [NSString stringWithFormat:@"%@repos/%@/%@/git/%@?%@", kGitHubApiURL, owner, repo, ref, httpHeaderTokenString]; // master branch, for now.
-     
-     JSONObjectToPass = nil;
-     [JSONObjectToPass setValue:[createdCommit objectForKey:@"sha"] forKey:@"sha"];
-     [JSONObjectToPass setValue:@"false" forKey:@"force"];
-     
-     [request setURL:[NSURL URLWithString:urlRequest]];
-     [request setHTTPMethod:@"POST"];
-     [request setHTTPBody:[NSJSONSerialization JSONObjectWithData:[NSDictionary dictionaryWithDictionary:JSONObjectToPass] options:0 error:nil]];
-     
-     AFJSONRequestOperation *referenceUpdateOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
-     referenceUpdate = JSON;
-     NSLog(@"Reference successfully updated %@", JSON);
-     success = YES;
-     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
-     error = error;
-     NSLog(@"Reference update failed %@", JSON);
-     success = NO;
-     }];
-     
-     //    [referenceUpdateOperation addDependency:createCommitOperation];
-     [referenceUpdateOperation start];*/
-}
-
 
 /*****/
 @end
