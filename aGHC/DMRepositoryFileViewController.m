@@ -46,7 +46,6 @@
     NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
     
     // set up NSNotificationCenter Listening
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(postCommit:) name:kCommitMessagePostedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kickoff:) name:@"PostCommit" object:nil];
     
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken];
@@ -57,7 +56,6 @@
      
 	// Do any additional setup after loading the view.
     
-    
     _textView = [[UITextView alloc] init];
     [_textView setText:[self initialText]];
     [_textView setBackgroundColor:[UIColor grayColor]];
@@ -66,22 +64,9 @@
     [_textView setFrame:[[self view] bounds]];
     [self setView:_textView];
     
-//    _dismisskeyboard = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-54, self.view.frame.size.height-44, 44, 44)];
-//    [_dismisskeyboard setTitle:@"V" forState:UIControlStateNormal];
-//    [_dismisskeyboard addTarget:self action:@selector(dismissKeyboard) forControlEvents:UIControlEventTouchUpInside];
-//    [_dismisskeyboard setBackgroundColor:[UIColor colorWithRed:250 green:250 blue:250 alpha:0.7]];
-//    [_dismisskeyboard setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [[self view] addSubview:_dismisskeyboard];
-//    [_dismisskeyboard setHidden:![self keyboardVisible]];
-//    [[self view] addSubview:[self textView]];
-//
-    
     // get right bar button array
     NSMutableArray *rightItems = [NSMutableArray arrayWithArray:[[self navigationItem] rightBarButtonItems]];
-    
-//    [[self navigationItem] setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStyleBordered target:self action:@selector(userIsDoneEditing:)]];
-//    Create done button
-    
+
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:kUsername];
     
     UIBarButtonItem *doneButton = [UIBarButtonItem new];
@@ -98,30 +83,16 @@
     [hideKeyboard setEnabled:YES];
     [hideKeyboard setStyle:UIBarButtonItemStyleBordered];
     
-//    [[UIBarButtonItem alloc] initWithTitle:@"toggle keyboard" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleKeyboard)];
-    
-                                     //initWithImage:[UIImage imageNamed:@"keyboardToggle"] style:UIBarButtonItemStylePlain target:self action:@selector(toggleKeyboard)];
-    
-     // initWithTitle:@"toggle keyboard" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleKeyboard)];
-    
-    
-//    [rightItems addObject:doneButton];
     [rightItems addObject:doneButton];
     [rightItems addObject:hideKeyboard];
     self.navigationItem.rightBarButtonItems = rightItems;
     
-    
-    
      NSLog(@"Registering for keyboard events");
      
-     // Register for the events
+     // Register for Keyboard events
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidShow:) name:UIKeyboardDidShowNotification object:nil];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardDidHide:) name:UIKeyboardDidHideNotification object:nil];
-    
-     // Setup content size
-//     scrollview.contentSize = CGSizeMake(SCROLLVIEW_CONTENT_WIDTH, SCROLLVIEW_CONTENT_HEIGHT);
-    
-     //Initially the keyboard is hidden
+
      _keyboardVisible = NO;
      
     
@@ -173,13 +144,6 @@
         // text change. lets commit
         NSLog(@"Change occured in text;");
         [[NSNotificationCenter defaultCenter] postNotificationName:@"aGHC-ChangesMadeToFile" object:self];
-//        DMCommitMessageView *commitMessageView = [[DMCommitMessageView alloc] init];
-//        RNBlurModalView *commitMessageModalView = [[RNBlurModalView alloc] initWithView:commitMessageView];
-//        RNBlurModalView *secondaryView = [[RNBlurModalView alloc] initWithTitle:@"Whoa test it" message:@"Super test, Messages and things and what nots"];
-//        [commitMessageModalView show];
-//        [secondaryView show];
-        
-        // udpate _fileDictionary with new_content
         NSMutableDictionary *newFileDirectory = [_fileDictionary mutableCopy];
         [newFileDirectory setValue:_textView.text forKey:@"new_content"];
         _fileDictionary = newFileDirectory;
@@ -191,20 +155,12 @@
                                                   otherButtonTitles:@"Post Commit",nil];
         [alertView setAlertViewStyle:UIAlertViewStylePlainTextInput];
         [alertView show];
+        
     } else {
         // no text differences.
         NSLog(@"No change in text value");
         [[self navigationController] popViewControllerAnimated:YES];
     }
-    
-//    [[self navigationController] popViewControllerAnimated:YES];
-}
-
-
-- (void)postCommit:(NSNotification *)notification {
-    NSString *commitMessage = [notification object];
-    NSDictionary *ownerData = [_fileDictionary objectForKey:@"owner"];
-
 }
 
 #pragma mark UIAlertView Delegate
@@ -215,16 +171,7 @@
         NSMutableDictionary *mutableFileDirectionary = [_fileDictionary mutableCopy];
         [mutableFileDirectionary setValue:[[alertView textFieldAtIndex:0] text] forKey:@"commit_message"];
         _fileDictionary = mutableFileDirectionary;
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"PostCommit" object:mutableFileDirectionary];
-//        [self kickoffcommitcreation:mutableFileDirectionary];
-        
-//        NSString *commitMessage = [[alertView textFieldAtIndex:0] text];
-//        BOOL commitPosted = [DMCommitObject withLatestsCommitTreeAndParentHashCommitFile:[_fileDictionary objectForKey:@"path"] withContents:commitMessage toRepo:[_fileDictionary objectForKey:@"repoName"] withOwner:[ownerData objectForKey:@"login"] withCommitMessage:commitMessage];
-        
-//        if ([commit success]) {
-//            NSLog(@"Commit posted successfully");
-//            [[self navigationController] popViewControllerAnimated:YES];
-//        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"PostCommit" object:_fileDictionary];
     }
 }
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
@@ -378,7 +325,6 @@
     [updateRefRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     [updateRefRequest setValue:[NSString stringWithFormat:@"%d", [updateRefPostData length]] forHTTPHeaderField:@"Content-Length"];
     [updateRefRequest setHTTPBody:updateRefPostData];
-
     
     NSURLResponse *updateRefUrlResponse = nil;
     NSError *updateRefErr = nil;
