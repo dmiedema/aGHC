@@ -84,7 +84,7 @@
     NSString *username = [[NSUserDefaults standardUserDefaults] objectForKey:kUsername];
     
     UIBarButtonItem *doneButton = [UIBarButtonItem new];
-    [doneButton setImage:[factory createImageForIcon:NIKFontAwesomeIconCheck]];
+    [doneButton setImage:[factory createImageForIcon:NIKFontAwesomeIconCheckSign]];
     [doneButton setAction:@selector(userIsDoneEditing:)];
     [doneButton setTarget:self];
     [doneButton setEnabled:([username isEqualToString:[[_fileDictionary objectForKey:@"owner"] objectForKey:@"login"]])];
@@ -226,7 +226,7 @@
     }
 }
 - (BOOL)alertViewShouldEnableFirstOtherButton:(UIAlertView *)alertView {
-    return ![[[alertView textFieldAtIndex:0] text] isEqualToString:@""];
+    return [[[alertView textFieldAtIndex:0] text] length] != 0;
 }
 
 - (void)kickoff:(NSNotification *)notification {
