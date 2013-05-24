@@ -22,5 +22,7 @@
     #import "aGHCConstants.h"
     #import "DDLog.h"
     #import "SVProgressHUD.h"
+    #import "NIKFontAwesomeIconFactory.h"
+    #import "NIKFontAwesomeIconFactory+iOS.h"
     static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #endif

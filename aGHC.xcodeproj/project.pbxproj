@@ -14,6 +14,11 @@
 		C30235751722534300842687 /* DMRepositoryDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C30235731722534300842687 /* DMRepositoryDetailTableViewCell.m */; };
 		C302357817226B0500842687 /* DMRepositoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C302357717226B0500842687 /* DMRepositoryDetailViewController.m */; };
 		C302357A17226B3B00842687 /* RepositoryDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C302357917226B3B00842687 /* RepositoryDetailView.xib */; };
+		C3083CBF174B43BE00F62A1F /* DMNotificationsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3083CBE174B43BE00F62A1F /* DMNotificationsTableViewController.m */; };
+		C3083CC1174B43F200F62A1F /* NotificationsStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3083CC0174B43F200F62A1F /* NotificationsStoryboard_iPhone.storyboard */; };
+		C3083CC3174B440200F62A1F /* GistsStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3083CC2174B440200F62A1F /* GistsStoryboard_iPhone.storyboard */; };
+		C3083CC5174B442500F62A1F /* NewsFeedStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3083CC4174B442500F62A1F /* NewsFeedStoryboard_iPhone.storyboard */; };
+		C3083CC9174B478E00F62A1F /* DMGistExploreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3083CC8174B478E00F62A1F /* DMGistExploreTableViewController.m */; };
 		C30FB3C917121D64002D6C69 /* DMCustomLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = C30FB3C817121D64002D6C69 /* DMCustomLabel.m */; };
 		C329908E1712165500176E3A /* Avenir.ttc in Resources */ = {isa = PBXBuildFile; fileRef = C329908D1712165500176E3A /* Avenir.ttc */; };
 		C34A007F17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C34A007E17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m */; };
@@ -158,6 +163,13 @@
 		C302357617226B0500842687 /* DMRepositoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMRepositoryDetailViewController.h; sourceTree = "<group>"; };
 		C302357717226B0500842687 /* DMRepositoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMRepositoryDetailViewController.m; sourceTree = "<group>"; };
 		C302357917226B3B00842687 /* RepositoryDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RepositoryDetailView.xib; sourceTree = "<group>"; };
+		C3083CBD174B43BE00F62A1F /* DMNotificationsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNotificationsTableViewController.h; sourceTree = "<group>"; };
+		C3083CBE174B43BE00F62A1F /* DMNotificationsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNotificationsTableViewController.m; sourceTree = "<group>"; };
+		C3083CC0174B43F200F62A1F /* NotificationsStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NotificationsStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		C3083CC2174B440200F62A1F /* GistsStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = GistsStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		C3083CC4174B442500F62A1F /* NewsFeedStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = NewsFeedStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		C3083CC7174B478E00F62A1F /* DMGistExploreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMGistExploreTableViewController.h; sourceTree = "<group>"; };
+		C3083CC8174B478E00F62A1F /* DMGistExploreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMGistExploreTableViewController.m; sourceTree = "<group>"; };
 		C30FB3C717121D64002D6C69 /* DMCustomLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCustomLabel.h; sourceTree = "<group>"; };
 		C30FB3C817121D64002D6C69 /* DMCustomLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCustomLabel.m; sourceTree = "<group>"; };
 		C329908D1712165500176E3A /* Avenir.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = Avenir.ttc; sourceTree = "<group>"; };
@@ -429,6 +441,24 @@
 			name = "Initial View Controller";
 			sourceTree = "<group>";
 		};
+		C3083CBC174B43A100F62A1F /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				C3083CBD174B43BE00F62A1F /* DMNotificationsTableViewController.h */,
+				C3083CBE174B43BE00F62A1F /* DMNotificationsTableViewController.m */,
+			);
+			name = Notifications;
+			sourceTree = "<group>";
+		};
+		C3083CC6174B477800F62A1F /* Gists */ = {
+			isa = PBXGroup;
+			children = (
+				C3083CC7174B478E00F62A1F /* DMGistExploreTableViewController.h */,
+				C3083CC8174B478E00F62A1F /* DMGistExploreTableViewController.m */,
+			);
+			name = Gists;
+			sourceTree = "<group>";
+		};
 		C34A019617488AA300828A92 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,6 +550,9 @@
 				C3A8EB7B171F02E3001C85DD /* SearchStoryboard_iPhone.storyboard */,
 				C3A8EB80171F048C001C85DD /* ExploreStoryboard_iPhone.storyboard */,
 				C30235531721DD4300842687 /* RepositoryViewStoryboard_iPhone.storyboard */,
+				C3083CC0174B43F200F62A1F /* NotificationsStoryboard_iPhone.storyboard */,
+				C3083CC2174B440200F62A1F /* GistsStoryboard_iPhone.storyboard */,
+				C3083CC4174B442500F62A1F /* NewsFeedStoryboard_iPhone.storyboard */,
 			);
 			name = StoryBoards;
 			sourceTree = "<group>";
@@ -527,6 +560,8 @@
 		C3767C9117168E0800BC593B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C3083CC6174B477800F62A1F /* Gists */,
+				C3083CBC174B43A100F62A1F /* Notifications */,
 				C302356F1721DF4F00842687 /* Initial View Controller */,
 				C302356E1721DF4500842687 /* Settings */,
 				C302356D1721DF3E00842687 /* Home Screen */,
@@ -792,6 +827,9 @@
 				C34A019317488A7E00828A92 /* WatchButtonHighlighted@2x.png in Resources */,
 				C34A019417488A7E00828A92 /* WatchButtonNormal.png in Resources */,
 				C34A019517488A7E00828A92 /* WatchButtonNormal@2x.png in Resources */,
+				C3083CC1174B43F200F62A1F /* NotificationsStoryboard_iPhone.storyboard in Resources */,
+				C3083CC3174B440200F62A1F /* GistsStoryboard_iPhone.storyboard in Resources */,
+				C3083CC5174B442500F62A1F /* NewsFeedStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -844,6 +882,8 @@
 				C3E8DF84173C7D7500604115 /* RNBlurModalView.m in Sources */,
 				C3E8DF8A173C8BD200604115 /* DMCommitMessageView.m in Sources */,
 				C34A007F17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m in Sources */,
+				C3083CBF174B43BE00F62A1F /* DMNotificationsTableViewController.m in Sources */,
+				C3083CC9174B478E00F62A1F /* DMGistExploreTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
