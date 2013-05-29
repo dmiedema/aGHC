@@ -146,7 +146,10 @@
     
     // Account is new, add it to NSUserDefaults and save.
     [accounts addObject:dict];
-    [[NSUserDefaults standardUserDefaults] setObject:accounts forKey:@"accounts"];
+//    [[NSUserDefaults standardUserDefaults] setObject:accounts forKey:@"accounts"];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kAccessToken] forKey:kAccessToken];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kTokenType] forKey:kTokenType];
+    [[NSUserDefaults standardUserDefaults] setValue:[dict objectForKey:kUsername] forKey:kUsername];
     //[[NSUserDefaults standardUserDefaults] setValuesForKeysWithDictionary:dict];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [[NSNotificationCenter defaultCenter] postNotificationName:kUserInformationSavedToDefaultsNotifcation object:self];

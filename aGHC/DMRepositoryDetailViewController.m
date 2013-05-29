@@ -260,13 +260,13 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     
     NSLog(@"Request - %@", request);
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];    
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         NSLog(@"Response -- %@", JSON);
         NSLog(@"Content - %@", [JSON objectForKey:@"content"]);
         NSLog(@"Decoded - %@", [NSString stringFromBase64String:[JSON objectForKey:@"content"]]);
-        [self setRawHTML:[NSString stringWithFormat:@"%@%@", stylestring, [NSString stringFromBase64String:[JSON objectForKey:@"content"]]]];
+        [self setRawHTML:[NSString stringWithFormat:@"%@%@", stylestring, [NSString stringFromBase64String:[JSON objectForKey:@"content"]]]];        
         
         NSLog(@"HTML - %@", [MMMarkdown HTMLStringWithMarkdown:[NSString stringFromBase64String:[JSON objectForKey:@"content"]] error:nil]);
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -284,7 +284,7 @@
     
     [readmeView setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin];
     
-    [readmeView setFrame:CGRectMake(0, y, self.view.frame.size.width, [[readmeView stringByEvaluatingJavaScriptFromString:@"document.body.scrollHeight"] floatValue])];
+    [readmeView setFrame:CGRectMake(0, y, self.view.frame.size.width, self.view.frame.size.height / 2)];
     [readmeView sizeToFit];
     y += readmeView.frame.size.height;
     
