@@ -145,6 +145,13 @@
     
     if ([itemSelected isEqualToString:@"Notifications"]) {
         NSLog(@"Notifications Selected");
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"NotificationsStoryboard_iPhone" bundle:[NSBundle mainBundle]];
+        UIViewController *viewController = [[UIViewController alloc] init];
+        [viewController setModalPresentationStyle:UIModalPresentationCurrentContext];
+        [viewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
+        [viewController setTitle:@"Notifications"];
+        viewController = [storyboard instantiateInitialViewController];
+        [self presentViewController:viewController animated:YES completion:nil];
     } else if ([itemSelected isEqualToString:@"Repositories"]) {
         NSLog(@"Repositories Selected");
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"RepositoryStoryboard_iPhone" bundle:[NSBundle mainBundle]];
