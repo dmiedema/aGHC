@@ -144,7 +144,6 @@
 		C3E8DF87173C7DA600604115 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E8DF86173C7DA600604115 /* Accelerate.framework */; };
 		C3E8DF8A173C8BD200604115 /* DMCommitMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = C3E8DF89173C8BD200604115 /* DMCommitMessageView.m */; };
 		C3E8DF8C173C8C2900604115 /* DMCommitMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3E8DF8B173C8C2900604115 /* DMCommitMessageView.xib */; };
-		C3ED0DFE1757E9DE003F3770 /* DMNotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C3ED0DFD1757E9DE003F3770 /* DMNotificationsViewController.m */; };
 		C3ED621916EC702000311A72 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621816EC702000311A72 /* Security.framework */; };
 		C3ED621B16EC702B00311A72 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621A16EC702B00311A72 /* CFNetwork.framework */; };
 		C3ED621D16EC703B00311A72 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3ED621C16EC703B00311A72 /* MessageUI.framework */; };
@@ -320,8 +319,6 @@
 		C3E8DF88173C8BD200604115 /* DMCommitMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMCommitMessageView.h; sourceTree = "<group>"; };
 		C3E8DF89173C8BD200604115 /* DMCommitMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMCommitMessageView.m; sourceTree = "<group>"; };
 		C3E8DF8B173C8C2900604115 /* DMCommitMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DMCommitMessageView.xib; sourceTree = "<group>"; };
-		C3ED0DFC1757E9DE003F3770 /* DMNotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMNotificationsViewController.h; sourceTree = "<group>"; };
-		C3ED0DFD1757E9DE003F3770 /* DMNotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMNotificationsViewController.m; sourceTree = "<group>"; };
 		C3ED621716EC6FA700311A72 /* aGHCConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = aGHCConstants.h; sourceTree = "<group>"; };
 		C3ED621816EC702000311A72 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		C3ED621A16EC702B00311A72 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -572,8 +569,6 @@
 				C302356B1721DF1500842687 /* Search */,
 				C302356A1721DF0700842687 /* Explore */,
 				C30235691721DEEB00842687 /* Repository Detail View */,
-				C3ED0DFC1757E9DE003F3770 /* DMNotificationsViewController.h */,
-				C3ED0DFD1757E9DE003F3770 /* DMNotificationsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -889,7 +884,6 @@
 				C34A007F17469D0D00828A92 /* DMRepositoryCommitsTableViewController.m in Sources */,
 				C3083CBF174B43BE00F62A1F /* DMNotificationsTableViewController.m in Sources */,
 				C3083CC9174B478E00F62A1F /* DMGistExploreTableViewController.m in Sources */,
-				C3ED0DFE1757E9DE003F3770 /* DMNotificationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
