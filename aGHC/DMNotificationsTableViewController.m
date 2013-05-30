@@ -7,8 +7,18 @@
 //
 
 #import "DMNotificationsTableViewController.h"
+#import "DerpKit.h"
+#import "NIKFontAwesomeIconFactory.h"
+#import "NIKFontAwesomeIconFactory+iOS.h"
+#import "MBProgressHUD.h"
+#import "JSNotifier.h"
 
 @interface DMNotificationsTableViewController ()
+
+@property (nonatomic, strong) NSArray *repositoryNames;
+@property (nonatomic, strong) NSArray *notificationDetails;
+
+- (void)markAllNotificationsAsRead;
 
 @end
 
@@ -27,11 +37,86 @@
 {
     [super viewDidLoad];
 
+    [MBProgressHUD showHUDAddedTo:[self view] animated:YES];
+    NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:kAccessToken];
+    NSString *tokenType = [[NSUserDefaults standardUserDefaults] objectForKey:kTokenType];
+    NSString *baseURL = [NSString stringWithFormat:@"%@notifications", kGitHubApiURL];
+    NSString *urlString;
+    
+    if (token && tokenType)
+        urlString = [NSString stringWithFormat:@"%@?%@=%@&%@=%@", baseURL, kAccessToken, token, kTokenType, tokenType];
+    else // errrrrr
+        urlString = baseURL;
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+        [self loadTableContents:JSON];
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+        [MBProgressHUD hideAllHUDsForView:[self view] animated:YES];
+    }];
+    [operation start];
+    
+    
+    //// Nav Bar Icons
+    NIKFontAwesomeIconFactory *factory = [NIKFontAwesomeIconFactory barButtonItemIconFactory];
+
+    UIBarButtonItem *markAllAsRead = [UIBarButtonItem new];
+    [markAllAsRead setImage:[factory createImageForIcon:NIKFontAwesomeIconOk]];
+    [markAllAsRead setAction:@selector(markAllNotificationsAsRead)];
+    [markAllAsRead setTarget:self];
+    [markAllAsRead setEnabled:YES];
+    [markAllAsRead setStyle:UIBarButtonItemStyleDone];
+    
+    UIBarButtonItem *homeButton = [UIBarButtonItem new];
+    [homeButton setImage:[factory createImageForIcon:NIKFontAwesomeIconHome]];
+    [homeButton setAction:@selector(dismissMe:)];
+    [homeButton setTarget:self];
+    [homeButton setEnabled:YES];
+    [homeButton setStyle:UIBarButtonItemStyleBordered];
+    
+    [[self navigationItem] setLeftBarButtonItem:homeButton];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = markAllAsRead;
+    
+}
+
+- (void)loadTableContents:(NSArray *)contents {
+    NSMutableArray *repositoryNotifications = [NSMutableArray new];
+    NSMutableArray *repositoryNames = [NSMutableArray new];
+    for (NSDictionary *dictionary in contents) {
+        NSString *id = [dictionary objectForKey:@"id"];
+        NSString *repoName = [[dictionary objectForKey:@"repository"] objectForKey:@"name"];
+        NSString *type = [[dictionary objectForKey:@"subject"] objectForKey:@"type"];
+        NSString *title = [[dictionary objectForKey:@"subject"] objectForKey:@"title"];
+        
+        if (![repositoryNames containsObject:repoName])
+            [repositoryNames addObject:repoName];
+        
+        NSDictionary *customDict = @{@"id" : id,
+                                     @"repoName" : repoName,
+                                     @"type" : type,
+                                     @"title" : title };
+        
+        [repositoryNotifications addObject:customDict];
+//        [repositoryNotifications addObject:dictionary];
+    }
+    
+    _repositoryNames = repositoryNames;
+    _notificationDetails = repositoryNotifications;
+    
+    [[self tableView] reloadData];
+    [MBProgressHUD hideAllHUDsForView:[self view] animated:YES];
+}
+
+- (void)markAllNotificationsAsRead {
+    
+}
+- (void)dismissMe:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,26 +129,44 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+    return [_repositoryNames count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+    NSString *repoNameAtIndex = [_repositoryNames objectAtIndex:section];
+    int i = 0;
+//    NSMutableArray *notificationsForRepo = [NSMutableArray new];
+    for (NSDictionary *dict in _notificationDetails) {
+        if ( [[dict objectForKey:@"repoName"] isEqualToString:repoNameAtIndex] ) {
+            i++;
+        }
+    }
+    return i;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
     // Configure the cell...
+    NSString *currentRepoSection = [_repositoryNames objectAtIndex:[indexPath section]];
+    
+    NSMutableArray *notificationsForCurrentSectionsRepo = [NSMutableArray new];
+    for (NSDictionary *dictionary in _notificationDetails) {
+        if ([[dictionary objectForKey:@"repoName"] isEqualToString:currentRepoSection] && ![notificationsForCurrentSectionsRepo containsObject:dictionary])
+            [notificationsForCurrentSectionsRepo addObject:dictionary];
+    }
+    NSDictionary *dictionary = [notificationsForCurrentSectionsRepo objectAtIndex:[indexPath row]];
+    
+    cell.textLabel.text = [dictionary objectForKey:@"title"];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@", [dictionary objectForKey:@"type"]];
+    
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [_repositoryNames objectAtIndex:section];
 }
 
 /*
