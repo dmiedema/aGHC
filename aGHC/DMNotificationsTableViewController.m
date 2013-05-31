@@ -51,6 +51,7 @@
 
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
         [self loadTableContents:JSON];
+        NSLog(@"JSON %@", JSON);
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
         [MBProgressHUD hideAllHUDsForView:[self view] animated:YES];
     }];
@@ -85,6 +86,7 @@
 }
 
 - (void)loadTableContents:(NSArray *)contents {
+    NSLog(@"contnets : %@", contents);
     NSMutableArray *repositoryNotifications = [NSMutableArray new];
     NSMutableArray *repositoryNames = [NSMutableArray new];
     for (NSDictionary *dictionary in contents) {
@@ -107,6 +109,8 @@
     
     _repositoryNames = repositoryNames;
     _notificationDetails = repositoryNotifications;
+    NSLog(@"__repositoryNames : %@", repositoryNames);
+    NSLog(@"__notificationDetails : %@", repositoryNotifications);
     
     [[self tableView] reloadData];
     [MBProgressHUD hideAllHUDsForView:[self view] animated:YES];
@@ -145,6 +149,10 @@
     return i;
 }
 
+#define DEFAULT_LABEL_HEIGHT 20.0
+#define PADDING (DEFAULT_LABEL_HEIGHT / 2)
+#define DEFAULT_LABEL_WIDTH 280
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Cell"];
@@ -158,9 +166,38 @@
     }
     NSDictionary *dictionary = [notificationsForCurrentSectionsRepo objectAtIndex:[indexPath row]];
     
-    cell.textLabel.text = [dictionary objectForKey:@"title"];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"Type: %@", [dictionary objectForKey:@"type"]];
+    int y = PADDING; // starting off at 0 looks like doodoo.
+    NSString *title = [dictionary objectForKey:@"title"];
+    NSString *type  = [dictionary objectForKey:@"type"];
     
+    UILabel *titleLabel = [UILabel new];
+    UILabel *typeLabel  = [UILabel new];
+    
+    UIFont *font = [UIFont fontWithName:kFontName size:17.0];
+
+    // setup title label
+    [titleLabel setFont:font];
+    [titleLabel setNumberOfLines:0];
+    [titleLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    CGSize constraintSize = CGSizeMake(DEFAULT_LABEL_WIDTH, MAXFLOAT);
+    CGSize messageSize = [title sizeWithFont:font constrainedToSize:constraintSize lineBreakMode:NSLineBreakByWordWrapping];
+    [titleLabel setText:title];
+    [titleLabel setFrame:CGRectMake(PADDING * 2, y, messageSize.width, messageSize.height)];
+    
+    y += messageSize.height;
+    
+    // set up type label
+    [typeLabel setAlpha:0.7];
+    [typeLabel setTextColor:[UIColor darkGrayColor]];
+    [typeLabel setFont:font];
+    [typeLabel setText:[NSString stringWithFormat:@"Type - %@", type]];
+    [typeLabel setBackgroundColor:[UIColor clearColor]];
+    [typeLabel setFrame:CGRectMake(PADDING * 2, y, DEFAULT_LABEL_WIDTH, DEFAULT_LABEL_HEIGHT)];
+    
+    y += DEFAULT_LABEL_HEIGHT;
+    
+    [cell addSubview:titleLabel];
+    [cell addSubview:typeLabel];
     
     return cell;
 }
@@ -169,44 +206,19 @@
     return [_repositoryNames objectAtIndex:section];
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *currentRepoSection = [_repositoryNames objectAtIndex:[indexPath section]];
+    
+    NSMutableArray *notificationsForCurrentSectionsRepo = [NSMutableArray new];
+    for (NSDictionary *dictionary in _notificationDetails) {
+        if ([[dictionary objectForKey:@"repoName"] isEqualToString:currentRepoSection] && ![notificationsForCurrentSectionsRepo containsObject:dictionary])
+            [notificationsForCurrentSectionsRepo addObject:dictionary];
+    }
+    NSDictionary *dictionary = [notificationsForCurrentSectionsRepo objectAtIndex:[indexPath row]];
+    
+    CGSize textSize = [[dictionary objectForKey:@"title"] sizeWithFont:[UIFont fontWithName:kFontName size:17.0f] constrainedToSize:CGSizeMake(self.tableView.frame.size.width - PADDING * 4, MAXFLOAT) lineBreakMode:NSLineBreakByWordWrapping];
+    return textSize.height + (PADDING * 4);
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
