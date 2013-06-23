@@ -8,7 +8,7 @@ My individual senior project. Designed originally to be a fully functioning GitH
 I have a goal of enabling edits to repositories as well as commiting those changed back into the repository. We call can dream, right?
 
 ##Bugs
-A lot.
+A lot. I should go through and fix them.
 
 ##Current Status?
 I don't even think I'd consider it an alpha product at this point. There's far too much I want to implement still.
